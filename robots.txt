@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://world-calculator.aakashsuryavanshi860.workers.dev
+Sitemap: https://world-calculator.aakashsuryavanshi860.workers.dev/sitemap.xml
