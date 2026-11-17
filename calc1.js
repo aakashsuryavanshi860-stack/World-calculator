@@ -1,0 +1,36 @@
+var tools1 = [
+  { name: "BMI Calculator", id: "bmi", icon: "⚖️" },
+  { name: "Percentage Calculator", id: "percentage", icon: "％" },
+  { name: "Age Calculator", id: "age", icon: "🎂" },
+  { name: "EMI Calculator", id: "emi", icon: "🏦" },
+  { name: "Simple Interest", id: "interest", icon: "💰" },
+  { name: "GST Calculator", id: "gst", icon: "🧾" },
+  { name: "Discount Calculator", id: "discount", icon: "🏷️" },
+  { name: "Tip Calculator", id: "tip", icon: "🍽️" },
+  { name: "Average Calculator", id: "average", icon: "📊" },
+  { name: "Compound Interest", id: "compound", icon: "📈" }
+];
+
+var htmls1 = {
+  bmi: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="weight" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="height" /></div><button class="btn" onclick="calcBMI()">Calculate</button><div id="bmiResult" class="result-box"><p id="bmiValue" style="font-size: 2rem; font-weight: bold; color: #1e40af;">0</p></div>',
+  percentage: '<div class="input-group"><label>X</label><input type="number" id="p1_percent" /></div><div class="input-group"><label>Y</label><input type="number" id="p1_value" /></div><button class="btn" onclick="calcP1()">Calculate</button><div id="res1" class="result-box">Result: <span id="val1"></span></div>',
+  age: '<div class="input-group"><label>DOB</label><input type="date" id="dob" /></div><button class="btn" onclick="calcAge()">Calculate</button><div id="ageResult" class="result-box"><p id="ageValue">0</p></div>',
+  emi: '<div class="input-group"><label>Loan (₹)</label><input type="number" id="loanAmount" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="interestRate" /></div><div class="input-group"><label>Years</label><input type="number" id="loanTenure" /></div><button class="btn" onclick="calcEMI()">Calculate</button><div id="emiResult" class="result-box"><p id="emiValue">₹0</p></div>',
+  interest: '<div class="input-group"><label>Principal (₹)</label><input type="number" id="si_principal" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="si_rate" /></div><div class="input-group"><label>Time</label><input type="number" id="si_time" /></div><button class="btn" onclick="calcSI()">Calculate</button><div id="siResult" class="result-box"><p id="siValue">₹0</p></div>',
+  gst: '<div class="input-group"><label>Amount (₹)</label><input type="number" id="gst_amount" /></div><div class="input-group"><label>GST (%)</label><input type="number" id="gst_rate" /></div><button class="btn" onclick="calcGST()">Calculate</button><div id="gstResult" class="result-box"><p id="gstValue">₹0</p></div>',
+  discount: '<div class="input-group"><label>Price (₹)</label><input type="number" id="disc_price" /></div><div class="input-group"><label>Discount (%)</label><input type="number" id="disc_percent" /></div><button class="btn" onclick="calcDiscount()">Calculate</button><div id="discResult" class="result-box"><p id="discValue">₹0</p></div>',
+  tip: '<div class="input-group"><label>Bill (₹)</label><input type="number" id="tip_bill" /></div><div class="input-group"><label>Tip (%)</label><input type="number" id="tip_percent" /></div><button class="btn" onclick="calcTip()">Calculate</button><div id="tipResult" class="result-box"><p id="tipValue">₹0</p></div>',
+  average: '<div class="input-group"><label>Numbers (comma)</label><input type="text" id="avg_numbers" /></div><button class="btn" onclick="calcAverage()">Calculate</button><div id="avgResult" class="result-box"><p id="avgValue">0</p></div>',
+  compound: '<div class="input-group"><label>Principal (₹)</label><input type="number" id="ci_p" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="ci_r" /></div><div class="input-group"><label>Years</label><input type="number" id="ci_t" /></div><button class="btn" onclick="calcCI()">Calculate</button><div id="ciResult" class="result-box"><p id="ciValue">₹0</p></div>'
+};
+
+function calcBMI() { var w=parseFloat(document.getElementById('weight').value), h=parseFloat(document.getElementById('height').value); if(!isNaN(w)&&!isNaN(h)&&w>0&&h>0) { document.getElementById('bmiValue').textContent=(w/Math.pow(h/100,2)).toFixed(1); document.getElementById('bmiResult').style.display='block'; } }
+function calcP1() { var p=parseFloat(document.getElementById('p1_percent').value), v=parseFloat(document.getElementById('p1_value').value); if(!isNaN(p)&&!isNaN(v)){ document.getElementById('val1').textContent=((p/100)*v).toFixed(2); document.getElementById('res1').style.display='block'; } }
+function calcAge() { var d=document.getElementById('dob').value; if(d){ var y=new Date().getFullYear()-new Date(d).getFullYear(); document.getElementById('ageValue').textContent=y+" Years"; document.getElementById('ageResult').style.display='block'; } }
+function calcEMI() { var p=parseFloat(document.getElementById('loanAmount').value), r=parseFloat(document.getElementById('interestRate').value)/1200, n=parseFloat(document.getElementById('loanTenure').value)*12; if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var e=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); document.getElementById('emiValue').textContent="₹"+e.toFixed(0); document.getElementById('emiResult').style.display='block'; } }
+function calcSI() { var p=parseFloat(document.getElementById('si_principal').value), r=parseFloat(document.getElementById('si_rate').value), t=parseFloat(document.getElementById('si_time').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(t)){ document.getElementById('siValue').textContent="₹"+((p*r*t)/100).toFixed(2); document.getElementById('siResult').style.display='block'; } }
+function calcGST() { var a=parseFloat(document.getElementById('gst_amount').value), r=parseFloat(document.getElementById('gst_rate').value); if(!isNaN(a)&&!isNaN(r)){ document.getElementById('gstValue').textContent="₹"+((a*r)/100).toFixed(2); document.getElementById('gstResult').style.display='block'; } }
+function calcDiscount() { var p=parseFloat(document.getElementById('disc_price').value), d=parseFloat(document.getElementById('disc_percent').value); if(!isNaN(p)&&!isNaN(d)){ document.getElementById('discValue').textContent="₹"+(p-(p*d/100)).toFixed(2); document.getElementById('discResult').style.display='block'; } }
+function calcTip() { var b=parseFloat(document.getElementById('tip_bill').value), t=parseFloat(document.getElementById('tip_percent').value); if(!isNaN(b)&&!isNaN(t)){ document.getElementById('tipValue').textContent="₹"+(b+(b*t/100)).toFixed(2); document.getElementById('tipResult').style.display='block'; } }
+function calcAverage() { var i=document.getElementById('avg_numbers').value; if(i){ var n=i.split(',').map(Number); var s=n.reduce(function(a,b){return a+b;},0); document.getElementById('avgValue').textContent=(s/n.length).toFixed(2); document.getElementById('avgResult').style.display='block'; } }
+function calcCI() { var p=parseFloat(document.getElementById('ci_p').value), r=parseFloat(document.getElementById('ci_r').value), t=parseFloat(document.getElementById('ci_t').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(t)){ document.getElementById('ciValue').textContent="₹"+(p*Math.pow(1+r/100,t)).toFixed(2); document.getElementById('ciResult').style.display='block'; } }

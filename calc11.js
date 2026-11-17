@@ -1,0 +1,38 @@
+var tools11 = [
+  { name: "Bandwidth Calculator", id: "bandwidth", icon: "📡" },
+  { name: "Base64 Encode/Decode", id: "base64", icon: "🔐" },
+  { name: "URL Encode/Decode", id: "urlencode", icon: "🔗" },
+  { name: "Roman Numeral Converter", id: "roman", icon: "🏛️" },
+  { name: "Binary Calculator", id: "binary", icon: "💻" },
+  { name: "Hex Calculator", id: "hex", icon: "💻" },
+  { name: "Day Counter", id: "daycounter", icon: "📆" },
+  { name: "Hours Calculator", id: "hours", icon: "⏰" },
+  { name: "Grade Calculator", id: "grade", icon: "📝" },
+  { name: "Dice Roller", id: "dice", icon: "🎲" }
+];
+
+var htmls11 = {
+  bandwidth: '<div class="input-group"><label>File Size (MB)</label><input type="number" id="bw_size" /></div><div class="input-group"><label>Time (seconds)</label><input type="number" id="bw_time" /></div><button class="btn" onclick="calcBandwidth()">Calculate</button><div id="bw_result" class="result-box"><p id="bw_val"></p></div>',
+  base64: '<div class="input-group"><label>Text</label><input type="text" id="b64_text" /></div><button class="btn" onclick="calcBase64Encode()" style="margin-bottom:0.5rem;">Encode</button><button class="btn" onclick="calcBase64Decode()">Decode</button><div id="b64_result" class="result-box"><p id="b64_val"></p></div>',
+  urlencode: '<div class="input-group"><label>Text/URL</label><input type="text" id="url_text" /></div><button class="btn" onclick="calcURLEncode()" style="margin-bottom:0.5rem;">Encode</button><button class="btn" onclick="calcURLDecode()">Decode</button><div id="url_result" class="result-box"><p id="url_val"></p></div>',
+  roman: '<div class="input-group"><label>Number</label><input type="number" id="rm_num" /></div><button class="btn" onclick="calcRoman()">Convert</button><div id="rm_result" class="result-box"><p id="rm_val"></p></div>',
+  binary: '<div class="input-group"><label>Decimal Number</label><input type="number" id="bin_dec" /></div><button class="btn" onclick="calcBinary()">Convert to Binary</button><div id="bin_result" class="result-box"><p id="bin_val"></p></div>',
+  hex: '<div class="input-group"><label>Decimal Number</label><input type="number" id="hex_dec" /></div><button class="btn" onclick="calcHex()">Convert to Hex</button><div id="hex_result" class="result-box"><p id="hex_val"></p></div>',
+  daycounter: '<div class="input-group"><label>Start Date</label><input type="date" id="dc_st" /></div><div class="input-group"><label>End Date</label><input type="date" id="dc_en" /></div><button class="btn" onclick="calcDayCounter()">Calculate</button><div id="dc_result" class="result-box"><p id="dc_val"></p></div>',
+  hours: '<div class="input-group"><label>Start Time</label><input type="time" id="hr_st" /></div><div class="input-group"><label>End Time</label><input type="time" id="hr_en" /></div><button class="btn" onclick="calcHours()">Calculate</button><div id="hr_result" class="result-box"><p id="hr_val"></p></div>',
+  grade: '<div class="input-group"><label>Score Obtained</label><input type="number" id="gr_ob" /></div><div class="input-group"><label>Total Marks</label><input type="number" id="gr_total" /></div><button class="btn" onclick="calcGrade()">Calculate</button><div id="gr_result" class="result-box"><p id="gr_val"></p></div>',
+  dice: '<div class="input-group"><label>Number of Dice</label><input type="number" id="dice_n" value="1" /></div><div class="input-group"><label>Sides per Die</label><input type="number" id="dice_s" value="6" /></div><button class="btn" onclick="calcDice()">Roll Dice</button><div id="dice_result" class="result-box"><p id="dice_val"></p></div>'
+};
+
+function calcBandwidth() { var s=parseFloat(document.getElementById('bw_size').value), t=parseFloat(document.getElementById('bw_time').value); if(!isNaN(s)&&!isNaN(t)&&t>0){ document.getElementById('bw_val').textContent="Speed: "+((s*8)/t).toFixed(2)+" Mbps"; document.getElementById('bw_result').style.display='block'; } }
+function calcBase64Encode() { var t=document.getElementById('b64_text').value; try { document.getElementById('b64_val').textContent=btoa(t); document.getElementById('b64_result').style.display='block'; } catch(e) { document.getElementById('b64_val').textContent="Invalid Input"; document.getElementById('b64_result').style.display='block'; } }
+function calcBase64Decode() { var t=document.getElementById('b64_text').value; try { document.getElementById('b64_val').textContent=atob(t); document.getElementById('b64_result').style.display='block'; } catch(e) { document.getElementById('b64_val').textContent="Invalid Base64"; document.getElementById('b64_result').style.display='block'; } }
+function calcURLEncode() { var t=document.getElementById('url_text').value; document.getElementById('url_val').textContent=encodeURIComponent(t); document.getElementById('url_result').style.display='block'; }
+function calcURLDecode() { var t=document.getElementById('url_text').value; try { document.getElementById('url_val').textContent=decodeURIComponent(t); document.getElementById('url_result').style.display='block'; } catch(e) { document.getElementById('url_val').textContent="Invalid URL"; document.getElementById('url_result').style.display='block'; } }
+function calcRoman() { var n=parseInt(document.getElementById('rm_num').value); if(!isNaN(n)&&n>0&&n<4000){ var r=""; var v=[1000,900,500,400,100,90,50,40,10,9,5,4,1]; var s=["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]; for(var i=0;i<v.length;i++){ while(n>=v[i]){ r+=s[i]; n-=v[i]; } } document.getElementById('rm_val').textContent="Roman: "+r; document.getElementById('rm_result').style.display='block'; } }
+function calcBinary() { var n=parseInt(document.getElementById('bin_dec').value); if(!isNaN(n)){ document.getElementById('bin_val').textContent="Binary: "+n.toString(2); document.getElementById('bin_result').style.display='block'; } }
+function calcHex() { var n=parseInt(document.getElementById('hex_dec').value); if(!isNaN(n)){ document.getElementById('hex_val').textContent="Hexadecimal: "+n.toString(16).toUpperCase(); document.getElementById('hex_result').style.display='block'; } }
+function calcDayCounter() { var s=new Date(document.getElementById('dc_st').value), e=new Date(document.getElementById('dc_en').value); if(!isNaN(s)&&!isNaN(e)){ document.getElementById('dc_val').textContent="Days: "+Math.ceil(Math.abs(e-s)/(1000*60*60*24)); document.getElementById('dc_result').style.display='block'; } }
+function calcHours() { var s=document.getElementById('hr_st').value, e=document.getElementById('hr_en').value; if(s&&e){ var sp=s.split(':'), ep=e.split(':'); var mins=(parseInt(ep[0])*60+parseInt(ep[1])) - (parseInt(sp[0])*60+parseInt(sp[1])); if(mins<0) mins+=1440; document.getElementById('hr_val').textContent="Hours: "+Math.floor(mins/60)+"h "+(mins%60)+"m"; document.getElementById('hr_result').style.display='block'; } }
+function calcGrade() { var o=parseFloat(document.getElementById('gr_ob').value), t=parseFloat(document.getElementById('gr_total').value); if(!isNaN(o)&&!isNaN(t)&&t>0){ var p=(o/t)*100; var g = p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F'; document.getElementById('gr_val').textContent="Score: "+p.toFixed(2)+"% (Grade "+g+")"; document.getElementById('gr_result').style.display='block'; } }
+function calcDice() { var n=parseInt(document.getElementById('dice_n').value), s=parseInt(document.getElementById('dice_s').value); if(!isNaN(n)&&!isNaN(s)&&n>0&&s>0){ var rolls=[]; var total=0; for(var i=0;i<n;i++){ var r=Math.floor(Math.random()*s)+1; rolls.push(r); total+=r; } document.getElementById('dice_val').innerHTML="Rolls: "+rolls.join(', ')+"<br>Total: "+total; document.getElementById('dice_result').style.display='block'; } }

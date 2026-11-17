@@ -1,0 +1,36 @@
+var tools8 = [
+  { name: "Z-Score Calculator", id: "zscore", icon: "📊" },
+  { name: "Ratio Calculator", id: "ratio", icon: "⚖️" },
+  { name: "Circle Calculator", id: "circle", icon: "⭕" },
+  { name: "Root Calculator", id: "root", icon: "√" },
+  { name: "GCF Calculator", id: "gcf", icon: "🔢" },
+  { name: "LCM Calculator", id: "lcm", icon: "🔢" },
+  { name: "Rounding Calculator", id: "rounding", icon: "🔘" },
+  { name: "Prime Factorization", id: "primefactor", icon: "🔍" },
+  { name: "Scientific Notation", id: "scinotation", icon: "🔬" },
+  { name: "Slope Calculator", id: "slope", icon: "📈" }
+];
+
+var htmls8 = {
+  zscore: '<div class="input-group"><label>Data Value (x)</label><input type="number" id="z_x" /></div><div class="input-group"><label>Mean (μ)</label><input type="number" id="z_mean" /></div><div class="input-group"><label>Standard Deviation (σ)</label><input type="number" id="z_sd" /></div><button class="btn" onclick="calcZScore()">Calculate</button><div id="z_result" class="result-box"><p id="z_val"></p></div>',
+  ratio: '<div class="input-group"><label>A</label><input type="number" id="rt_a" /></div><div class="input-group"><label>B</label><input type="number" id="rt_b" /></div><div class="input-group"><label>C</label><input type="number" id="rt_c" /></div><button class="btn" onclick="calcRatio()">Find D (A:B = C:D)</button><div id="rt_result" class="result-box"><p id="rt_val"></p></div>',
+  circle: '<div class="input-group"><label>Radius (r)</label><input type="number" id="cir_r" /></div><button class="btn" onclick="calcCircle()">Calculate</button><div id="cir_result" class="result-box"><p id="cir_val"></p></div>',
+  root: '<div class="input-group"><label>Number</label><input type="number" id="rt_num" /></div><div class="input-group"><label>Root (n)</label><input type="number" id="rt_n" value="2" /></div><button class="btn" onclick="calcRoot()">Calculate</button><div id="rtn_result" class="result-box"><p id="rtn_val"></p></div>',
+  gcf: '<div class="input-group"><label>Number 1</label><input type="number" id="gcf_a" /></div><div class="input-group"><label>Number 2</label><input type="number" id="gcf_b" /></div><button class="btn" onclick="calcGCF()">Calculate</button><div id="gcf_result" class="result-box"><p id="gcf_val"></p></div>',
+  lcm: '<div class="input-group"><label>Number 1</label><input type="number" id="lcm_a" /></div><div class="input-group"><label>Number 2</label><input type="number" id="lcm_b" /></div><button class="btn" onclick="calcLCM()">Calculate</button><div id="lcm_result" class="result-box"><p id="lcm_val"></p></div>',
+  rounding: '<div class="input-group"><label>Number</label><input type="number" id="rnd_num" step="any" /></div><div class="input-group"><label>Decimal Places</label><input type="number" id="rnd_dec" value="2" /></div><button class="btn" onclick="calcRounding()">Round</button><div id="rnd_result" class="result-box"><p id="rnd_val"></p></div>',
+  primefactor: '<div class="input-group"><label>Number</label><input type="number" id="pf_num" /></div><button class="btn" onclick="calcPrime()">Find Factors</button><div id="pf_result" class="result-box"><p id="pf_val"></p></div>',
+  scinotation: '<div class="input-group"><label>Number</label><input type="number" id="sn_num" step="any" /></div><button class="btn" onclick="calcSciNotation()">Convert</button><div id="sn_result" class="result-box"><p id="sn_val"></p></div>',
+  slope: '<div class="input-group"><label>X1</label><input type="number" id="sl_x1" /></div><div class="input-group"><label>Y1</label><input type="number" id="sl_y1" /></div><div class="input-group"><label>X2</label><input type="number" id="sl_x2" /></div><div class="input-group"><label>Y2</label><input type="number" id="sl_y2" /></div><button class="btn" onclick="calcSlope()">Calculate</button><div id="sl_result" class="result-box"><p id="sl_val"></p></div>'
+};
+
+function calcZScore() { var x=parseFloat(document.getElementById('z_x').value), m=parseFloat(document.getElementById('z_mean').value), s=parseFloat(document.getElementById('z_sd').value); if(!isNaN(x)&&!isNaN(m)&&!isNaN(s)&&s>0){ document.getElementById('z_val').textContent="Z-Score: "+((x-m)/s).toFixed(4); document.getElementById('z_result').style.display='block'; } }
+function calcRatio() { var a=parseFloat(document.getElementById('rt_a').value), b=parseFloat(document.getElementById('rt_b').value), c=parseFloat(document.getElementById('rt_c').value); if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)&&a>0){ document.getElementById('rt_val').textContent="D = "+((b*c)/a).toFixed(4); document.getElementById('rt_result').style.display='block'; } }
+function calcCircle() { var r=parseFloat(document.getElementById('cir_r').value); if(!isNaN(r)&&r>0){ document.getElementById('cir_val').innerHTML="Area: "+(Math.PI*r*r).toFixed(4)+"<br>Circumference: "+(2*Math.PI*r).toFixed(4); document.getElementById('cir_result').style.display='block'; } }
+function calcRoot() { var n=parseFloat(document.getElementById('rt_num').value), r=parseFloat(document.getElementById('rt_n').value); if(!isNaN(n)&&!isNaN(r)&&r!==0){ document.getElementById('rtn_val').textContent="Result: "+Math.pow(n, 1/r).toFixed(4); document.getElementById('rtn_result').style.display='block'; } }
+function calcGCF() { var a=parseInt(document.getElementById('gcf_a').value), b=parseInt(document.getElementById('gcf_b').value); if(!isNaN(a)&&!isNaN(b)&&a>0&&b>0){ function gcd(x,y){return y===0?x:gcd(y,x%y);} document.getElementById('gcf_val').textContent="GCF: "+gcd(a,b); document.getElementById('gcf_result').style.display='block'; } }
+function calcLCM() { var a=parseInt(document.getElementById('lcm_a').value), b=parseInt(document.getElementById('lcm_b').value); if(!isNaN(a)&&!isNaN(b)&&a>0&&b>0){ function gcd(x,y){return y===0?x:gcd(y,x%y);} document.getElementById('lcm_val').textContent="LCM: "+((a*b)/gcd(a,b)); document.getElementById('lcm_result').style.display='block'; } }
+function calcRounding() { var n=parseFloat(document.getElementById('rnd_num').value), d=parseInt(document.getElementById('rnd_dec').value); if(!isNaN(n)&&!isNaN(d)){ document.getElementById('rnd_val').textContent="Rounded: "+n.toFixed(d); document.getElementById('rnd_result').style.display='block'; } }
+function calcPrime() { var n=parseInt(document.getElementById('pf_num').value); if(!isNaN(n)&&n>1){ var factors=[]; var num=n; for(var i=2;i<=num;i++){ while(num%i===0){ factors.push(i); num/=i; } } document.getElementById('pf_val').textContent="Factors: "+factors.join(' × '); document.getElementById('pf_result').style.display='block'; } }
+function calcSciNotation() { var n=parseFloat(document.getElementById('sn_num').value); if(!isNaN(n)){ document.getElementById('sn_val').textContent="Scientific: "+n.toExponential(4); document.getElementById('sn_result').style.display='block'; } }
+function calcSlope() { var x1=parseFloat(document.getElementById('sl_x1').value), y1=parseFloat(document.getElementById('sl_y1').value), x2=parseFloat(document.getElementById('sl_x2').value), y2=parseFloat(document.getElementById('sl_y2').value); if(!isNaN(x1)&&!isNaN(y1)&&!isNaN(x2)&&!isNaN(y2)&&x2!==x1){ document.getElementById('sl_val').textContent="Slope (m): "+((y2-y1)/(x2-x1)).toFixed(4); document.getElementById('sl_result').style.display='block'; } }
