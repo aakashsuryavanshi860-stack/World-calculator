@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>World Calculators - Free Online Tools & Calculators</title>
-  <meta name="description" content="Free online calculators for finance, health, math, image, PDF, text, and more. 100% accurate and private. 100+ tools in your browser." />
+  <meta name="description" content="Free online calculators for finance, health, math, image, PDF, text, and more. 100% accurate and private. 150+ tools in your browser." />
+  <link rel="canonical" href="https://world-calculator.aakashsuryavanshi860.workers.dev/" />
   
   <!-- PDF Libraries -->
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -15,6 +17,10 @@
     }
   </script>
   
+  <!-- QR Code Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { 
@@ -95,7 +101,7 @@
     .input-group { margin-bottom: 1rem; }
     .input-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
     .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; }
-    .btn { background: var(--primary-light); color: white; padding: 0.85rem; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom:0.5rem; }
+    .btn { background: var(--primary-light); color: white; padding: 0.85rem; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 0.5rem; }
     .btn:hover { background: var(--primary); }
     .result-box { display: none; margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
     
@@ -134,6 +140,8 @@
     <a href="#imagetools" onclick="toggleMenu();">Image Tools</a>
     <a href="#pdftools" onclick="toggleMenu();">PDF Tools</a>
     <a href="#texttools" onclick="toggleMenu();">Text Tools</a>
+    <a href="#devtools" onclick="toggleMenu();">Developer Tools</a>
+    <a href="#qrtools" onclick="toggleMenu();">QR & Barcode</a>
     <a href="#" onclick="showPage('about'); toggleMenu();">About Us</a>
     <a href="#" onclick="showPage('contact'); toggleMenu();">Contact Us</a>
     <a href="#" onclick="showPage('privacy'); toggleMenu();">Privacy Policy</a>
@@ -250,7 +258,7 @@
   </div>
 </div>
 
-<!-- ===== सभी 16 फाइलों के लिंक ===== -->
+<!-- सभी 18 फाइलों के लिंक -->
 <script src="calc1.js"></script>
 <script src="calc2.js"></script>
 <script src="calc3.js"></script>
@@ -266,9 +274,11 @@
 <script src="calc13.js"></script>
 <script src="calc14.js"></script>
 <script src="calc15.js"></script>
-<script src="calc16.js"></script><script>
+<script src="calc16.js"></script>
+<script src="calc17.js"></script>
+<script src="calc18.js"></script><script>
   // ==========================================
-  // डेटा इकट्ठा करना (Data Setup)
+  // डेटा इकट्ठा करना
   // ==========================================
   var allTools = [];
   var allHtmls = {};
@@ -288,6 +298,8 @@
   if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
   if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
   if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
+  if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
+  if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
 
   // मेन्यू
   function toggleMenu() {
@@ -337,6 +349,8 @@
     "Image Tools": { id: "imagetools", items: ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"] },
     "PDF Tools": { id: "pdftools", items: ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"] },
     "Text Tools": { id: "texttools", items: ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"] },
+    "Developer Tools": { id: "devtools", items: ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlencode", "urldecode", "uuid", "pwgen", "hashgen", "regextest"] },
+    "QR & Barcode": { id: "qrtools", items: ["qrcodegen", "qrcodescan"] },
     "Basic Tools": { id: "basic", items: ["simplecalc"] }
   };
 
@@ -387,7 +401,8 @@
       }
     }
     results.style.display = 'block';
-  }    // ==========================================
+  }
+  function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }    // ==========================================
     // CALCULATOR ENGINE
     // ==========================================
     var calcExpr = "0"; 
@@ -507,4 +522,3 @@
   </script>
 </body>
 </html>
-  function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }
