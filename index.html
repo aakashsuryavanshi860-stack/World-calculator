@@ -25,60 +25,58 @@
     body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
     a { text-decoration: none; color: inherit; cursor: pointer; }
     
-    /* Top Bar */
-    .top-bar { background: var(--primary); color: #fff; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
-    .top-bar-left { display: flex; gap: 20px; font-weight: 500; }
-    .top-bar-right { display: flex; gap: 10px; align-items: center; }
-    .btn-signin { background: var(--accent); color: #fff; padding: 6px 15px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; }
-    .btn-register { background: #facc15; color: var(--primary); padding: 6px 15px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; }
-
-    /* Main Nav */
-    .main-nav { background: #fff; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; padding: 15px 0; font-size: 1.5rem; font-weight: 800; color: var(--primary); cursor: pointer; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 20px; font-weight: 600; font-size: 0.95rem; color: var(--text-light); }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-search { position: relative; width: 300px; }
-    .nav-search input { width: 100%; padding: 8px 15px; border: 1px solid var(--border); border-radius: 20px; outline: none; background: var(--bg); }
-    .nav-search-btn { position: absolute; right: 5px; top: 5px; background: var(--accent); color: #fff; border: none; padding: 4px 10px; border-radius: 15px; cursor: pointer; }
-
-    /* Hero Section */
-    .hero { background: linear-gradient(135deg, #e0f2fe 0%, #f8fafc 100%); padding: 40px 20px; position: relative; overflow: hidden; }
-    .hero-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .hero-content { flex: 1; }
-    .hero-badge { display: inline-block; background: #dbeafe; color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px; }
-    .hero-title { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1.2; margin-bottom: 15px; }
-    .hero-title span { color: var(--accent); }
-    .hero-subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 20px; }
+    /* Top Bar (Country & Language) */
+    .top-bar { background: var(--primary); color: #fff; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; flex-wrap: wrap; gap: 10px; }
+    .selector-group { display: flex; gap: 10px; }
+    .selector-group select { padding: 5px; border-radius: 4px; border: none; font-size: 0.85rem; outline: none; }
     
-    /* Quick Calculator Widget */
-    .quick-calc-widget { background: #fff; border-radius: var(--radius); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); padding: 20px; width: 350px; flex-shrink: 0; border: 1px solid var(--border); }
-    .qc-tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    .qc-tab { font-weight: 600; color: var(--text-light); cursor: pointer; font-size: 0.9rem; }
-    .qc-tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
-    .qc-display { background: var(--bg); padding: 15px; border-radius: 8px; text-align: right; font-size: 2rem; font-weight: bold; color: var(--primary); margin-bottom: 15px; }
-    .qc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .qc-btn { background: var(--bg); border: 1px solid var(--border); padding: 12px 0; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; color: var(--text); }
-    .qc-btn:hover { background: #e2e8f0; }
-    .qc-btn.op { color: var(--accent); }
-    .qc-btn.equal { background: var(--accent); color: #fff; grid-column: span 2; }
+    /* Main Header */
+    .main-header { background: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+    .header-left { display: flex; align-items: center; gap: 15px; }
+    .menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); cursor: pointer; }
+    .logo span { color: var(--accent); }
+    
+    /* Search Bar */
+    .search-bar { flex-grow: 1; max-width: 400px; position: relative; margin: 0 20px; display: flex; }
+    .search-bar input { width: 100%; padding: 10px 15px; border: 1px solid var(--border); border-radius: 20px; outline: none; background: var(--bg); font-size: 0.95rem; }
+    .search-bar button { position: absolute; right: 5px; top: 5px; background: var(--accent); color: #fff; border: none; padding: 5px 15px; border-radius: 15px; cursor: pointer; }
+    .search-results { position: absolute; top: 110%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; max-height: 300px; overflow-y: auto; box-shadow: var(--shadow); list-style: none; display: none; z-index: 100; }
+    .search-results li { padding: 10px 15px; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .search-results li:hover { background: var(--bg); }
 
-    /* Grid Section */
-    .grid-section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-    .grid-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .grid-header h2 { font-size: 1.5rem; color: var(--primary); }
+    /* Sidebar Menu */
+    .sidebar { position: fixed; top: 0; left: -320px; width: 320px; height: 100vh; background: #fff; z-index: 200; box-shadow: 2px 0 10px rgba(0,0,0,0.1); transition: left 0.3s ease; overflow-y: auto; }
+    .sidebar.open { left: 0; }
+    .sidebar-header { padding: 20px; background: var(--primary); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+    .close-btn { cursor: pointer; font-size: 1.5rem; }
+    .sidebar-links { padding: 10px 0; }
+    .sidebar-links a { display: block; padding: 12px 20px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 500; }
+    .sidebar-links a:hover { background: var(--bg); color: var(--accent); }
+    .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; display: none; }
+    .sidebar-overlay.open { display: block; }
+
+    /* Hero & Grid */
+    .hero { background: linear-gradient(135deg, #e0f2fe 0%, #f8fafc 100%); padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+    .hero p { color: var(--text-light); font-size: 1.1rem; }
     
-    .cat-title { background: #1e40af; color: #fff; padding: 10px 15px; border-radius: 8px; margin: 30px 0 15px; font-size: 1.2rem; font-weight: bold; }
-    
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .cat-title { background: var(--primary); color: #fff; padding: 10px 15px; border-radius: 8px; margin: 30px 0 15px; font-size: 1.2rem; font-weight: bold; }
     .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
     .tool-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; text-align: center; transition: all 0.2s; box-shadow: var(--shadow); cursor: pointer; }
     .tool-card:hover { transform: translateY(-3px); border-color: var(--accent); }
     .tool-card .icon { font-size: 2rem; margin-bottom: 5px; }
     .tool-card .name { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
 
+    /* Scientific Calculator Pad */
+    .sci-pad { display: none; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 10px; }
+    .sci-pad.active { display: grid; }
+    .sci-btn { background: #f1f5f9; border: 1px solid var(--border); padding: 10px 0; border-radius: 6px; font-size: 0.9rem; cursor: pointer; color: var(--accent); font-weight: bold; }
+
     /* Display Area */
     #tool-display-area { display: none; max-width: 800px; margin: 40px auto; padding: 0 20px; }
-    .page-box { display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .page-box { display: none; max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
     
     .input-group { margin-bottom: 15px; }
     .input-group label { display: block; font-weight: 600; margin-bottom: 5px; }
@@ -86,80 +84,83 @@
     .btn { background: var(--accent); color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 10px; }
     .result-box { display: none; margin-top: 15px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
 
-    @media (max-width: 900px) {
-      .hero-container { flex-direction: column; text-align: center; }
-      .hero-title { font-size: 2.5rem; }
-      .quick-calc-widget { width: 100%; }
+    @media (max-width: 768px) {
+      .search-bar { display: none; }
+      .hero h1 { font-size: 2rem; }
     }
   </style>
-</head><body>
+</head>
+<body>
 
-  <!-- Top Bar -->
+  <!-- Top Bar (Country & Language) -->
   <div class="top-bar">
-    <div class="top-bar-left"><span>🌐 English ▼</span></div>
-    <div class="top-bar-right">
-      <button class="btn-signin" onclick="alert('Sign In coming soon!')">Sign In</button>
-      <button class="btn-register" onclick="alert('Register coming soon!')">Register</button>
+    <div class="selector-group">
+      <select id="countrySelect" onchange="changeCountry()">
+        <option value="en">🌍 Select Country (195)</option>
+        <!-- सभी 195 देशों के विकल्प यहाँ JavaScript से जुड़ेंगे -->
+      </select>
+      <select id="languageSelect" onchange="changeLanguage()">
+        <option value="en">🌐 English</option>
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="zh">🇨🇳 中文</option>
+        <!-- बाकी भाषाएँ JavaScript से जुड़ेंगी -->
+      </select>
+    </div>
+    <div style="display:flex; gap:15px;">
+      <a onclick="showPage('report')" style="color:#fff;">Report an Issue</a>
+      <a onclick="showPage('contact')" style="color:#fff;">Contact Us</a>
     </div>
   </div>
 
-  <!-- Main Nav -->
-  <nav class="main-nav">
-    <div class="nav-logo" onclick="showHome()">🌍 World<span>Calculators</span></div>
-    <div class="nav-links">
-      <a onclick="showHome()">Home</a>
-      <a href="#cat-financial">Calculators</a>
-      <a href="#cat-tools">Tools</a>
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="header-left">
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <div class="logo" onclick="showHome()">World<span>Calculators</span></div>
     </div>
-    <div class="nav-search">
+    
+    <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search any calculator..." onkeyup="searchTools()" />
-      <button class="nav-search-btn">🔍</button>
-      <ul id="searchResults" style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; list-style:none; max-height:200px; overflow-y:auto; z-index:50; display:none;"></ul>
+      <button>🔍</button>
+      <ul class="search-results" id="searchResults"></ul>
     </div>
-  </nav>
+  </header>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMenu()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span>Menu</span>
+      <span class="close-btn" onclick="toggleMenu()">×</span>
+    </div>
+    <div class="sidebar-links">
+      <a onclick="showHome(); toggleMenu();">🏠 Home</a>
+      <a href="#grid-section" onclick="toggleMenu();">🧮 All Calculators</a>
+      <a onclick="showPage('about'); toggleMenu();">ℹ️ About Us</a>
+      <a onclick="showPage('privacy'); toggleMenu();">🔒 Privacy Policy</a>
+      <a onclick="showPage('terms'); toggleMenu();">📜 Terms & Conditions</a>
+      <a onclick="showPage('disclaimer'); toggleMenu();">⚠️ Disclaimer</a>
+      <a onclick="showPage('cookie'); toggleMenu();">🍪 Cookie Policy</a>
+      <a onclick="showPage('affiliate'); toggleMenu();">🤝 Affiliate Disclosure</a>
+      <a onclick="showPage('help'); toggleMenu();">❓ Help Center / FAQ</a>
+      <a onclick="showPage('sitemap'); toggleMenu();">🗺️ Sitemap</a>
+      <a onclick="showPage('report'); toggleMenu();">🚩 Report an Issue</a>
+      <a onclick="showPage('contact'); toggleMenu();">📞 Contact Us</a>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero" id="home-hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <span class="hero-badge">🌍 Your Global Online Toolkit</span>
-        <h1 class="hero-title">World Calculators <br><span>All in One</span></h1>
-        <p class="hero-subtitle">Free for Everyone, Everywhere!</p>
-      </div>
-      
-      <!-- Quick Calculator Widget -->
-      <div class="quick-calc-widget">
-        <div class="qc-tabs">
-          <div class="qc-tab active">Basic</div>
-        </div>
-        <div class="qc-display" id="qc-display">0</div>
-        <div class="qc-buttons">
-          <button class="qc-btn" onclick="qcInput('7')">7</button>
-          <button class="qc-btn" onclick="qcInput('8')">8</button>
-          <button class="qc-btn" onclick="qcInput('9')">9</button>
-          <button class="qc-btn op" onclick="qcInput('/')">÷</button>
-          <button class="qc-btn" onclick="qcInput('4')">4</button>
-          <button class="qc-btn" onclick="qcInput('5')">5</button>
-          <button class="qc-btn" onclick="qcInput('6')">6</button>
-          <button class="qc-btn op" onclick="qcInput('*')">×</button>
-          <button class="qc-btn" onclick="qcInput('1')">1</button>
-          <button class="qc-btn" onclick="qcInput('2')">2</button>
-          <button class="qc-btn" onclick="qcInput('3')">3</button>
-          <button class="qc-btn op" onclick="qcInput('-')">-</button>
-          <button class="qc-btn" onclick="qcInput('0')">0</button>
-          <button class="qc-btn" onclick="qcInput('.')">.</button>
-          <button class="qc-btn equal" onclick="qcCalculate()">=</button>
-          <button class="qc-btn op" onclick="qcInput('+')">+</button>
-        </div>
-      </div>
-    </div>
+    <h1>World Calculators - All in One</h1>
+    <p>Your Global Online Toolkit – Free for Everyone, Everywhere!</p>
   </section>
 
-  <!-- Main Tools Grid (Where all tools will be dynamically loaded) -->
-  <div class="grid-section" id="home-grid">
-    <div class="grid-header">
-      <h2>🚀 All Tools & Calculators</h2>
-    </div>
+  <!-- Main Tools Grid -->
+  <div class="container" id="grid-section">
+    <h2 style="text-align:center; margin-bottom:20px;">Explore All Tools</h2>
     <div id="category-list"></div>
   </div>
 
@@ -175,41 +176,76 @@
   <!-- Static Pages (Hidden) -->
   <div id="page-about" class="page-box">
     <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
-    <h1 style="color: var(--primary); margin: 20px 0;">About Us</h1>
-    <p>Welcome to World Calculators. We are dedicated to providing the world's most accurate and easy-to-use online calculators for free.</p>
+    <h1>About Us</h1>
+    <p>World Calculators एक मुफ़्त ऑनलाइन टूलकिट है जिसे दुनिया भर के छात्रों, पेशेवरों और आम लोगों की मदद के लिए बनाया गया है। हमारा मकसद है 195 देशों के लोगों को उनकी भाषा में सटीक कैलकुलेटर और टूल्स उपलब्ध कराना। हम 150+ टूल्स प्रदान करते हैं, जिनमें कैलकुलेटर, कन्वर्टर, इमेज टूल्स, PDF टूल्स और डेवलपर टूल्स शामिल हैं।</p>
   </div>
-  
+
   <div id="page-privacy" class="page-box">
     <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
-    <h1 style="color: var(--primary); margin: 20px 0;">Privacy Policy</h1>
-    <p>We use Google AdSense and cookies to improve your experience. Your data is safe with us.</p>
+    <h1>Privacy Policy</h1>
+    <p>हम आपकी प्राइवेसी का सम्मान करते हैं। हमारे सभी कैलकुलेशन आपके ब्राउज़र में ही होते हैं, आपका डेटा किसी सर्वर पर नहीं भेजा जाता। हम Google Analytics और Google AdSense का उपयोग कर सकते हैं, जो बेहतर अनुभव के लिए Cookies का उपयोग करते हैं। आप अपनी Cookies Google Ads Settings से बंद कर सकते हैं।</p>
   </div>
 
   <div id="page-terms" class="page-box">
     <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
-    <h1 style="color: var(--primary); margin: 20px 0;">Terms & Conditions</h1>
-    <p>Our calculators are for informational purposes only.</p>
-  </div><!-- Footer Banner -->
-<div style="background: #e0f2fe; padding: 20px; text-align: center; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-top: 40px;">
-  <span>🌍 Available in 195 Countries</span>
-  <span>🔒 Secure & Private</span>
-  <span>⚡ Super Fast</span>
-  <span>📱 Works on All Devices</span>
-  <span>❤️ 100% Free</span>
-</div>
+    <h1>Terms & Conditions</h1>
+    <p>इस वेबसाइट का उपयोग करके आप इन नियमों से सहमत होते हैं। हमारे कैलकुलेटर केवल जानकारी के लिए हैं, किसी भी वित्तीय या स्वास्थ्य निर्णय के लिए हम ज़िम्मेदार नहीं हैं।</p>
+  </div>
 
-<!-- Footer Links -->
-<footer style="background: var(--primary); color: #94a3b8; padding: 40px 20px; text-align: center;">
+  <div id="page-disclaimer" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Disclaimer</h1>
+    <p>हमारे कैलकुलेटर के परिणाम केवल अनुमानित हैं। किसी भी महत्वपूर्ण निर्णय से पहले विशेषज्ञ की सलाह अवश्य लें।</p>
+  </div>
+
+  <div id="page-cookie" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Cookie Policy</h1>
+    <p>हम बेहतर अनुभव के लिए Cookies का उपयोग करते हैं। Google Analytics और AdSense के माध्यम से विज्ञापन दिखाए जा सकते हैं।</p>
+  </div>
+
+  <div id="page-affiliate" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Affiliate Disclosure</h1>
+    <p>इस वेबसाइट पर कुछ लिंक बैंक, क्रेडिट कार्ड या अन्य साझेदारों के हो सकते हैं, जिनसे हमें कमीशन मिल सकता है।</p>
+  </div>
+
+  <div id="page-help" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Help Center / FAQ</h1>
+    <p>किसी भी कैलकुलेटर को उपयोग करने के लिए बस उस पर क्लिक करें और इनपुट भरें। यदि आपको कोई समस्या आती है, तो हमें ईमेल करें: <strong>aakashsuryavanshi860@gmail.com</strong></p>
+  </div>
+
+  <div id="page-sitemap" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Sitemap</h1>
+    <p>हमारी वेबसाइट के सभी पेज और टूल्स जल्द ही यहाँ उपलब्ध होंगे।</p>
+  </div>
+
+  <div id="page-report" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Report an Issue</h1>
+    <p>यदि आपको किसी कैलकुलेटर में गलती मिलती है, तो कृपया हमें बताएँ: <strong>aakashsuryavanshi860@gmail.com</strong></p>
+  </div>
+
+  <div id="page-contact" class="page-box">
+    <a onclick="showHome()" style="font-weight: bold; color: var(--accent);">← Back to Home</a>
+    <h1>Contact Us</h1>
+    <p>किसी भी सहायता के लिए हमें ईमेल करें: <strong>aakashsuryavanshi860@gmail.com</strong></p>
+  </div>
+  <!-- Footer -->
+<footer style="background: var(--primary); color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 40px;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-    <a href="javascript:void(0)" onclick="showPage('about')" style="color: #fff;">About Us</a>
-    <a href="javascript:void(0)" onclick="showPage('contact')" style="color: #fff;">Contact Us</a>
-    <a href="javascript:void(0)" onclick="showPage('privacy')" style="color: #fff;">Privacy Policy</a>
-    <a href="javascript:void(0)" onclick="showPage('terms')" style="color: #fff;">Terms & Conditions</a>
+    <a onclick="showPage('about')" style="color: #fff;">About Us</a>
+    <a onclick="showPage('privacy')" style="color: #fff;">Privacy Policy</a>
+    <a onclick="showPage('terms')" style="color: #fff;">Terms</a>
+    <a onclick="showPage('contact')" style="color: #fff;">Contact</a>
+    <a onclick="showPage('report')" style="color: #fff;">Report Issue</a>
   </div>
   <p>© 2026 World Calculators. All rights reserved.</p>
 </footer>
 
-<!-- All Calculator JS Files -->
+<!-- All Calculator Scripts -->
 <script src="calc1.js"></script>
 <script src="calc2.js"></script>
 <script src="calc3.js"></script>
@@ -226,26 +262,56 @@
 <script src="calc14.js"></script>
 <script src="calc15.js"></script>
 <script src="calc16.js"></script>
-<script src="calc17.js"></script>  <script>
+<script src="calc17.js"></script>
+<script src="calc18.js"></script>
+  <script>
     // ==========================================
-    // QUICK CALCULATOR LOGIC
+    // COUNTRY & LANGUAGE DATA (अनुवाद के लिए)
     // ==========================================
-    var qcStr = "";
-    function qcInput(val) {
-      if (qcStr === "0" && val !== ".") qcStr = "";
-      qcStr += val;
-      document.getElementById('qc-display').textContent = qcStr;
-    }
-    function qcCalculate() {
-      try {
-        var result = eval(qcStr);
-        if (result === Infinity || isNaN(result)) throw Error();
-        document.getElementById('qc-display').textContent = result;
-        qcStr = result.toString();
-      } catch (e) {
-        document.getElementById('qc-display').textContent = "Error";
-        qcStr = "";
+    const countryData = {
+      "India": { lang: "hi", code: "IN" },
+      "United States": { lang: "en", code: "US" },
+      "United Kingdom": { lang: "en", code: "GB" },
+      "France": { lang: "fr", code: "FR" },
+      "Germany": { lang: "de", code: "DE" },
+      "Spain": { lang: "es", code: "ES" },
+      "Saudi Arabia": { lang: "ar", code: "SA" },
+      "China": { lang: "zh", code: "CN" },
+      "Japan": { lang: "ja", code: "JP" },
+      "Russia": { lang: "ru", code: "RU" },
+      "Brazil": { lang: "pt", code: "BR" },
+      "Italy": { lang: "it", code: "IT" },
+      "South Korea": { lang: "ko", code: "KR" },
+      "Bangladesh": { lang: "bn", code: "BD" },
+      "Pakistan": { lang: "ur", code: "PK" },
+      "Indonesia": { lang: "id", code: "ID" },
+      "Turkey": { lang: "tr", code: "TR" },
+      "Netherlands": { lang: "nl", code: "NL" },
+      "Poland": { lang: "pl", code: "PL" },
+      "Thailand": { lang: "th", code: "TH" }
+      // यहाँ 195 देशों की सूची जोड़ी जा सकती है (फिलहाल 20)
+    };
+
+    function loadCountries() {
+      const sel = document.getElementById('countrySelect');
+      for (let country in countryData) {
+        let opt = document.createElement('option');
+        opt.value = countryData[country].lang;
+        opt.textContent = country;
+        sel.appendChild(opt);
       }
+    }
+    loadCountries();
+
+    function changeCountry() {
+      let lang = document.getElementById('countrySelect').value;
+      changeLanguage(lang);
+    }
+    function changeLanguage(lang) {
+      if (!lang) lang = document.getElementById('languageSelect').value;
+      localStorage.setItem('selectedLang', lang);
+      alert("Language changed to: " + lang + ". (Full translation requires adding translation files for all text)");
+      // यहाँ हम भविष्य में पूरे टेक्स्ट को अनुवाद कर सकते हैं
     }
 
     // ==========================================
@@ -324,8 +390,9 @@
     // ==========================================
     function openTool(toolId) {
       document.getElementById('home-hero').style.display = 'none';
-      document.getElementById('home-grid').style.display = 'none';
+      document.getElementById('grid-section').style.display = 'none';
       document.getElementById('tool-display-area').style.display = 'block';
+      document.querySelectorAll('.page-box').forEach(function(box) { box.style.display = 'none'; });
       
       var t = allTools.find(function(x) { return x.id === toolId; });
       if(t) {
@@ -338,7 +405,7 @@
 
     function showHome() {
       document.getElementById('home-hero').style.display = 'block';
-      document.getElementById('home-grid').style.display = 'block';
+      document.getElementById('grid-section').style.display = 'block';
       document.getElementById('tool-display-area').style.display = 'none';
       document.querySelectorAll('.page-box').forEach(function(box) { box.style.display = 'none'; });
       window.history.pushState(null, '', window.location.pathname);
@@ -348,9 +415,14 @@
     function showPage(pageId) {
       showHome();
       document.getElementById('home-hero').style.display = 'none';
-      document.getElementById('home-grid').style.display = 'none';
+      document.getElementById('grid-section').style.display = 'none';
       document.getElementById('page-' + pageId).style.display = 'block';
       window.scrollTo(0, 0);
+    }
+
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('open');
     }
 
     // ==========================================
@@ -363,12 +435,10 @@
       if (input === '') { results.style.display = 'none'; return; }
       var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
       if (matches.length === 0) {
-        results.innerHTML = '<li style="padding:10px;">No tools found</li>';
+        results.innerHTML = '<li>No tools found</li>';
       } else {
         matches.slice(0, 10).forEach(function(t) {
           var li = document.createElement('li');
-          li.style.padding = '10px';
-          li.style.cursor = 'pointer';
           li.innerHTML = '<a onclick="openTool(\'' + t.id + '\')">' + t.name + '</a>';
           results.appendChild(li);
         });
@@ -376,7 +446,7 @@
       results.style.display = 'block';
     }
 
-    // Handle direct URL loads (like #bmi)
+    // Handle direct URL loads
     window.addEventListener('load', function() {
       var hash = window.location.hash.replace('#', '');
       if(hash) { openTool(hash); }
@@ -384,4 +454,3 @@
   </script>
 </body>
 </html>
-<script src="calc18.js"></script>
