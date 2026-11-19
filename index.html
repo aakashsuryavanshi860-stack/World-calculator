@@ -131,17 +131,16 @@
       <span>Menu</span>
       <span class="close-btn" onclick="toggleMenu()">×</span>
     </div>
-    <a href="#" onclick="showHome(); toggleMenu();">Home</a>
-    <a href="#financial" onclick="toggleMenu();">Financial Calculators</a>
-    <a href="#health" onclick="toggleMenu();">Fitness & Health</a>
-    <a href="#math" onclick="toggleMenu();">Math Calculators</a>
-    <a href="#everyday" onclick="toggleMenu();">Everyday Life</a>
-    <a href="#physics" onclick="toggleMenu();">Physics & Engineering</a>
-    <a href="#imagetools" onclick="toggleMenu();">Image Tools</a>
-    <a href="#pdftools" onclick="toggleMenu();">PDF Tools</a>
-    <a href="#texttools" onclick="toggleMenu();">Text Tools</a>
-    <a href="#devtools" onclick="toggleMenu();">Developer Tools</a>
-    <a href="#qrtools" onclick="toggleMenu();">QR & Barcode</a>
+    <a href="#financial" onclick="scrollToCat('financial'); toggleMenu();">Financial Calculators</a>
+    <a href="#health" onclick="scrollToCat('health'); toggleMenu();">Fitness & Health</a>
+    <a href="#math" onclick="scrollToCat('math'); toggleMenu();">Math Calculators</a>
+    <a href="#everyday" onclick="scrollToCat('everyday'); toggleMenu();">Everyday Life</a>
+    <a href="#physics" onclick="scrollToCat('physics'); toggleMenu();">Physics & Engineering</a>
+    <a href="#imagetools" onclick="scrollToCat('imagetools'); toggleMenu();">Image Tools</a>
+    <a href="#pdftools" onclick="scrollToCat('pdftools'); toggleMenu();">PDF Tools</a>
+    <a href="#texttools" onclick="scrollToCat('texttools'); toggleMenu();">Text Tools</a>
+    <a href="#devtools" onclick="scrollToCat('devtools'); toggleMenu();">Developer Tools</a>
+    <a href="#qrtools" onclick="scrollToCat('qrtools'); toggleMenu();">QR & Barcode</a>
     <a href="#" onclick="showPage('about'); toggleMenu();">About Us</a>
     <a href="#" onclick="showPage('contact'); toggleMenu();">Contact Us</a>
     <a href="#" onclick="showPage('privacy'); toggleMenu();">Privacy Policy</a>
@@ -215,196 +214,198 @@
 
       <div id="category-list"></div>
     </div>
-  </div><div id="tool-display-area" class="page-box">
-  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Calculators</a>
-  <div class="page-content">
-    <h1 id="display-title" style="text-align: center;"></h1>
-    <div id="display-content"></div>
   </div>
-</div>
 
-<div id="page-about" class="page-box">
-  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-  <div class="page-content">
-    <h1>About Us</h1>
-    <p>Welcome to <strong>World Calculators</strong>. We are dedicated to providing the world's most accurate and easy-to-use online calculators for free.</p>
-    <p>Our mission is to help students, professionals, and everyday users make quick and accurate calculations without any hassle.</p>
+  <div id="tool-display-area" class="page-box">
+    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Calculators</a>
+    <div class="page-content">
+      <h1 id="display-title" style="text-align: center;"></h1>
+      <div id="display-content"></div>
+    </div>
   </div>
-</div>
 
-<div id="page-contact" class="page-box">
-  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-  <div class="page-content">
-    <h1>Contact Us</h1>
-    <p>Email: support@worldcalculators.com</p>
+  <div id="page-about" class="page-box">
+    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+    <div class="page-content">
+      <h1>About Us</h1>
+      <p>Welcome to <strong>World Calculators</strong>. We are dedicated to providing the world's most accurate and easy-to-use online calculators for free.</p>
+      <p>Our mission is to help students, professionals, and everyday users make quick and accurate calculations without any hassle.</p>
+    </div>
   </div>
-</div>
 
-<div id="page-privacy" class="page-box">
-  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-  <div class="page-content">
-    <h1>Privacy Policy</h1>
-    <p>Your privacy is important to us. All calculations are processed locally in your browser. We do not store or share your calculation data.</p>
-    <p>We use cookies to improve your experience. Google may use cookies to serve ads based on your visits.</p>
+  <div id="page-contact" class="page-box">
+    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+    <div class="page-content">
+      <h1>Contact Us</h1>
+      <p>Email: support@worldcalculators.com</p>
+    </div>
   </div>
-</div>
 
-<div id="page-terms" class="page-box">
-  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-  <div class="page-content">
-    <h1>Terms and Conditions</h1>
-    <p>By using this website, you agree to these terms.</p>
-    <p>Our calculators are for informational purposes only. We are not responsible for any financial or health decisions made based on these results.</p>
+  <div id="page-privacy" class="page-box">
+    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+    <div class="page-content">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: 2026</p>
+      <p>Your privacy is important to us. All calculations are processed locally in your browser. We do not store or share your calculation data.</p>
+      <p><strong>Google AdSense & Cookies:</strong> We may use Google AdSense to display advertisements on this website. Google uses cookies (including DART cookies) to serve ads based on your prior visits to this website and other websites on the internet. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+      <p>We also use cookies to improve your experience. By using our website, you consent to the use of cookies in accordance with this policy.</p>
+    </div>
   </div>
-</div>
 
-<!-- सभी 18 फाइलों के लिंक -->
-<script src="calc1.js"></script>
-<script src="calc2.js"></script>
-<script src="calc3.js"></script>
-<script src="calc4.js"></script>
-<script src="calc5.js"></script>
-<script src="calc6.js"></script>
-<script src="calc7.js"></script>
-<script src="calc8.js"></script>
-<script src="calc9.js"></script>
-<script src="calc10.js"></script>
-<script src="calc11.js"></script>
-<script src="calc12.js"></script>
-<script src="calc13.js"></script>
-<script src="calc14.js"></script>
-<script src="calc15.js"></script>
-<script src="calc16.js"></script>
-<script src="calc17.js"></script>
-<script src="calc18.js"></script><script>
-  // ==========================================
-  // डेटा इकट्ठा करना
-  // ==========================================
-  var allTools = [];
-  var allHtmls = {};
-  if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
-  if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
-  if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
-  if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
-  if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
-  if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
-  if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
-  if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
-  if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
-  if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
-  if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
-  if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
-  if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
-  if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
-  if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
-  if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
-  if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
-  if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
+  <div id="page-terms" class="page-box">
+    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+    <div class="page-content">
+      <h1>Terms and Conditions</h1>
+      <p>By using this website, you agree to these terms.</p>
+      <p>Our calculators are for informational purposes only. We are not responsible for any financial or health decisions made based on these results.</p>
+    </div>
+  </div>  <!-- सभी 18 फाइलों के लिंक -->
+  <script src="calc1.js"></script>
+  <script src="calc2.js"></script>
+  <script src="calc3.js"></script>
+  <script src="calc4.js"></script>
+  <script src="calc5.js"></script>
+  <script src="calc6.js"></script>
+  <script src="calc7.js"></script>
+  <script src="calc8.js"></script>
+  <script src="calc9.js"></script>
+  <script src="calc10.js"></script>
+  <script src="calc11.js"></script>
+  <script src="calc12.js"></script>
+  <script src="calc13.js"></script>
+  <script src="calc14.js"></script>
+  <script src="calc15.js"></script>
+  <script src="calc16.js"></script>
+  <script src="calc17.js"></script>
+  <script src="calc18.js"></script>
 
-  // मेन्यू
-  function toggleMenu() {
-    document.getElementById('sidebar').classList.toggle('open');
-    document.getElementById('sidebar-overlay').classList.toggle('open');
-  }
-  
-  function hideAllPages() {
-    document.getElementById('page-home').classList.add('hidden');
-    document.getElementById('tool-display-area').style.display = 'none';
-    document.getElementById('page-about').style.display = 'none';
-    document.getElementById('page-contact').style.display = 'none';
-    document.getElementById('page-privacy').style.display = 'none';
-    document.getElementById('page-terms').style.display = 'none';
-  }
-  
-  function showHome() {
-    hideAllPages();
-    document.getElementById('page-home').classList.remove('hidden');
-    window.scrollTo(0, 0);
-  }
-  
-  function showPage(pageId) {
-    hideAllPages();
-    document.getElementById('page-' + pageId).style.display = 'block';
-    window.scrollTo(0, 0);
-  }
-  
-  function showTool(toolId) {
-    hideAllPages();
-    document.getElementById('tool-display-area').style.display = 'block';
-    var t = allTools.find(function(x) { return x.id === toolId; });
-    if(t) {
-      document.getElementById('display-title').textContent = t.name;
-      document.getElementById('display-content').innerHTML = allHtmls[toolId];
+  <script>
+    // डेटा इकट्ठा करना
+    var allTools = [];
+    var allHtmls = {};
+    if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
+    if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
+    if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
+    if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
+    if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
+    if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
+    if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
+    if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
+    if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
+    if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
+    if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
+    if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
+    if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
+    if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
+    if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
+    if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
+    if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
+    if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
+
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('open');
     }
-    window.scrollTo(0, 0);
-  }
+    function hideAllPages() {
+      document.getElementById('page-home').classList.add('hidden');
+      document.getElementById('tool-display-area').style.display = 'none';
+      document.getElementById('page-about').style.display = 'none';
+      document.getElementById('page-contact').style.display = 'none';
+      document.getElementById('page-privacy').style.display = 'none';
+      document.getElementById('page-terms').style.display = 'none';
+    }
+    function showHome() {
+      hideAllPages();
+      document.getElementById('page-home').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+    function showPage(pageId) {
+      hideAllPages();
+      document.getElementById('page-' + pageId).style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    function showTool(toolId) {
+      hideAllPages();
+      document.getElementById('tool-display-area').style.display = 'block';
+      var t = allTools.find(function(x) { return x.id === toolId; });
+      if(t) {
+        document.getElementById('display-title').textContent = t.name;
+        document.getElementById('display-content').innerHTML = allHtmls[toolId];
+      }
+      window.scrollTo(0, 0);
+    }
+    function scrollToCat(id) {
+      setTimeout(function() {
+        var el = document.getElementById(id);
+        if(el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
 
-  // कैटेगरी
-  var categories = {
-    "Financial": { id: "financial", items: ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"] },
-    "Health & Fitness": { id: "health", items: ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"] },
-    "Math": { id: "math", items: ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"] },
-    "Everyday Life": { id: "everyday", items: ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"] },
-    "Physics & Engineering": { id: "physics", items: ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"] },
-    "Image Tools": { id: "imagetools", items: ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"] },
-    "PDF Tools": { id: "pdftools", items: ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"] },
-    "Text Tools": { id: "texttools", items: ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"] },
-    "Developer Tools": { id: "devtools", items: ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlencode", "urldecode", "uuid", "pwgen", "hashgen", "regextest"] },
-    "QR & Barcode": { id: "qrtools", items: ["qrcodegen", "qrcodescan"] },
-    "Basic Tools": { id: "basic", items: ["simplecalc"] }
-  };
+    var categories = {
+      "Financial": { id: "financial", items: ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"] },
+      "Health & Fitness": { id: "health", items: ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"] },
+      "Math": { id: "math", items: ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"] },
+      "Everyday Life": { id: "everyday", items: ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"] },
+      "Physics & Engineering": { id: "physics", items: ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"] },
+      "Image Tools": { id: "imagetools", items: ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"] },
+      "PDF Tools": { id: "pdftools", items: ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"] },
+      "Text Tools": { id: "texttools", items: ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"] },
+      "Developer Tools": { id: "devtools", items: ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlenc", "urldec", "uuid", "pwgen", "hashgen", "regextest", "base64", "roman", "binary", "hex"] },
+      "QR & Barcode": { id: "qrtools", items: ["qrcodegen", "qrcodescan"] },
+      "Basic Tools": { id: "basic", items: ["simplecalc"] }
+    };
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var catList = document.getElementById('category-list');
-    for (var catName in categories) {
-      var catObj = categories[catName];
-      var header = document.createElement('div');
-      header.className = 'category-header';
-      header.id = catObj.id;
-      header.textContent = catName;
-      catList.appendChild(header);
+    document.addEventListener('DOMContentLoaded', function() {
+      var catList = document.getElementById('category-list');
+      for (var catName in categories) {
+        var catObj = categories[catName];
+        var header = document.createElement('div');
+        header.className = 'category-header';
+        header.id = catObj.id;
+        header.textContent = catName;
+        catList.appendChild(header);
 
-      var listDiv = document.createElement('div');
-      listDiv.className = 'tool-list';
-      
-      for (var i = 0; i < catObj.items.length; i++) {
-        var id = catObj.items[i];
-        var t = allTools.find(function(x) { return x.id === id; });
-        if (t) {
-          var a = document.createElement('a');
-          a.href = "javascript:void(0)";
-          a.textContent = t.name;
-          a.onclick = (function(toolId) {
-            return function() { showTool(toolId); };
-          })(t.id);
-          listDiv.appendChild(a);
+        var listDiv = document.createElement('div');
+        listDiv.className = 'tool-list';
+        
+        for (var i = 0; i < catObj.items.length; i++) {
+          var id = catObj.items[i];
+          var t = allTools.find(function(x) { return x.id === id; });
+          if (t) {
+            var a = document.createElement('a');
+            a.href = "javascript:void(0)";
+            a.textContent = t.name;
+            a.onclick = (function(toolId) {
+              return function() { showTool(toolId); };
+            })(t.id);
+            listDiv.appendChild(a);
+          }
+        }
+        catList.appendChild(listDiv);
+      }
+      loadHistory();
+    });
+
+    function searchTools() {
+      var input = document.getElementById('toolSearch').value.toLowerCase();
+      var results = document.getElementById('searchResults');
+      results.innerHTML = '';
+      if (input === '') { results.style.display = 'none'; return; }
+      var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
+      if (matches.length === 0) { results.innerHTML = '<li><a>No tools found</a></li>'; } 
+      else {
+        for (var i = 0; i < matches.length; i++) {
+          var t = matches[i];
+          var li = document.createElement('li');
+          li.innerHTML = '<a onclick="showTool(\'' + t.id + '\')">' + t.name + '</a>';
+          results.appendChild(li);
         }
       }
-      catList.appendChild(listDiv);
+      results.style.display = 'block';
     }
-    loadHistory();
-  });
+    function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }
 
-  function searchTools() {
-    var input = document.getElementById('toolSearch').value.toLowerCase();
-    var results = document.getElementById('searchResults');
-    results.innerHTML = '';
-    if (input === '') { results.style.display = 'none'; return; }
-    var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
-    if (matches.length === 0) { results.innerHTML = '<li><a>No tools found</a></li>'; } 
-    else {
-      for (var i = 0; i < matches.length; i++) {
-        var t = matches[i];
-        var li = document.createElement('li');
-        li.innerHTML = '<a onclick="showTool(\'' + t.id + '\')">' + t.name + '</a>';
-        results.appendChild(li);
-      }
-    }
-    results.style.display = 'block';
-  }
-  function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }    // ==========================================
     // CALCULATOR ENGINE
-    // ==========================================
     var calcExpr = "0"; 
     var displayStr = "0"; 
     var lastAns = 0;
@@ -477,9 +478,6 @@
       }
     }
 
-    // ==========================================
-    // HISTORY LOGIC
-    // ==========================================
     var historyData = [];
     function saveHistory(res) {
       if(res === "Error" || res === "0") return;
@@ -513,9 +511,6 @@
       }
     }
 
-    // ==========================================
-    // SIGN IN PLACEHOLDER
-    // ==========================================
     function handleSignIn() {
       alert("Sign In feature coming soon!\n\nअभी सभी टूल्स 100% मुफ्त और बिना लॉगिन के काम करते हैं।");
     }
