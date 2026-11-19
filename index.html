@@ -8,7 +8,6 @@
   <meta name="description" content="Free online calculators for finance, health, math, image, PDF, text, and more. 100% accurate and private. 150+ tools in your browser." />
   <link rel="canonical" href="https://world-calculator.aakashsuryavanshi860.workers.dev/" />
   
-  <!-- PDF Libraries -->
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
@@ -16,8 +15,6 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
   </script>
-  
-  <!-- QR Code Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 
@@ -27,8 +24,9 @@
       --primary: #1e40af; --primary-light: #2563eb; 
       --text: #111827; --text-muted: #6b7280; 
       --bg: #ffffff; --bg-alt: #f8fafc;
-      --border: #e2e8f0; --radius: 8px; 
+      --border: #e2e8f0; --radius: 10px; 
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     }
     body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
     a { color: #1e40af; text-decoration: none; cursor: pointer; }
@@ -62,57 +60,59 @@
     }
 
     /* Calculator UI */
-    .calc-wrapper { background: #e2e8f0; border: 1px solid #94a3b8; padding: 10px; border-radius: 4px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
-    .calc-tabs { display: flex; margin-bottom: 10px; }
-    .calc-tab { background: #f1f5f9; border: 1px solid #94a3b8; padding: 5px 15px; font-weight: bold; cursor: pointer; font-size: 1rem; color: var(--text); border-bottom: none; }
-    .calc-tab.active { background: #fff; border-bottom-color: #fff; color: var(--primary); }
-    .calc-display { background: #3b6999; color: #fff; padding: 0.5rem 1rem; text-align: right; font-size: 2rem; font-weight: 600; min-height: 60px; margin-bottom: 10px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; }
-    .calc-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
-    .calc-pad-scientific { display: none; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 5px; }
+    .calc-wrapper { background: #ffffff; border: 1px solid #cbd5e1; padding: 15px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .calc-tabs { display: flex; margin-bottom: 15px; background: #f1f5f9; border-radius: 6px; overflow: hidden; }
+    .calc-tab { flex: 1; text-align: center; padding: 10px 0; font-weight: bold; cursor: pointer; font-size: 1rem; color: var(--text-muted); transition: background 0.2s; }
+    .calc-tab.active { background: var(--primary); color: #fff; }
+    .calc-display { background: #1e293b; color: #fff; padding: 1rem; text-align: right; font-size: 2.5rem; font-weight: 600; min-height: 80px; margin-bottom: 15px; display: flex; align-items: center; justify-content: flex-end; overflow-x: auto; border-radius: 6px; }
+    .calc-pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .calc-pad-scientific { display: none; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 8px; }
     .calc-pad-scientific.active { display: grid; }
-    .c-btn { background: #cbd5e1; border: 1px solid #94a3b8; padding: 0.8rem 0; font-size: 1.1rem; font-weight: 600; color: var(--text); cursor: pointer; border-radius: 2px; user-select: none; }
-    .c-btn:hover { background: #94a3b8; }
-    .c-btn.op { background: #fff; }
-    .c-btn.op:hover { background: #f1f5f9; }
-    .c-btn.equal { background: #cbd5e1; font-weight: bold; }
-    .c-btn.sci { background: #dbeafe; font-size: 0.95rem; color: var(--primary); }
-    
-    /* History */
-    .history-box { margin-top: 1rem; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; display: none; }
-    .history-box h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-muted); }
-    .history-box ul { list-style: none; font-size: 0.9rem; color: #374151; }
-    .history-box li { padding: 0.25rem 0; border-bottom: 1px solid #f3f4f6; cursor: pointer; }
-    .history-box li:hover { color: var(--primary); }
+    .c-btn { background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem 0; font-size: 1.2rem; font-weight: 600; color: var(--text); cursor: pointer; border-radius: 6px; user-select: none; transition: all 0.1s; }
+    .c-btn:hover { background: #e2e8f0; }
+    .c-btn:active { transform: scale(0.95); }
+    .c-btn.op { background: #eff6ff; color: var(--primary); border-color: #bfdbfe; }
+    .c-btn.op:hover { background: #dbeafe; }
+    .c-btn.equal { background: var(--primary); color: #fff; border-color: var(--primary); font-size: 1.4rem; }
+    .c-btn.equal:hover { background: var(--primary-light); }
+    .c-btn.sci { background: #f1f5f9; font-size: 1rem; color: var(--primary); }
+
+    /* Error Message */
+    .error-msg { display: none; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; padding: 10px; border-radius: 6px; margin-top: 10px; text-align: center; font-weight: 600; }
 
     /* Tools List */
-    .category-header { background: #1e40af; color: #fff; padding: 0.5rem 1rem; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1.5rem; border-radius: 4px; }
+    .category-header { background: #1e40af; color: #fff; padding: 0.5rem 1rem; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1.5rem; border-radius: 6px; }
     .category-header:first-child { margin-top: 0; }
-    .tool-list { display: grid; grid-template-columns: 1fr; gap: 0.4rem; padding-left: 0.5rem; margin-bottom: 1rem; }
+    .tool-list { display: grid; grid-template-columns: 1fr; gap: 0.5rem; padding-left: 0.5rem; margin-bottom: 1rem; }
     @media (min-width: 600px) { .tool-list { grid-template-columns: 1fr 1fr; } }
-    .tool-list a { display: block; font-size: 1.05rem; padding: 0.2rem 0; color: #1e40af; }
-    
+    .tool-list a { display: block; font-size: 1.05rem; padding: 0.3rem 0; color: #1e40af; font-weight: 500; transition: color 0.2s; }
+    .tool-list a:hover { color: var(--primary); }
+
     /* Display Area & Pages */
     .page-box { display: none; padding: 2rem 0; max-width: 800px; margin: 0 auto; }
-    .page-content { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .page-content h1 { color: var(--primary); margin-bottom: 1rem; }
+    .page-content { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); }
+    .page-content h1 { color: var(--primary); margin-bottom: 1rem; font-size: 1.8rem; }
     .page-content h2 { color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.3rem; }
-    .page-content p { margin-bottom: 1rem; color: #374151; }
-    
+    .page-content p { margin-bottom: 1rem; color: #374151; font-size: 1rem; }
+    .page-content ul { margin-left: 1.5rem; margin-bottom: 1rem; color: #374151; }
+
     .input-group { margin-bottom: 1rem; }
     .input-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; }
-    .btn { background: var(--primary-light); color: white; padding: 0.85rem; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 0.5rem; }
-    .btn:hover { background: var(--primary); }
+    .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; outline: none; transition: border-color 0.2s; }
+    .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--primary); }
+    .btn { background: var(--primary); color: white; padding: 0.85rem; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 0.5rem; transition: background 0.2s; }
+    .btn:hover { background: var(--primary-light); }
     .result-box { display: none; margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
-    
+
     /* Search */
     .search-box { margin-bottom: 1.5rem; position: relative; display: flex; gap: 0.5rem; }
-    .search-box input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--border); border-radius: var(--radius); outline: none; }
+    .search-box input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--border); border-radius: var(--radius); outline: none; transition: border-color 0.2s; }
+    .search-box input:focus { border-color: var(--primary); }
     .search-btn { background: var(--primary); color: #fff; border: none; padding: 0 1.5rem; border-radius: var(--radius); font-weight: bold; cursor: pointer; }
-    .search-results { list-style: none; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); max-height: 200px; overflow-y: auto; display: none; position: absolute; z-index: 10; width: calc(100% - 80px); top: 100%; margin-top: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .search-results { list-style: none; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); max-height: 200px; overflow-y: auto; display: none; position: absolute; z-index: 10; width: calc(100% - 80px); top: 100%; margin-top: 5px; box-shadow: var(--shadow); }
     .search-results li a { display: block; padding: 0.75rem 1rem; color: var(--text); border-bottom: 1px solid var(--border); }
     .search-results li a:hover { background: #f1f5f9; }
-    
+
     .hidden { display: none !important; }
   </style>
 </head><body>
@@ -156,6 +156,7 @@
         </div>
         
         <div class="calc-display" id="calc-display">0</div>
+        <div class="error-msg" id="calc-error"></div>
         
         <div class="calc-pad-scientific" id="pad-scientific">
           <button class="c-btn sci" onclick="sciInput('sin(')">sin</button>
@@ -198,11 +199,6 @@
           <button class="c-btn op" onclick="calcInput('mr')">MR</button>
         </div>
       </div>
-      
-      <div class="history-box" id="history-box">
-        <h3>History (Click to use)</h3>
-        <ul id="history-list"></ul>
-      </div>
     </div>
 
     <div class="tools-section">
@@ -214,198 +210,197 @@
 
       <div id="category-list"></div>
     </div>
+  </div><div id="tool-display-area" class="page-box">
+  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Calculators</a>
+  <div class="page-content">
+    <h1 id="display-title" style="text-align: center;"></h1>
+    <div id="display-content"></div>
   </div>
+</div>
 
-  <div id="tool-display-area" class="page-box">
-    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Calculators</a>
-    <div class="page-content">
-      <h1 id="display-title" style="text-align: center;"></h1>
-      <div id="display-content"></div>
-    </div>
+<div id="page-about" class="page-box">
+  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+  <div class="page-content">
+    <h1>About Us</h1>
+    <p>Welcome to <strong>World Calculators</strong>. We are dedicated to providing the world's most accurate and easy-to-use online calculators for free.</p>
+    <p>Our mission is to help students, professionals, and everyday users make quick and accurate calculations without any hassle.</p>
   </div>
+</div>
 
-  <div id="page-about" class="page-box">
-    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-    <div class="page-content">
-      <h1>About Us</h1>
-      <p>Welcome to <strong>World Calculators</strong>. We are dedicated to providing the world's most accurate and easy-to-use online calculators for free.</p>
-      <p>Our mission is to help students, professionals, and everyday users make quick and accurate calculations without any hassle.</p>
-    </div>
+<div id="page-contact" class="page-box">
+  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+  <div class="page-content">
+    <h1>Contact Us</h1>
+    <p>Email: support@worldcalculators.com</p>
   </div>
+</div>
 
-  <div id="page-contact" class="page-box">
-    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-    <div class="page-content">
-      <h1>Contact Us</h1>
-      <p>Email: support@worldcalculators.com</p>
-    </div>
+<div id="page-privacy" class="page-box">
+  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+  <div class="page-content">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 2026</p>
+    <p>Your privacy is important to us. All calculations are processed locally in your browser. We do not store or share your calculation data.</p>
+    <h2>Google AdSense & Cookies</h2>
+    <p>We may use Google AdSense to display advertisements on this website. Google uses cookies (including DART cookies) to serve ads based on your prior visits to this website and other websites on the internet. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+    <h2>Third-Party Privacy Policies</h2>
+    <p>Our Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information.</p>
   </div>
+</div>
 
-  <div id="page-privacy" class="page-box">
-    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-    <div class="page-content">
-      <h1>Privacy Policy</h1>
-      <p>Last updated: 2026</p>
-      <p>Your privacy is important to us. All calculations are processed locally in your browser. We do not store or share your calculation data.</p>
-      <p><strong>Google AdSense & Cookies:</strong> We may use Google AdSense to display advertisements on this website. Google uses cookies (including DART cookies) to serve ads based on your prior visits to this website and other websites on the internet. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
-      <p>We also use cookies to improve your experience. By using our website, you consent to the use of cookies in accordance with this policy.</p>
-    </div>
+<div id="page-terms" class="page-box">
+  <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
+  <div class="page-content">
+    <h1>Terms and Conditions</h1>
+    <p>By using this website, you agree to these terms.</p>
+    <p>Our calculators are for informational purposes only. We are not responsible for any financial or health decisions made based on these results.</p>
   </div>
+</div>
 
-  <div id="page-terms" class="page-box">
-    <a onclick="showHome()" style="display: inline-block; margin-bottom: 1rem;">← Back to Home</a>
-    <div class="page-content">
-      <h1>Terms and Conditions</h1>
-      <p>By using this website, you agree to these terms.</p>
-      <p>Our calculators are for informational purposes only. We are not responsible for any financial or health decisions made based on these results.</p>
-    </div>
-  </div>  <!-- सभी 18 फाइलों के लिंक -->
-  <script src="calc1.js"></script>
-  <script src="calc2.js"></script>
-  <script src="calc3.js"></script>
-  <script src="calc4.js"></script>
-  <script src="calc5.js"></script>
-  <script src="calc6.js"></script>
-  <script src="calc7.js"></script>
-  <script src="calc8.js"></script>
-  <script src="calc9.js"></script>
-  <script src="calc10.js"></script>
-  <script src="calc11.js"></script>
-  <script src="calc12.js"></script>
-  <script src="calc13.js"></script>
-  <script src="calc14.js"></script>
-  <script src="calc15.js"></script>
-  <script src="calc16.js"></script>
-  <script src="calc17.js"></script>
-  <script src="calc18.js"></script>
+<script src="calc1.js"></script>
+<script src="calc2.js"></script>
+<script src="calc3.js"></script>
+<script src="calc4.js"></script>
+<script src="calc5.js"></script>
+<script src="calc6.js"></script>
+<script src="calc7.js"></script>
+<script src="calc8.js"></script>
+<script src="calc9.js"></script>
+<script src="calc10.js"></script>
+<script src="calc11.js"></script>
+<script src="calc12.js"></script>
+<script src="calc13.js"></script>
+<script src="calc14.js"></script>
+<script src="calc15.js"></script>
+<script src="calc16.js"></script>
+<script src="calc17.js"></script>
+<script src="calc18.js"></script><script>
+  var allTools = [];
+  var allHtmls = {};
+  if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
+  if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
+  if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
+  if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
+  if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
+  if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
+  if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
+  if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
+  if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
+  if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
+  if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
+  if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
+  if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
+  if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
+  if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
+  if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
+  if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
+  if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
 
-  <script>
-    // डेटा इकट्ठा करना
-    var allTools = [];
-    var allHtmls = {};
-    if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
-    if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
-    if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
-    if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
-    if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
-    if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
-    if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
-    if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
-    if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
-    if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
-    if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
-    if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
-    if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
-    if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
-    if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
-    if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
-    if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
-    if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
-
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('sidebar-overlay').classList.toggle('open');
+  function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebar-overlay').classList.toggle('open');
+  }
+  function hideAllPages() {
+    document.getElementById('page-home').classList.add('hidden');
+    document.getElementById('tool-display-area').style.display = 'none';
+    document.getElementById('page-about').style.display = 'none';
+    document.getElementById('page-contact').style.display = 'none';
+    document.getElementById('page-privacy').style.display = 'none';
+    document.getElementById('page-terms').style.display = 'none';
+  }
+  function showHome() {
+    hideAllPages();
+    document.getElementById('page-home').classList.remove('hidden');
+    window.history.pushState(null, '', window.location.pathname);
+    window.scrollTo(0, 0);
+  }
+  function showPage(pageId) {
+    hideAllPages();
+    document.getElementById('page-' + pageId).style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+  function showTool(toolId) {
+    hideAllPages();
+    document.getElementById('tool-display-area').style.display = 'block';
+    var t = allTools.find(function(x) { return x.id === toolId; });
+    if(t) {
+      document.getElementById('display-title').textContent = t.name;
+      document.getElementById('display-content').innerHTML = allHtmls[toolId];
+      window.history.pushState(null, '', '#' + toolId);
     }
-    function hideAllPages() {
-      document.getElementById('page-home').classList.add('hidden');
-      document.getElementById('tool-display-area').style.display = 'none';
-      document.getElementById('page-about').style.display = 'none';
-      document.getElementById('page-contact').style.display = 'none';
-      document.getElementById('page-privacy').style.display = 'none';
-      document.getElementById('page-terms').style.display = 'none';
-    }
-    function showHome() {
-      hideAllPages();
-      document.getElementById('page-home').classList.remove('hidden');
-      window.scrollTo(0, 0);
-    }
-    function showPage(pageId) {
-      hideAllPages();
-      document.getElementById('page-' + pageId).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-    function showTool(toolId) {
-      hideAllPages();
-      document.getElementById('tool-display-area').style.display = 'block';
-      var t = allTools.find(function(x) { return x.id === toolId; });
-      if(t) {
-        document.getElementById('display-title').textContent = t.name;
-        document.getElementById('display-content').innerHTML = allHtmls[toolId];
-      }
-      window.scrollTo(0, 0);
-    }
-    function scrollToCat(id) {
-      setTimeout(function() {
-        var el = document.getElementById(id);
-        if(el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
+    window.scrollTo(0, 0);
+  }
+  function scrollToCat(id) {
+    setTimeout(function() {
+      var el = document.getElementById(id);
+      if(el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
 
-    var categories = {
-      "Financial": { id: "financial", items: ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"] },
-      "Health & Fitness": { id: "health", items: ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"] },
-      "Math": { id: "math", items: ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"] },
-      "Everyday Life": { id: "everyday", items: ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"] },
-      "Physics & Engineering": { id: "physics", items: ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"] },
-      "Image Tools": { id: "imagetools", items: ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"] },
-      "PDF Tools": { id: "pdftools", items: ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"] },
-      "Text Tools": { id: "texttools", items: ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"] },
-      "Developer Tools": { id: "devtools", items: ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlenc", "urldec", "uuid", "pwgen", "hashgen", "regextest", "base64", "roman", "binary", "hex"] },
-      "QR & Barcode": { id: "qrtools", items: ["qrcodegen", "qrcodescan"] },
-      "Basic Tools": { id: "basic", items: ["simplecalc"] }
-    };
+  var categories = {
+    "Financial": { id: "financial", items: ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"] },
+    "Health & Fitness": { id: "health", items: ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"] },
+    "Math": { id: "math", items: ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"] },
+    "Everyday Life": { id: "everyday", items: ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"] },
+    "Physics & Engineering": { id: "physics", items: ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"] },
+    "Image Tools": { id: "imagetools", items: ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"] },
+    "PDF Tools": { id: "pdftools", items: ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"] },
+    "Text Tools": { id: "texttools", items: ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"] },
+    "Developer Tools": { id: "devtools", items: ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlenc", "urldec", "uuid", "pwgen", "hashgen", "regextest", "base64", "roman", "binary", "hex"] },
+    "QR & Barcode": { id: "qrtools", items: ["qrcodegen", "qrcodescan"] },
+    "Basic Tools": { id: "basic", items: ["simplecalc"] }
+  };
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var catList = document.getElementById('category-list');
-      for (var catName in categories) {
-        var catObj = categories[catName];
-        var header = document.createElement('div');
-        header.className = 'category-header';
-        header.id = catObj.id;
-        header.textContent = catName;
-        catList.appendChild(header);
+  document.addEventListener('DOMContentLoaded', function() {
+    var catList = document.getElementById('category-list');
+    for (var catName in categories) {
+      var catObj = categories[catName];
+      var header = document.createElement('div');
+      header.className = 'category-header';
+      header.id = catObj.id;
+      header.textContent = catName;
+      catList.appendChild(header);
 
-        var listDiv = document.createElement('div');
-        listDiv.className = 'tool-list';
-        
-        for (var i = 0; i < catObj.items.length; i++) {
-          var id = catObj.items[i];
-          var t = allTools.find(function(x) { return x.id === id; });
-          if (t) {
-            var a = document.createElement('a');
-            a.href = "javascript:void(0)";
-            a.textContent = t.name;
-            a.onclick = (function(toolId) {
-              return function() { showTool(toolId); };
-            })(t.id);
-            listDiv.appendChild(a);
-          }
-        }
-        catList.appendChild(listDiv);
-      }
-      loadHistory();
-    });
-
-    function searchTools() {
-      var input = document.getElementById('toolSearch').value.toLowerCase();
-      var results = document.getElementById('searchResults');
-      results.innerHTML = '';
-      if (input === '') { results.style.display = 'none'; return; }
-      var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
-      if (matches.length === 0) { results.innerHTML = '<li><a>No tools found</a></li>'; } 
-      else {
-        for (var i = 0; i < matches.length; i++) {
-          var t = matches[i];
-          var li = document.createElement('li');
-          li.innerHTML = '<a onclick="showTool(\'' + t.id + '\')">' + t.name + '</a>';
-          results.appendChild(li);
+      var listDiv = document.createElement('div');
+      listDiv.className = 'tool-list';
+      
+      for (var i = 0; i < catObj.items.length; i++) {
+        var id = catObj.items[i];
+        var t = allTools.find(function(x) { return x.id === id; });
+        if (t) {
+          var a = document.createElement('a');
+          a.href = "javascript:void(0)";
+          a.textContent = t.name;
+          a.onclick = (function(toolId) {
+            return function() { showTool(toolId); };
+          })(t.id);
+          listDiv.appendChild(a);
         }
       }
-      results.style.display = 'block';
+      catList.appendChild(listDiv);
     }
-    function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }
+  });
 
-    // CALCULATOR ENGINE
+  function searchTools() {
+    var input = document.getElementById('toolSearch').value.toLowerCase();
+    var results = document.getElementById('searchResults');
+    results.innerHTML = '';
+    if (input === '') { results.style.display = 'none'; return; }
+    var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
+    if (matches.length === 0) { results.innerHTML = '<li><a>No tools found</a></li>'; } 
+    else {
+      for (var i = 0; i < matches.length; i++) {
+        var t = matches[i];
+        var li = document.createElement('li');
+        li.innerHTML = '<a onclick="showTool(\'' + t.id + '\')">' + t.name + '</a>';
+        results.appendChild(li);
+      }
+    }
+    results.style.display = 'block';
+  }
+  function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }    // ==========================================
+    // CALCULATOR ENGINE (with M+, M-, MR and Error Handling)
+    // ==========================================
     var calcExpr = "0"; 
     var displayStr = "0"; 
     var lastAns = 0;
@@ -425,13 +420,20 @@
     function updateDisplay() {
       document.getElementById('calc-display').textContent = displayStr;
     }
+    function showError(msg) {
+      var err = document.getElementById('calc-error');
+      err.textContent = msg;
+      err.style.display = 'block';
+      setTimeout(function() { err.style.display = 'none'; }, 3000);
+    }
     function calcInput(val) {
+      document.getElementById('calc-error').style.display = 'none';
       if (displayStr === "0" && val !== "." && val !== "+" && val !== "-" && val !== "*" && val !== "/") {
         displayStr = ""; calcExpr = "";
       }
       if (val === 'ans') { displayStr += lastAns; calcExpr += lastAns; }
-      else if (val === 'm+') { memVal = lastAns; return; }
-      else if (val === 'm-') { memVal = -lastAns; return; }
+      else if (val === 'm+') { memVal += lastAns; showError("Memory Saved: " + memVal); return; }
+      else if (val === 'm-') { memVal -= lastAns; showError("Memory Saved: " + memVal); return; }
       else if (val === 'mr') { displayStr += memVal; calcExpr += memVal; }
       else if (val === 'rnd') { var r = Math.random().toFixed(4); displayStr += r; calcExpr += r; }
       else if (val === 'exp') { displayStr += 'e'; calcExpr += 'e'; }
@@ -442,6 +444,7 @@
       updateDisplay();
     }
     function sciInput(val) {
+      document.getElementById('calc-error').style.display = 'none';
       if (val === 'π') { displayStr += 'π'; calcExpr += Math.PI; }
       else if (val === 'e') { displayStr += 'e'; calcExpr += Math.E; }
       else if (val === '^') { displayStr += '^'; calcExpr += '**'; }
@@ -454,7 +457,7 @@
       } else { displayStr += val; calcExpr += val; }
       updateDisplay();
     }
-    function calcClear() { calcExpr = "0"; displayStr = "0"; updateDisplay(); }
+    function calcClear() { calcExpr = "0"; displayStr = "0"; updateDisplay(); document.getElementById('calc-error').style.display = 'none'; }
     function calcBack() {
       displayStr = displayStr.slice(0, -1);
       if (displayStr === "") displayStr = "0";
@@ -472,48 +475,18 @@
         displayStr = result.toString();
         calcExpr = result.toString();
         updateDisplay();
-        saveHistory(displayStr);
       } catch (e) {
-        displayStr = "Error"; updateDisplay(); calcExpr = "0";
+        showError("Invalid Input! Please check your calculation.");
+        displayStr = "0"; calcExpr = "0"; updateDisplay();
       }
     }
-
-    var historyData = [];
-    function saveHistory(res) {
-      if(res === "Error" || res === "0") return;
-      historyData.unshift(res);
-      if(historyData.length > 5) historyData.pop();
-      localStorage.setItem("calcHistory", JSON.stringify(historyData));
-      renderHistory();
-    }
-    function loadHistory() {
-      var data = localStorage.getItem("calcHistory");
-      if(data) { historyData = JSON.parse(data); renderHistory(); }
-    }
-    function renderHistory() {
-      var box = document.getElementById('history-box');
-      var list = document.getElementById('history-list');
-      if(historyData.length > 0) {
-        box.style.display = 'block';
-        list.innerHTML = '';
-        for(var i=0; i<historyData.length; i++) {
-          var li = document.createElement('li');
-          li.textContent = historyData[i];
-          li.onclick = (function(val) {
-            return function() { 
-              if(displayStr === "0") { displayStr = val; calcExpr = val; }
-              else { displayStr += val; calcExpr += val; }
-              updateDisplay();
-            };
-          })(historyData[i]);
-          list.appendChild(li);
-        }
-      }
-    }
-
     function handleSignIn() {
-      alert("Sign In feature coming soon!\n\nअभी सभी टूल्स 100% मुफ्त और बिना लॉगिन के काम करते हैं।");
+      alert("Sign In feature coming soon!");
     }
+    window.addEventListener('load', function() {
+      var hash = window.location.hash.replace('#', '');
+      if(hash) { showTool(hash); }
+    });
   </script>
 </body>
 </html>
