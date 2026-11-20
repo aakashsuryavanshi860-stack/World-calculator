@@ -24,13 +24,116 @@ var htmls12 = {
   matrix: '<div class="input-group"><label>a</label><input type="number" id="mx_a" /></div><div class="input-group"><label>b</label><input type="number" id="mx_b" /></div><div class="input-group"><label>c</label><input type="number" id="mx_c" /></div><div class="input-group"><label>d</label><input type="number" id="mx_d" /></div><button class="btn" onclick="calcMatrix()">Determinant (2x2)</button><div id="mx_result" class="result-box"><p id="mx_val"></p></div>'
 };
 
-function calcHeight() { var f=parseFloat(document.getElementById('ht_f').value), m=parseFloat(document.getElementById('ht_m').value), g=parseFloat(document.getElementById('ht_g').value); if(!isNaN(f)&&!isNaN(m)&&!isNaN(g)){ var h = g===1 ? (f+m+13)/2 : (f+m-13)/2; document.getElementById('ht_val').textContent="Predicted Height: "+h.toFixed(1)+" cm"; document.getElementById('ht_result').style.display='block'; } }
-function calcPassword() { var l=parseInt(document.getElementById('pwd_len').value), n=document.getElementById('pwd_num').value; if(!isNaN(l)&&l>0){ var chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*"; if(n==="1") chars+="0123456789"; var pwd=""; for(var i=0;i<l;i++){ pwd+=chars.charAt(Math.floor(Math.random()*chars.length)); } document.getElementById('pwd_val').textContent=pwd; document.getElementById('pwd_result').style.display='block'; } }
-function calcConversion() { var v=parseFloat(document.getElementById('cv_val').value), f=document.getElementById('cv_from').value, t=document.getElementById('cv_to').value; if(!isNaN(v)){ var m = f==="m"?v: f==="km"?v*1000: f==="mi"?v*1609.34: v*0.3048; var res = t==="m"?m: t==="km"?m/1000: t==="mi"?m/1609.34: m/0.3048; document.getElementById('cv_ans').textContent="Result: "+res.toFixed(4)+" "+t; document.getElementById('cv_result').style.display='block'; } }
-function calcVoltageDrop() { var i=parseFloat(document.getElementById('vd_i').value), r=parseFloat(document.getElementById('vd_r').value); if(!isNaN(i)&&!isNaN(r)){ document.getElementById('vd_val').textContent="Voltage Drop: "+(i*r).toFixed(2)+" V"; document.getElementById('vd_result').style.display='block'; } }
-function calcSqFt() { var l=parseFloat(document.getElementById('sqft_l').value), w=parseFloat(document.getElementById('sqft_w').value); if(!isNaN(l)&&!isNaN(w)){ document.getElementById('sqft_val').textContent="Area: "+(l*w).toFixed(2)+" sq ft"; document.getElementById('sqft_result').style.display='block'; } }
-function calcTimezone() { var t=document.getElementById('tz_time').value, o=parseFloat(document.getElementById('tz_off').value); if(t&&!isNaN(o)){ var p=t.split(':'); var h=parseInt(p[0])+o; while(h>=24)h-=24; while(h<0)h+=24; document.getElementById('tz_val').textContent="New Time: "+h.toString().padStart(2,'0')+":"+p[1]; document.getElementById('tz_result').style.display='block'; } }
-function calcGDP() { var c=parseFloat(document.getElementById('gdp_c').value)||0, i=parseFloat(document.getElementById('gdp_i').value)||0, g=parseFloat(document.getElementById('gdp_g').value)||0, nx=parseFloat(document.getElementById('gdp_nx').value)||0; document.getElementById('gdp_val').textContent="GDP: "+(c+i+g+nx).toFixed(2); document.getElementById('gdp_result').style.display='block'; }
-function calcStair() { var rise=parseFloat(document.getElementById('st_rise').value), h=parseFloat(document.getElementById('st_h').value); if(!isNaN(rise)&&!isNaN(h)&&h>0){ document.getElementById('st_val').textContent="Number of Risers: "+Math.ceil(rise/h); document.getElementById('st_result').style.display='block'; } }
-function calcOhmsLaw() { var v=parseFloat(document.getElementById('ol_v').value), i=parseFloat(document.getElementById('ol_i').value), r=parseFloat(document.getElementById('ol_r').value); if(!isNaN(v)&&!isNaN(i)&&isNaN(r)){ document.getElementById('ol_val').textContent="R = "+(v/i).toFixed(2)+" Ω"; } else if(!isNaN(v)&&isNaN(i)&&!isNaN(r)){ document.getElementById('ol_val').textContent="I = "+(v/r).toFixed(2)+" A"; } else if(isNaN(v)&&!isNaN(i)&&!isNaN(r)){ document.getElementById('ol_val').textContent="V = "+(i*r).toFixed(2)+" V"; } else { document.getElementById('ol_val').textContent="Please fill exactly 2 fields"; } document.getElementById('ol_result').style.display='block'; }
-function calcMatrix() { var a=parseFloat(document.getElementById('mx_a').value), b=parseFloat(document.getElementById('mx_b').value), c=parseFloat(document.getElementById('mx_c').value), d=parseFloat(document.getElementById('mx_d').value); if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)&&!isNaN(d)){ document.getElementById('mx_val').textContent="Determinant: "+((a*d)-(b*c)).toFixed(2); document.getElementById('mx_result').style.display='block'; } }
+function calcHeight() {
+  var f = parseFloat(document.getElementById('ht_f').value);
+  var m = parseFloat(document.getElementById('ht_m').value);
+  var g = parseFloat(document.getElementById('ht_g').value);
+  if (!isNaN(f) && !isNaN(m) && !isNaN(g)) {
+    var h = g === 1 ? (f + m + 13) / 2 : (f + m - 13) / 2;
+    document.getElementById('ht_val').textContent = "Predicted Height: " + h.toFixed(1) + " cm";
+    document.getElementById('ht_result').style.display = 'block';
+  }
+}
+
+function calcPassword() {
+  var l = parseInt(document.getElementById('pwd_len').value);
+  var n = document.getElementById('pwd_num').value;
+  if (!isNaN(l) && l > 0) {
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*";
+    if (n === "1") chars += "0123456789";
+    var pwd = "";
+    for (var i = 0; i < l; i++) {
+      pwd += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('pwd_val').textContent = pwd;
+    document.getElementById('pwd_result').style.display = 'block';
+  }
+}
+
+function calcConversion() {
+  var v = parseFloat(document.getElementById('cv_val').value);
+  var f = document.getElementById('cv_from').value;
+  var t = document.getElementById('cv_to').value;
+  if (!isNaN(v)) {
+    var m = f === "m" ? v : f === "km" ? v * 1000 : f === "mi" ? v * 1609.34 : v * 0.3048;
+    var res = t === "m" ? m : t === "km" ? m / 1000 : t === "mi" ? m / 1609.34 : m / 0.3048;
+    document.getElementById('cv_ans').textContent = "Result: " + res.toFixed(4) + " " + t;
+    document.getElementById('cv_result').style.display = 'block';
+  }
+}
+
+function calcVoltageDrop() {
+  var i = parseFloat(document.getElementById('vd_i').value);
+  var r = parseFloat(document.getElementById('vd_r').value);
+  if (!isNaN(i) && !isNaN(r)) {
+    document.getElementById('vd_val').textContent = "Voltage Drop: " + (i * r).toFixed(2) + " V";
+    document.getElementById('vd_result').style.display = 'block';
+  }
+}
+
+function calcSqFt() {
+  var l = parseFloat(document.getElementById('sqft_l').value);
+  var w = parseFloat(document.getElementById('sqft_w').value);
+  if (!isNaN(l) && !isNaN(w)) {
+    document.getElementById('sqft_val').textContent = "Area: " + (l * w).toFixed(2) + " sq ft";
+    document.getElementById('sqft_result').style.display = 'block';
+  }
+}
+
+function calcTimezone() {
+  var t = document.getElementById('tz_time').value;
+  var o = parseFloat(document.getElementById('tz_off').value);
+  if (t && !isNaN(o)) {
+    var p = t.split(':');
+    var h = parseInt(p[0]) + o;
+    while (h >= 24) h -= 24;
+    while (h < 0) h += 24;
+    document.getElementById('tz_val').textContent = "New Time: " + h.toString().padStart(2, '0') + ":" + p[1];
+    document.getElementById('tz_result').style.display = 'block';
+  }
+}
+
+function calcGDP() {
+  var c = parseFloat(document.getElementById('gdp_c').value) || 0;
+  var i = parseFloat(document.getElementById('gdp_i').value) || 0;
+  var g = parseFloat(document.getElementById('gdp_g').value) || 0;
+  var nx = parseFloat(document.getElementById('gdp_nx').value) || 0;
+  document.getElementById('gdp_val').textContent = "GDP: " + (c + i + g + nx).toFixed(2);
+  document.getElementById('gdp_result').style.display = 'block';
+}
+
+function calcStair() {
+  var rise = parseFloat(document.getElementById('st_rise').value);
+  var h = parseFloat(document.getElementById('st_h').value);
+  if (!isNaN(rise) && !isNaN(h) && h > 0) {
+    document.getElementById('st_val').textContent = "Number of Risers: " + Math.ceil(rise / h);
+    document.getElementById('st_result').style.display = 'block';
+  }
+}
+
+function calcOhmsLaw() {
+  var v = parseFloat(document.getElementById('ol_v').value);
+  var i = parseFloat(document.getElementById('ol_i').value);
+  var r = parseFloat(document.getElementById('ol_r').value);
+  if (!isNaN(v) && !isNaN(i) && isNaN(r)) {
+    document.getElementById('ol_val').textContent = "R = " + (v / i).toFixed(2) + " Ω";
+  } else if (!isNaN(v) && isNaN(i) && !isNaN(r)) {
+    document.getElementById('ol_val').textContent = "I = " + (v / r).toFixed(2) + " A";
+  } else if (isNaN(v) && !isNaN(i) && !isNaN(r)) {
+    document.getElementById('ol_val').textContent = "V = " + (i * r).toFixed(2) + " V";
+  } else {
+    document.getElementById('ol_val').textContent = "Please fill exactly 2 fields";
+  }
+  document.getElementById('ol_result').style.display = 'block';
+}
+
+function calcMatrix() {
+  var a = parseFloat(document.getElementById('mx_a').value);
+  var b = parseFloat(document.getElementById('mx_b').value);
+  var c = parseFloat(document.getElementById('mx_c').value);
+  var d = parseFloat(document.getElementById('mx_d').value);
+  if (!isNaN(a) && !isNaN(b) && !isNaN(c) && !isNaN(d)) {
+    document.getElementById('mx_val').textContent = "Determinant: " + ((a * d) - (b * c)).toFixed(2);
+    document.getElementById('mx_result').style.display = 'block';
+  }
+}
