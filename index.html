@@ -14,6 +14,10 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
   </script>
+  <script src="languages.js"></script>
+  <select id="languageSelect" onchange="changeLanguage(this.value)">
+    <option value="en">Loading languages...</option>
+  </select>
   
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -508,3 +512,7 @@
 </body>
 </html>
   function hideSearch() { document.getElementById('searchResults').style.display = 'none'; }
+// Page load hote hi languages load karein
+window.addEventListener('DOMContentLoaded', function() {
+    loadLanguagesIntoDropdown('languageSelect');
+});
