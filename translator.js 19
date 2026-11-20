@@ -1,0 +1,144 @@
+/*
+  translator.js : Google Translate language selector
+  Use: index.html ke </body> se theek pehle ye line add karein:
+       <script src="translator.js"></script>
+  Ye file khud header mein language dropdown add kar degi.
+  Baaki koi code change karne ki zaroorat nahin.
+*/
+(function () {
+  'use strict';
+
+  var SOURCE = 'en';          // aapki website ki original language (index.html ke lang="en" se match)
+  var COOKIE = 'googtrans';   // Google Translate ye cookie use karta hai language yaad rakhne ke liye
+
+  // ---------- 1. CSS ----------
+  var css = [
+    '.goog-te-banner-frame.skiptranslate{display:none !important;}',
+    'body{top:0 !important;}',
+    '#google_translate_element{display:none !important;}',
+    '.goog-tooltip,.goog-tooltip:hover{display:none !important;}',
+    '.goog-text-highlight{background:none !important;box-shadow:none !important;}',
+    '#wc-lang-select{max-width:150px;padding:0.35rem 0.4rem;border-radius:4px;border:1px solid #ffffff;' +
+      'background:#ffffff;color:#1e40af;font-size:0.85rem;font-weight:600;cursor:pointer;outline:none;}',
+    '@media (max-width:480px){#wc-lang-select{max-width:110px;font-size:0.75rem;}}'
+  ].join('\n');
+
+  function injectStyles() {
+    var s = document.createElement('style');
+    s.textContent = css;
+    document.head.appendChild(s);
+  }
+
+  // ---------- 2. Hidden Google widget container ----------
+  function addWidgetContainer() {
+    var d = document.createElement('div');
+    d.id = 'google_translate_element';
+    d.className = 'notranslate';
+    document.body.appendChild(d);
+  }
+
+  // ---------- 3. Current language (cookie se) ----------
+  function getCurrentLang() {
+    var m = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/);
+    if (!m) return '';
+    var parts = decodeURIComponent(m[1]).split('/');   // format: /en/hi
+    return parts[2] || '';
+  }
+
+  // ---------- 4. Language change ----------
+  // Cookie set karke page reload karte hain: sabse bharosemand tareeka hai,
+  // kyunki Google ka widget reload ke baad hi poori website ko sahi se translate karta hai.
+  function setLanguage(code) {
+    var expired = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    if (!code || code === SOURCE) {
+      document.cookie = COOKIE + '=; ' + expired;          // original language par wapas
+    } else {
+      document.cookie = COOKIE + '=/' + SOURCE + '/' + code + '; path=/';
+    }
+    location.reload();
+  }
+
+  // ---------- 5. Dropdown banana ----------
+  function buildSelector(combo) {
+    if (document.getElementById('wc-lang-select')) return;
+    var host = document.querySelector('.header-actions');
+    if (!host) return;
+
+    var sel = document.createElement('select');
+    sel.id = 'wc-lang-select';
+    sel.className = 'notranslate';
+    sel.setAttribute('translate', 'no');
+    sel.setAttribute('aria-label', 'Select language');
+
+    var current = getCurrentLang() || SOURCE;
+    var list = Array.prototype.slice.call(combo.options).filter(function (o) { return o.value; });
+
+    // Ensure source language bhi list mein ho
+    var hasSource = list.some(function (o) { return o.value === SOURCE; });
+    if (!hasSource) list.unshift({ value: SOURCE, text: 'English' });
+
+    list.forEach(function (o) {
+      var op = document.createElement('option');
+      op.value = o.value;
+      op.textContent = o.text;
+      if (o.value === current) op.selected = true;
+      sel.appendChild(op);
+    });
+
+    sel.addEventListener('change', function () { setLanguage(sel.value); });
+    host.insertBefore(sel, host.firstChild);
+  }
+
+  // Google ka combo box load hone ka wait karte hain
+  function waitForCombo(tries) {
+    var combo = document.querySelector('select.goog-te-combo');
+    if (combo && combo.options.length > 1) {
+      buildSelector(combo);
+      return;
+    }
+    if (tries < 60) setTimeout(function () { waitForCombo(tries + 1); }, 250);
+  }
+
+  // ---------- 6. Google Translate widget load ----------
+  window.googleTranslateElementInit = function () {
+    /* global google */
+    new google.translate.TranslateElement({
+      pageLanguage: SOURCE,
+      autoDisplay: false
+    }, 'google_translate_element');
+    waitForCombo(0);
+  };
+
+  function loadWidget() {
+    var s = document.createElement('script');
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  // ---------- 7. Calculator display ko translate hone se bachana ----------
+  // Calculator ki numbers/result JS se badalte hain, isliye ye elements translate nahin honge
+  function markNoTranslate() {
+    ['calc-display', 'history-list'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.classList.add('notranslate');
+        el.setAttribute('translate', 'no');
+      }
+    });
+  }
+
+  // ---------- Start ----------
+  function init() {
+    injectStyles();
+    addWidgetContainer();
+    markNoTranslate();
+    loadWidget();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
