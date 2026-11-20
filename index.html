@@ -118,6 +118,7 @@
       .main-header { flex-wrap: wrap; }
       .selectors input { width: 100px; }
       .hero h1 { font-size: 1.8rem; }
+      .home-calc-wrapper { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -173,10 +174,10 @@
   </section>
 
   <!-- HOME PAGE CALCULATORS (Basic + Scientific side by side) -->
-  <div style="max-width:900px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+  <div class="home-calc-wrapper" style="max-width:900px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
     
     <!-- BASIC CALCULATOR -->
-    <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div id="home-basic-calc" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
       <h2 style="color:#0f172a; margin-bottom:15px; font-size:1.2rem; text-align:center;">🧮 Basic Calculator</h2>
       <input type="text" id="bc_display" readonly
         style="width:100%; padding:15px; font-size:1.6rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:10px; background:#f8fafc; font-family:monospace;"
@@ -206,8 +207,8 @@
       </div>
     </div>
 
-    <!-- SCIENTIFIC CALCULATOR (Home Page) -->
-    <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
+    <!-- SCIENTIFIC CALCULATOR -->
+    <div id="home-scientific-calc" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
       <h2 style="color:#0f172a; margin-bottom:15px; font-size:1.2rem; text-align:center;">🔬 Scientific Calculator</h2>
       <input type="text" id="sc_display" readonly
         style="width:100%; padding:12px; font-size:1.4rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:8px; background:#f8fafc; font-family:monospace;"
@@ -262,7 +263,10 @@
   <!-- Grid -->
   <div class="container" id="grid-section">
     <h2 style="text-align:center; margin-bottom:20px;">Explore All Tools</h2>
-    <div id="category-list"></div>
+    <div id="category-list">
+      <!-- Fallback text if JS fails -->
+      <p style="text-align:center; color:#64748b;">Loading calculators...</p>
+    </div>
   </div>
 
   <!-- Display Area -->
@@ -302,7 +306,8 @@
   <!-- Footer -->
   <footer style="background: var(--primary); color: #fff; padding: 30px; text-align: center; margin-top: 40px;">
     <p>© 2026 World Calculators. All rights reserved.</p>
-  </footer><!-- All Calculator Scripts -->
+  </footer>
+  <!-- All Calculator Scripts -->
 <script src="calc1.js"></script>
 <script src="calc2.js"></script>
 <script src="calc3.js"></script>
@@ -337,74 +342,162 @@ function googleTranslateElementInit() {
 
 <script>
 // ==========================================
-// COUNTRY & LANGUAGE LOGIC
+// 1. MASTER TOOL LIST (Fallback Mechanism)
 // ==========================================
-const countryData = {
-  "India": "hi", "United States": "en", "United Kingdom": "en",
-  "France": "fr", "Germany": "de", "Spain": "es",
-  "Saudi Arabia": "ar", "China": "zh-CN", "Japan": "ja",
-  "Russia": "ru", "Brazil": "pt", "Italy": "it",
-  "South Korea": "ko", "Bangladesh": "bn", "Pakistan": "ur",
-  "Indonesia": "id", "Turkey": "tr", "Netherlands": "nl",
-  "Poland": "pl", "Thailand": "th", "Vietnam": "vi",
-  "Iran": "fa", "Israel": "he", "Greece": "el", "Ukraine": "uk",
-  "Romania": "ro", "Hungary": "hu", "Czech Republic": "cs",
-  "Sweden": "sv", "Denmark": "da", "Finland": "fi", "Norway": "no",
-  "Slovakia": "sk", "Bulgaria": "bg", "Croatia": "hr", "Serbia": "sr",
-  "Slovenia": "sl", "Lithuania": "lt", "Latvia": "lv", "Estonia": "et",
-  "Malaysia": "ms", "Philippines": "tl", "Kenya": "sw", "Ethiopia": "am",
-  "Sri Lanka": "si", "Nepal": "ne", "Cambodia": "km", "Laos": "lo",
-  "Georgia": "ka", "Armenia": "hy", "Azerbaijan": "az", "Kazakhstan": "kk",
-  "Uzbekistan": "uz", "Belarus": "be", "Albania": "sq", "Bosnia": "bs",
-  "Iceland": "is", "Ireland": "ga", "Malta": "mt", "Wales": "cy",
-  "Spain (Galician)": "gl", "Spain (Basque)": "eu", "Catalonia": "ca"
-};
+// Yeh list har haal mein buttons dikhayegi, chahe calc1.js load ho ya na ho.
+var masterTools = [
+  { id: "emi", name: "EMI Calculator", icon: "🏦", cat: "Financial" },
+  { id: "interest", name: "Simple Interest", icon: "💰", cat: "Financial" },
+  { id: "gst", name: "GST Calculator", icon: "🧾", cat: "Financial" },
+  { id: "discount", name: "Discount Calculator", icon: "🏷️", cat: "Financial" },
+  { id: "tip", name: "Tip Calculator", icon: "🍽️", cat: "Financial" },
+  { id: "compound", name: "Compound Interest", icon: "📈", cat: "Financial" },
+  { id: "sip", name: "SIP Calculator", icon: "💹", cat: "Financial" },
+  { id: "tax", name: "Income Tax", icon: "📑", cat: "Financial" },
+  { id: "salary", name: "Salary Calculator", icon: "💼", cat: "Financial" },
+  { id: "retire", name: "Retirement Corpus", icon: "🏖️", cat: "Financial" },
+  { id: "mortgage", name: "Mortgage Calculator", icon: "🏠", cat: "Financial" },
+  { id: "autoloan", name: "Auto Loan Calculator", icon: "🚗", cat: "Financial" },
+  { id: "payment", name: "Payment Calculator", icon: "💳", cat: "Financial" },
+  { id: "amortization", name: "Amortization", icon: "📊", cat: "Financial" },
+  { id: "investment", name: "Investment Calculator", icon: "📈", cat: "Financial" },
+  { id: "inflation", name: "Inflation Calculator", icon: "🎈", cat: "Financial" },
+  { id: "salestax", name: "Sales Tax", icon: "🧾", cat: "Financial" },
+  { id: "vat", name: "VAT Calculator", icon: "📑", cat: "Financial" },
+  { id: "roi", name: "ROI Calculator", icon: "💰", cat: "Financial" },
+  { id: "margin", name: "Margin Calculator", icon: "📉", cat: "Financial" },
+  { id: "bmi", name: "BMI Calculator", icon: "⚖️", cat: "Health & Fitness" },
+  { id: "age", name: "Age Calculator", icon: "🎂", cat: "Health & Fitness" },
+  { id: "bodyfat", name: "Body Fat %", icon: "🏃", cat: "Health & Fitness" },
+  { id: "bmr", name: "BMR Calculator", icon: "🔥", cat: "Health & Fitness" },
+  { id: "caldef", name: "Calorie Deficit", icon: "🍏", cat: "Health & Fitness" },
+  { id: "water", name: "Water Intake", icon: "💧", cat: "Health & Fitness" },
+  { id: "weightloss", name: "Weight Loss Time", icon: "🏋️", cat: "Health & Fitness" },
+  { id: "pregnancy", name: "Pregnancy Due Date", icon: "👶", cat: "Health & Fitness" },
+  { id: "bmikids", name: "BMI for Kids", icon: "🧒", cat: "Health & Fitness" },
+  { id: "bodyfat_navy", name: "Body Fat (Navy)", icon: "🏃", cat: "Health & Fitness" },
+  { id: "macro", name: "Macro Calculator", icon: "🍗", cat: "Health & Fitness" },
+  { id: "pace", name: "Pace Calculator", icon: "🏃‍♂️", cat: "Health & Fitness" },
+  { id: "carbs", name: "Carbohydrate", icon: "🍚", cat: "Health & Fitness" },
+  { id: "healthyweight", name: "Healthy Weight", icon: "⚖️", cat: "Health & Fitness" },
+  { id: "onerepmax", name: "One Rep Max", icon: "🏋️", cat: "Health & Fitness" },
+  { id: "protein", name: "Protein Calculator", icon: "🥩", cat: "Health & Fitness" },
+  { id: "tdee", name: "TDEE Calculator", icon: "🔥", cat: "Health & Fitness" },
+  { id: "conception", name: "Conception", icon: "🤰", cat: "Health & Fitness" },
+  { id: "due_date", name: "Due Date", icon: "👶", cat: "Health & Fitness" },
+  { id: "percentage", name: "Percentage", icon: "％", cat: "Math" },
+  { id: "average", name: "Average Calculator", icon: "📊", cat: "Math" },
+  { id: "gpa", name: "GPA Calculator", icon: "🎓", cat: "Math" },
+  { id: "time", name: "Time Calculator", icon: "⏱️", cat: "Math" },
+  { id: "random", name: "Random Number", icon: "🎲", cat: "Math" },
+  { id: "scientific", name: "Scientific Calculator", icon: "🧪", cat: "Math" },
+  { id: "fraction", name: "Fraction Calculator", icon: "🍕", cat: "Math" },
+  { id: "area", name: "Area Calculator", icon: "📐", cat: "Math" },
+  { id: "volume", name: "Volume (Box)", icon: "📦", cat: "Math" },
+  { id: "quadratic", name: "Quadratic Equation", icon: "📉", cat: "Math" },
+  { id: "pythagoras", name: "Pythagorean", icon: "🔺", cat: "Math" },
+  { id: "circumference", name: "Circumference", icon: "⭕", cat: "Math" },
+  { id: "stdev", name: "Std Deviation", icon: "📈", cat: "Math" },
+  { id: "probability", name: "Probability", icon: "🎯", cat: "Math" },
+  { id: "permcomb", name: "Permutation/Comb", icon: "🔀", cat: "Math" },
+  { id: "zscore", name: "Z-Score", icon: "📊", cat: "Math" },
+  { id: "ratio", name: "Ratio Calculator", icon: "⚖️", cat: "Math" },
+  { id: "circle", name: "Circle Calculator", icon: "⭕", cat: "Math" },
+  { id: "root", name: "Root Calculator", icon: "√", cat: "Math" },
+  { id: "gcf", name: "GCF Calculator", icon: "🔢", cat: "Math" },
+  { id: "lcm", name: "LCM Calculator", icon: "🔢", cat: "Math" },
+  { id: "rounding", name: "Rounding", icon: "🔘", cat: "Math" },
+  { id: "primefactor", name: "Prime Factor", icon: "🔍", cat: "Math" },
+  { id: "scinotation", name: "Scientific Notation", icon: "🔬", cat: "Math" },
+  { id: "slope", name: "Slope Calculator", icon: "📈", cat: "Math" },
+  { id: "matrix", name: "Matrix Calculator", icon: "🔢", cat: "Math" },
+  { id: "date-diff", name: "Date Difference", icon: "📅", cat: "Everyday Life" },
+  { id: "fuel", name: "Fuel Cost", icon: "⛽", cat: "Everyday Life" },
+  { id: "electricity", name: "Electricity Cost", icon: "💡", cat: "Everyday Life" },
+  { id: "mileage", name: "Mileage Calculator", icon: "🚗", cat: "Everyday Life" },
+  { id: "currency", name: "Currency Converter", icon: "💵", cat: "Everyday Life" },
+  { id: "roofing", name: "Roofing Calculator", icon: "🏠", cat: "Everyday Life" },
+  { id: "mulch", name: "Mulch Calculator", icon: "🌱", cat: "Everyday Life" },
+  { id: "windchill", name: "Wind Chill", icon: "🌬️", cat: "Everyday Life" },
+  { id: "dewpoint", name: "Dew Point", icon: "💧", cat: "Everyday Life" },
+  { id: "timeduration", name: "Time Duration", icon: "⏳", cat: "Everyday Life" },
+  { id: "dayofweek", name: "Day of Week", icon: "📅", cat: "Everyday Life" },
+  { id: "love", name: "Love Calculator", icon: "❤️", cat: "Everyday Life" },
+  { id: "gasmileage", name: "Gas Mileage", icon: "⛽", cat: "Everyday Life" },
+  { id: "btu", name: "BTU Calculator", icon: "❄️", cat: "Everyday Life" },
+  { id: "timecard", name: "Time Card", icon: "⏰", cat: "Everyday Life" },
+  { id: "shoesize", name: "Shoe Size", icon: "👟", cat: "Everyday Life" },
+  { id: "mass", name: "Mass Calculator", icon: "⚖️", cat: "Everyday Life" },
+  { id: "speed", name: "Speed Calculator", icon: "🚀", cat: "Everyday Life" },
+  { id: "molweight", name: "Molecular Weight", icon: "🧪", cat: "Everyday Life" },
+  { id: "golf", name: "Golf Handicap", icon: "⛳", cat: "Everyday Life" },
+  { id: "tiresize", name: "Tire Size", icon: "🛞", cat: "Everyday Life" },
+  { id: "gravel", name: "Gravel Calculator", icon: "🪨", cat: "Everyday Life" },
+  { id: "heatindex", name: "Heat Index", icon: "🌡️", cat: "Everyday Life" },
+  { id: "daycounter", name: "Day Counter", icon: "📆", cat: "Everyday Life" },
+  { id: "hours", name: "Hours Calculator", icon: "⏰", cat: "Everyday Life" },
+  { id: "grade", name: "Grade Calculator", icon: "📝", cat: "Everyday Life" },
+  { id: "dice", name: "Dice Roller", icon: "🎲", cat: "Everyday Life" },
+  { id: "height", name: "Height Calculator", icon: "📏", cat: "Everyday Life" },
+  { id: "sqft", name: "Square Footage", icon: "📐", cat: "Everyday Life" },
+  { id: "timezone", name: "Time Zone", icon: "🌍", cat: "Everyday Life" },
+  { id: "gdp", name: "GDP Calculator", icon: "💵", cat: "Everyday Life" },
+  { id: "convcalc", name: "Conversion Calculator", icon: "🔁", cat: "Everyday Life" },
+  { id: "ohm", name: "Ohm's Law", icon: "⚡", cat: "Physics & Engineering" },
+  { id: "speeddist", name: "Speed, Dist, Time", icon: "🏎️", cat: "Physics & Engineering" },
+  { id: "force", name: "Force (F=ma)", icon: "💪", cat: "Physics & Engineering" },
+  { id: "work", name: "Work & Energy", icon: "🔧", cat: "Physics & Engineering" },
+  { id: "density", name: "Density Calculator", icon: "⚗️", cat: "Physics & Engineering" },
+  { id: "molar", name: "Molarity", icon: "🧪", cat: "Physics & Engineering" },
+  { id: "concrete", name: "Concrete Calculator", icon: "🧱", cat: "Physics & Engineering" },
+  { id: "paint", name: "Paint Calculator", icon: "🎨", cat: "Physics & Engineering" },
+  { id: "tile", name: "Tile Calculator", icon: "🟫", cat: "Physics & Engineering" },
+  { id: "horsepower", name: "Horsepower", icon: "🏎️", cat: "Physics & Engineering" },
+  { id: "resistor", name: "Resistor Calculator", icon: "🔌", cat: "Physics & Engineering" },
+  { id: "bandwidth", name: "Bandwidth", icon: "📡", cat: "Physics & Engineering" },
+  { id: "voltagedrop", name: "Voltage Drop", icon: "⚡", cat: "Physics & Engineering" },
+  { id: "stair", name: "Stair Calculator", icon: "🪜", cat: "Physics & Engineering" },
+  { id: "imagecompressor", name: "Image Compressor", icon: "🗜️", cat: "Image Tools" },
+  { id: "imageresizer", name: "Image Resizer", icon: "📏", cat: "Image Tools" },
+  { id: "imageconverter", name: "Image Converter", icon: "🔄", cat: "Image Tools" },
+  { id: "imagecropper", name: "Image Cropper", icon: "✂️", cat: "Image Tools" },
+  { id: "imagerotator", name: "Image Rotator", icon: "🔃", cat: "Image Tools" },
+  { id: "imagewatermark", name: "Image Watermark", icon: "💧", cat: "Image Tools" },
+  { id: "imagefilters", name: "Image Filters", icon: "🎨", cat: "Image Tools" },
+  { id: "transparentbg", name: "Transparent Bg", icon: "🔲", cat: "Image Tools" },
+  { id: "mergepdf", name: "Merge PDF", icon: "📄", cat: "PDF Tools" },
+  { id: "splitpdf", name: "Split PDF", icon: "✂️", cat: "PDF Tools" },
+  { id: "jpgtopdf", name: "JPG to PDF", icon: "🖼️", cat: "PDF Tools" },
+  { id: "pdftojpg", name: "PDF to JPG", icon: "📸", cat: "PDF Tools" },
+  { id: "wordcounter", name: "Word Counter", icon: "📝", cat: "Text Tools" },
+  { id: "charcounter", name: "Character Count", icon: "🔤", cat: "Text Tools" },
+  { id: "caseconverter", name: "Case Converter", icon: "Aa", cat: "Text Tools" },
+  { id: "removespaces", name: "Remove Spaces", icon: "🧹", cat: "Text Tools" },
+  { id: "removeduplicates", name: "Remove Duplicates", icon: "🚫", cat: "Text Tools" },
+  { id: "sortlines", name: "Sort Lines", icon: "📊", cat: "Text Tools" },
+  { id: "reversetext", name: "Reverse Text", icon: "🔄", cat: "Text Tools" },
+  { id: "textdiff", name: "Text Diff", icon: "🔍", cat: "Text Tools" },
+  { id: "loremipsum", name: "Lorem Ipsum", icon: "📄", cat: "Text Tools" },
+  { id: "notepad", name: "Online Notepad", icon: "🗒️", cat: "Text Tools" },
+  { id: "jsonformat", name: "JSON Formatter", icon: "📋", cat: "Developer Tools" },
+  { id: "jsonvalidate", name: "JSON Validator", icon: "✅", cat: "Developer Tools" },
+  { id: "base64", name: "Base64 Encode/Decode", icon: "🔐", cat: "Developer Tools" },
+  { id: "urlencode", name: "URL Encode/Decode", icon: "🔗", cat: "Developer Tools" },
+  { id: "uuid", name: "UUID Generator", icon: "🆔", cat: "Developer Tools" },
+  { id: "hashgen", name: "Hash Generator", icon: "#️⃣", cat: "Developer Tools" },
+  { id: "regextest", name: "Regex Tester", icon: "🔍", cat: "Developer Tools" },
+  { id: "roman", name: "Roman Numeral", icon: "🏛️", cat: "Developer Tools" },
+  { id: "binary", name: "Binary Calculator", icon: "💻", cat: "Developer Tools" },
+  { id: "hex", name: "Hex Calculator", icon: "💻", cat: "Developer Tools" },
+  { id: "qrcodegen", name: "QR Code Generator", icon: "🔲", cat: "QR & Barcode" },
+  { id: "qrcodescan", name: "QR Code Scanner", icon: "📷", cat: "QR & Barcode" },
+  { id: "simplecalc", name: "Simple Calculator", icon: "🔢", cat: "Basic Tools" }
+];
 
-function loadCountries() {
-  const sel = document.getElementById('countrySelect');
-  for (let country in countryData) {
-    let opt = document.createElement('option');
-    opt.value = country;
-    opt.textContent = country;
-    sel.appendChild(opt);
-  }
-}
-loadCountries();
-
-function filterCountries() {
-  var input = document.getElementById('countrySearchInput').value.toLowerCase();
-  var sel = document.getElementById('countrySelect');
-  sel.innerHTML = '<option value="">Select Country</option>';
-  for (let country in countryData) {
-    if(country.toLowerCase().includes(input)) {
-      let opt = document.createElement('option');
-      opt.value = country;
-      opt.textContent = country;
-      sel.appendChild(opt);
-    }
-  }
-}
-
-function changeCountry() {
-  let c = document.getElementById('countrySelect').value;
-  if (c && countryData[c]) changeLanguage(countryData[c]);
-}
-
-function changeLanguage(lang) {
-  if (!lang) return;
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
-  localStorage.setItem('selectedLang', lang);
-}
-
-// ==========================================
-// TOOL AGGREGATION
-// ==========================================
 var allTools = [];
 var allHtmls = {};
+
+// Check if calc files loaded and merge data
 if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
 if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
 if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
@@ -424,43 +517,24 @@ if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object
 if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
 if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
 
-// ==========================================
-// CATEGORIES (FIXED - No Duplicates)
-// ==========================================
-var categories = {
-  "Financial": ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"],
-  "Health & Fitness": ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"],
-  "Math": ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"],
-  "Everyday Life": ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc"],
-  "Physics & Engineering": ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "stair"],
-  "Image Tools": ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"],
-  "PDF Tools": ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"],
-  "Text Tools": ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"],
-  "Developer Tools": ["jsonformat", "jsonvalidate", "base64", "urlencode", "uuid", "hashgen", "regextest", "roman", "binary", "hex"],
-  "QR & Barcode": ["qrcodegen", "qrcodescan"],
-  "Basic Tools": ["simplecalc"]
-};
+// FIX: Agar calc files load nahi hui, toh masterTools ko use karo
+if (allTools.length === 0) {
+  allTools = masterTools; 
+}
+// Agar kuch tools miss ho gaye hain, toh unhe masterTools se add karo
+masterTools.forEach(mt => {
+  if (!allTools.find(t => t.id === mt.id)) {
+    allTools.push({ id: mt.id, name: mt.name, icon: mt.icon });
+  }
+});
   <script>
 // ==========================================
-// BASIC CALCULATOR (Home Screen)
+// BASIC CALCULATOR
 // ==========================================
 var bcExpr = "";
-
-function bcInput(val) {
-  bcExpr += val;
-  document.getElementById('bc_display').value = bcExpr || "0";
-}
-
-function bcClear() {
-  bcExpr = "";
-  document.getElementById('bc_display').value = "0";
-}
-
-function bcBackspace() {
-  bcExpr = bcExpr.slice(0, -1);
-  document.getElementById('bc_display').value = bcExpr || "0";
-}
-
+function bcInput(val) { bcExpr += val; document.getElementById('bc_display').value = bcExpr || "0"; }
+function bcClear() { bcExpr = ""; document.getElementById('bc_display').value = "0"; }
+function bcBackspace() { bcExpr = bcExpr.slice(0, -1); document.getElementById('bc_display').value = bcExpr || "0"; }
 function bcCalculate() {
   try {
     var sanitized = bcExpr.replace(/[^0-9+\-*/().%]/g, '');
@@ -476,72 +550,34 @@ function bcCalculate() {
 }
 
 // ==========================================
-// SCIENTIFIC CALCULATOR (Home Screen) - 100% Sahi Formulas
+// SCIENTIFIC CALCULATOR
 // ==========================================
 var scExpr = "";
-
-function scUpdate() { 
-  var el = document.getElementById('sc_display');
-  if (el) el.value = scExpr || "0"; 
-}
-
-function scInput(val) { 
-  scExpr += val; 
-  scUpdate(); 
-}
-
-function scClear() { 
-  scExpr = ""; 
-  scUpdate(); 
-}
-
-function scBackspace() { 
-  scExpr = scExpr.slice(0, -1); 
-  scUpdate(); 
-}
-
+function scUpdate() { var el = document.getElementById('sc_display'); if (el) el.value = scExpr || "0"; }
+function scInput(val) { scExpr += val; scUpdate(); }
+function scClear() { scExpr = ""; scUpdate(); }
+function scBackspace() { scExpr = scExpr.slice(0, -1); scUpdate(); }
 function scFn(fn) {
   var num = 0;
-  try { 
-    num = Function('"use strict"; return (' + (scExpr || "0") + ')')(); 
-  } catch(e) { 
-    num = 0; 
-  }
+  try { num = Function('"use strict"; return (' + (scExpr || "0") + ')')(); } catch(e) { num = 0; }
   var result = 0;
   var rad = num * (Math.PI / 180);
-
   switch(fn) {
     case 'sin': result = Math.sin(rad); break;
     case 'cos': result = Math.cos(rad); break;
     case 'tan': result = Math.tan(rad); break;
-    case 'asin':
-      if (num < -1 || num > 1) { scExpr = "Error"; scUpdate(); return; }
-      result = Math.asin(num) * (180 / Math.PI); break;
-    case 'acos':
-      if (num < -1 || num > 1) { scExpr = "Error"; scUpdate(); return; }
-      result = Math.acos(num) * (180 / Math.PI); break;
+    case 'asin': if (num < -1 || num > 1) { scExpr = "Error"; scUpdate(); return; } result = Math.asin(num) * (180 / Math.PI); break;
+    case 'acos': if (num < -1 || num > 1) { scExpr = "Error"; scUpdate(); return; } result = Math.acos(num) * (180 / Math.PI); break;
     case 'atan': result = Math.atan(num) * (180 / Math.PI); break;
-    case 'log':
-      if (num <= 0) { scExpr = "Error"; scUpdate(); return; }
-      result = Math.log10(num); break;
-    case 'ln':
-      if (num <= 0) { scExpr = "Error"; scUpdate(); return; }
-      result = Math.log(num); break;
-    case 'sqrt':
-      if (num < 0) { scExpr = "Error"; scUpdate(); return; }
-      result = Math.sqrt(num); break;
-    case 'fact':
-      if (num < 0 || num % 1 !== 0 || num > 170) { scExpr = "Error"; scUpdate(); return; }
-      result = 1;
-      for (var i = 2; i <= num; i++) result *= i;
-      break;
+    case 'log': if (num <= 0) { scExpr = "Error"; scUpdate(); return; } result = Math.log10(num); break;
+    case 'ln': if (num <= 0) { scExpr = "Error"; scUpdate(); return; } result = Math.log(num); break;
+    case 'sqrt': if (num < 0) { scExpr = "Error"; scUpdate(); return; } result = Math.sqrt(num); break;
+    case 'fact': if (num < 0 || num % 1 !== 0 || num > 170) { scExpr = "Error"; scUpdate(); return; } result = 1; for (var i = 2; i <= num; i++) result *= i; break;
     case 'pi': scExpr = String(Math.PI); scUpdate(); return;
     case 'e': scExpr = String(Math.E); scUpdate(); return;
   }
-  scExpr = String(result);
-  scUpdate();
+  scExpr = String(result); scUpdate();
 }
-
 function scCalculate() {
   try {
     var sanitized = scExpr.replace(/[^0-9+\-*/().%^E]/g, '');
@@ -557,72 +593,23 @@ function scCalculate() {
 }
 
 // ==========================================
-// RENDER CATEGORIES
-// ==========================================
-document.addEventListener('DOMContentLoaded', function() {
-  var catList = document.getElementById('category-list');
-  for (var catName in categories) {
-    var catTitle = document.createElement('div');
-    catTitle.className = 'cat-title';
-    catTitle.textContent = catName;
-    catList.appendChild(catTitle);
-
-    var gridDiv = document.createElement('div');
-    gridDiv.className = 'tool-grid';
-
-    var items = categories[catName];
-    for (var i = 0; i < items.length; i++) {
-      var toolId = items[i];
-      var t = allTools.find(function(x) { return x.id === toolId; });
-      if (t) {
-        var card = document.createElement('div');
-        card.className = 'tool-card';
-        card.onclick = (function(id) { return function() { openTool(id); }; })(t.id);
-        card.innerHTML = '<div class="icon">' + t.icon + '</div><div class="name">' + t.name + '</div>';
-        gridDiv.appendChild(card);
-      }
-    }
-    catList.appendChild(gridDiv);
-  }
-
-  var savedLang = localStorage.getItem('selectedLang');
-  if(savedLang) {
-    setTimeout(function() {
-      var gtSelect = document.querySelector('.goog-te-combo');
-      if (gtSelect) gtSelect.value = savedLang;
-    }, 1500);
-  }
-});
-
-// ==========================================
-// NAVIGATION
+// NAVIGATION & UI LOGIC
 // ==========================================
 function openTool(toolId) {
   document.getElementById('home-hero').style.display = 'none';
   document.getElementById('grid-section').style.display = 'none';
-  document.querySelectorAll('[id^="home-basic-calc"], [id^="home-scientific-calc"]').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
   document.getElementById('tool-display-area').style.display = 'block';
   document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
 
   var t = allTools.find(function(x) { return x.id === toolId; });
   if(t) {
     document.getElementById('display-title').textContent = t.name;
-    document.getElementById('display-content').innerHTML = allHtmls[toolId];
-    document.title = t.name + " - World Calculators";
-    
-    var metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
+    if (allHtmls[toolId]) {
+        document.getElementById('display-content').innerHTML = allHtmls[toolId];
+    } else {
+        document.getElementById('display-content').innerHTML = "<p style='text-align:center; padding:20px; color:red;'>Calculator data not loaded! Please check if <b>calc files</b> are uploaded correctly.</p>";
     }
-    metaDesc.content = "Free online " + t.name + " - Calculate instantly with World Calculators. 100% free, no signup required.";
-    
-    var canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.href = "https://world-calculator.aakashsuryavanshi860.workers.dev/#" + toolId;
-    }
-    
     window.history.pushState({tool: toolId}, t.name, '#' + toolId);
   }
   window.scrollTo(0, 0);
@@ -631,16 +618,9 @@ function openTool(toolId) {
 function showHome() {
   document.getElementById('home-hero').style.display = 'block';
   document.getElementById('grid-section').style.display = 'block';
-  document.querySelectorAll('[id^="home-basic-calc"], [id^="home-scientific-calc"]').forEach(el => el.style.display = '');
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'grid');
   document.getElementById('tool-display-area').style.display = 'none';
   document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
-  
-  document.title = "World Calculators - All in One";
-  var canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) {
-    canonical.href = "https://world-calculator.aakashsuryavanshi860.workers.dev/";
-  }
-  
   window.history.pushState(null, '', window.location.pathname);
   window.scrollTo(0, 0);
 }
@@ -648,7 +628,7 @@ function showHome() {
 function showPage(pageId) {
   showHome();
   document.getElementById('home-hero').style.display = 'none';
-  document.querySelectorAll('[id^="home-basic-calc"], [id^="home-scientific-calc"]').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
   document.getElementById('grid-section').style.display = 'none';
   document.getElementById('page-' + pageId).style.display = 'block';
   window.scrollTo(0, 0);
@@ -659,50 +639,64 @@ function toggleMenu() {
   document.getElementById('sidebar-overlay').classList.toggle('open');
 }
 
-// ==========================================
-// SEARCH (Improved)
-// ==========================================
+// RENDER GRID (Using Master List)
+document.addEventListener('DOMContentLoaded', function() {
+  var catList = document.getElementById('category-list');
+  catList.innerHTML = ''; // Clear "Loading" text
+
+  var grouped = {};
+  masterTools.forEach(function(t) {
+    if (!grouped[t.cat]) grouped[t.cat] = [];
+    grouped[t.cat].push(t);
+  });
+
+  for (var catName in grouped) {
+    var catTitle = document.createElement('div');
+    catTitle.className = 'cat-title';
+    catTitle.textContent = catName;
+    catList.appendChild(catTitle);
+
+    var gridDiv = document.createElement('div');
+    gridDiv.className = 'tool-grid';
+
+    grouped[catName].forEach(function(t) {
+      var card = document.createElement('div');
+      card.className = 'tool-card';
+      card.onclick = function() { openTool(t.id); };
+      card.innerHTML = '<div class="icon">' + t.icon + '</div><div class="name">' + t.name + '</div>';
+      gridDiv.appendChild(card);
+    });
+    catList.appendChild(gridDiv);
+  }
+});
+
+// SEARCH
 function searchTools() {
   var input = document.getElementById('searchInput').value.toLowerCase().trim();
   var results = document.getElementById('searchResults');
   results.innerHTML = '';
   
-  if (input === '') { 
-    results.style.display = 'none'; 
-    return; 
-  }
+  if (input === '') { results.style.display = 'none'; return; }
   
-  var matches = allTools.filter(function(t) { 
-    return t.name.toLowerCase().indexOf(input) !== -1; 
-  });
+  var matches = masterTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
   
   if (matches.length === 0) {
-    results.innerHTML = '<li style="cursor:default;">❌ No tools found for "' + input + '"</li>';
+    results.innerHTML = '<li style="cursor:default;">❌ No tools found</li>';
   } else {
     matches.slice(0, 15).forEach(function(t) {
-      // Find category of this tool
-      var catName = '';
-      for (var c in categories) {
-        if (categories[c].indexOf(t.id) !== -1) { catName = c; break; }
-      }
       var li = document.createElement('li');
-      li.innerHTML = '<span class="s-icon">' + t.icon + '</span>' +
-                     '<span class="s-name">' + t.name + '</span>' +
-                     '<span class="s-cat">' + catName + '</span>';
-      li.onclick = (function(id) {
-        return function() {
-          document.getElementById('searchResults').style.display = 'none';
-          document.getElementById('searchInput').value = '';
-          openTool(id);
-        };
-      })(t.id);
+      li.innerHTML = '<span class="s-icon">' + t.icon + '</span><span class="s-name">' + t.name + '</span><span class="s-cat">' + t.cat + '</span>';
+      li.onclick = function() {
+        document.getElementById('searchResults').style.display = 'none';
+        document.getElementById('searchInput').value = '';
+        openTool(t.id);
+      };
       results.appendChild(li);
     });
   }
   results.style.display = 'block';
 }
 
-// Search bar ke bahar click karne par results hide karein
 document.addEventListener('click', function(e) {
   var searchBar = document.querySelector('.search-bar');
   if (searchBar && !searchBar.contains(e.target)) {
@@ -710,32 +704,9 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// ==========================================
-// PAGE LOAD - Handle Hash
-// ==========================================
 window.addEventListener('load', function() {
   var hash = window.location.hash.replace('#', '');
-  if(hash && allTools.find(function(x){ return x.id === hash; })) { 
-    openTool(hash); 
-  }
-});
-
-// ==========================================
-// KEYBOARD SHORTCUTS FOR BASIC CALCULATOR
-// ==========================================
-document.addEventListener('keydown', function(e) {
-  var bcDisplay = document.getElementById('bc_display');
-  if (!bcDisplay) return;
-  
-  // Only if user is not typing in an input field
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-  
-  if (e.key >= '0' && e.key <= '9') { bcInput(e.key); }
-  else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') { bcInput(e.key); }
-  else if (e.key === '.') { bcInput('.'); }
-  else if (e.key === 'Enter' || e.key === '=') { bcCalculate(); }
-  else if (e.key === 'Backspace') { bcBackspace(); }
-  else if (e.key === 'Escape') { bcClear(); }
+  if(hash && masterTools.find(function(x){ return x.id === hash; })) { openTool(hash); }
 });
 </script>
 </body>
