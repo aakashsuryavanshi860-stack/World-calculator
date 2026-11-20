@@ -36,3 +36,108 @@ function generateLorem() { var n=parseInt(document.getElementById('lorem_n').val
 function saveNotepad() { localStorage.setItem('notepad_text', document.getElementById('notepad_text').value); }
 function clearNotepad() { if(confirm("Clear all notes?")) { document.getElementById('notepad_text').value=''; localStorage.removeItem('notepad_text'); } }
 setTimeout(function() { var saved=localStorage.getItem('notepad_text'); if(saved && document.getElementById('notepad_text')) document.getElementById('notepad_text').value=saved; }, 500);
+<!-- Google Translate Scripts -->
+<script>
+  // 100+ Google Translate Languages
+  var googleLanguages = [
+    { code: "en", name: "English" }, { code: "hi", name: "हिन्दी (Hindi)" }, 
+    { code: "es", name: "Español (Spanish)" }, { code: "fr", name: "Français (French)" }, 
+    { code: "de", name: "Deutsch (German)" }, { code: "ar", name: "العربية (Arabic)" }, 
+    { code: "zh-CN", name: "中文 (Chinese - Simplified)" }, { code: "zh-TW", name: "中文 (Chinese - Traditional)" }, 
+    { code: "ja", name: "日本語 (Japanese)" }, { code: "ru", name: "Русский (Russian)" }, 
+    { code: "pt", name: "Português (Portuguese)" }, { code: "bn", name: "বাংলা (Bengali)" }, 
+    { code: "ur", name: "اردو (Urdu)" }, { code: "id", name: "Bahasa Indonesia" }, 
+    { code: "tr", name: "Türkçe (Turkish)" }, { code: "ko", name: "한국어 (Korean)" }, 
+    { code: "it", name: "Italiano (Italian)" }, { code: "nl", name: "Nederlands (Dutch)" }, 
+    { code: "pl", name: "Polski (Polish)" }, { code: "th", name: "ไทย (Thai)" }, 
+    { code: "vi", name: "Tiếng Việt (Vietnamese)" }, { code: "fa", name: "فارسی (Persian)" }, 
+    { code: "he", name: "עברית (Hebrew)" }, { code: "el", name: "Ελληνικά (Greek)" }, 
+    { code: "uk", name: "Українська (Ukrainian)" }, { code: "ro", name: "Română (Romanian)" }, 
+    { code: "hu", name: "Magyar (Hungarian)" }, { code: "cs", name: "Čeština (Czech)" }, 
+    { code: "sv", name: "Svenska (Swedish)" }, { code: "da", name: "Dansk (Danish)" }, 
+    { code: "fi", name: "Suomi (Finnish)" }, { code: "no", name: "Norsk (Norwegian)" }, 
+    { code: "sk", name: "Slovenčina (Slovak)" }, { code: "bg", name: "Български (Bulgarian)" }, 
+    { code: "hr", name: "Hrvatski (Croatian)" }, { code: "sr", name: "Српски (Serbian)" }, 
+    { code: "sl", name: "Slovenščina (Slovenian)" }, { code: "lt", name: "Lietuvių (Lithuanian)" }, 
+    { code: "lv", name: "Latviešu (Latvian)" }, { code: "et", name: "Eesti (Estonian)" }, 
+    { code: "ms", name: "Bahasa Melayu" }, { code: "tl", name: "Tagalog (Filipino)" }, 
+    { code: "sw", name: "Kiswahili (Swahili)" }, { code: "am", name: "አማርኛ (Amharic)" }, 
+    { code: "ta", name: "தமிழ் (Tamil)" }, { code: "te", name: "తెలుగు (Telugu)" }, 
+    { code: "ml", name: "മലയാളം (Malayalam)" }, { code: "kn", name: "ಕನ್ನಡ (Kannada)" }, 
+    { code: "gu", name: "ગુજરાતી (Gujarati)" }, { code: "mr", name: "मराठी (Marathi)" }, 
+    { code: "pa", name: "ਪੰਜਾਬੀ (Punjabi)" }, { code: "ne", name: "नेपाली (Nepali)" }, 
+    { code: "si", name: "සිංහල (Sinhala)" }, { code: "my", name: "မြန်မာ (Burmese)" }, 
+    { code: "km", name: "ខ្មែរ (Khmer)" }, { code: "lo", name: "ລາວ (Lao)" }, 
+    { code: "ka", name: "ქართული (Georgian)" }, { code: "hy", name: "Հայերեն (Armenian)" }, 
+    { code: "az", name: "Azərbaycan (Azerbaijani)" }, { code: "kk", name: "Қазақ (Kazakh)" }, 
+    { code: "uz", name: "Oʻzbek (Uzbek)" }, { code: "be", name: "Беларуская (Belarusian)" }, 
+    { code: "mk", name: "Македонски (Macedonian)" }, { code: "sq", name: "Shqip (Albanian)" }, 
+    { code: "bs", name: "Bosanski (Bosnian)" }, { code: "is", name: "Íslenska (Icelandic)" }, 
+    { code: "ga", name: "Gaeilge (Irish)" }, { code: "mt", name: "Malti (Maltese)" }, 
+    { code: "cy", name: "Cymraeg (Welsh)" }
+  ];
+
+  window.addEventListener('DOMContentLoaded', function() {
+    var select = document.getElementById('languageSelect');
+    googleLanguages.sort(function(a, b) { return a.name.localeCompare(b.name); });
+    
+    googleLanguages.forEach(function(lang) {
+      var option = document.createElement('option');
+      option.value = lang.code;
+      option.textContent = lang.name;
+      select.appendChild(option);
+    });
+    
+    var savedLang = localStorage.getItem('siteLang') || 'en';
+    select.value = savedLang;
+  });
+
+  function filterLanguages() {
+    var query = document.getElementById('langSearchInput').value.toLowerCase();
+    var select = document.getElementById('languageSelect');
+    select.innerHTML = '';
+    var filtered = googleLanguages.filter(function(lang) {
+      return lang.name.toLowerCase().includes(query);
+    });
+    if (filtered.length === 0) {
+      var opt = document.createElement('option');
+      opt.textContent = "No language found";
+      opt.disabled = true;
+      select.appendChild(opt);
+    } else {
+      filtered.forEach(function(lang) {
+        var option = document.createElement('option');
+        option.value = lang.code;
+        option.textContent = lang.name;
+        select.appendChild(option);
+      });
+    }
+  }
+
+  function translateWebsite(langCode) {
+    localStorage.setItem('siteLang', langCode);
+    var domain = location.hostname;
+    if (langCode === 'en') {
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + domain;
+    } else {
+      document.cookie = "googtrans=/en/" + langCode + "; path=/";
+      document.cookie = "googtrans=/en/" + langCode + "; path=/; domain=." + domain;
+    }
+    location.reload();
+  }
+</script>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="google_translate_element" style="display:none;"></div>
+/* Hide Google Translate Banner */
+body { top: 0 !important; }
+.goog-te-banner-frame { display: none !important; }
+#goog-te-banner-frame { display: none !important; }
+#goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
