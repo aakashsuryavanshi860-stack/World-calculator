@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>World Calculators - All in One</title>
-  <meta name="description" content="World Calculators - 150+ free online calculators for finance, health, math, physics, and everyday life. 100% free, instant results, no signup required." />
   <link rel="canonical" href="https://world-calculator.aakashsuryavanshi860.workers.dev/" />
   
   <!-- Libraries -->
@@ -28,22 +27,15 @@
     /* Top Bar */
     .top-bar { background: var(--primary); color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
     .selectors { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .selectors input { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; width: 150px; }
-    .selectors select { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; }
-    
-    /* Google Translate */
-    #google_translate_element { display: inline-block; }
-    #google_translate_element select { background: #fff; color: #333; border-radius: 4px; padding: 5px; font-size: 0.85rem; border: none; }
-    .goog-te-gadget { font-size: 0 !important; }
-    .goog-te-gadget > span { display: none; }
-    .goog-te-gadget select { font-size: 0.85rem !important; }
-    .goog-logo-link, .goog-te-gadget span { display: none !important; }
+    .selectors select { padding: 8px; border-radius: 6px; border: none; font-size: 0.85rem; cursor: pointer; max-width: 200px; }
 
     /* Main Header */
     .main-header { background: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
     .menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
     .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
     .logo span { color: var(--accent); }
+    
+    /* Search Bar */
     .search-bar { position: relative; width: 350px; }
     .search-bar input { width: 100%; padding: 10px 15px; border: 2px solid var(--border); border-radius: 25px; outline: none; font-size: 0.95rem; }
     .search-bar input:focus { border-color: var(--accent); }
@@ -69,7 +61,7 @@
     .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
     .cat-title { background: var(--primary); color: #fff; padding: 10px 15px; border-radius: 8px; margin: 30px 0 15px; font-size: 1.2rem; font-weight: bold; }
     .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-    .tool-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; text-align: center; box-shadow: var(--shadow); cursor: pointer; }
+    .tool-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.2s; }
     .tool-card:hover { transform: translateY(-3px); border-color: var(--accent); }
     .tool-card .icon { font-size: 2rem; }
     .tool-card .name { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
@@ -77,61 +69,104 @@
     /* Display Area */
     #tool-display-area { display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
     .page-box { display: none; max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+    
+    /* Universal Tool Inputs */
     .input-group { margin-bottom: 15px; }
     .input-group label { display: block; font-weight: 600; margin-bottom: 5px; }
     .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; }
-    .btn { background: var(--accent); color: white; padding: 10px; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 10px; }
-    .result-box { display: none; margin-top: 15px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
+    .btn { background: var(--accent); color: white; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 10px; transition: 0.2s; }
+    .btn:hover { background: #1d4ed8; }
+    .result-box { display: none; margin-top: 15px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; font-weight: 500; }
 
-    /* Basic Calculator */
-    .bc-btn {
-      padding: 18px 0;
-      font-size: 1.2rem;
-      font-weight: 600;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background: #f8fafc;
-      color: #0f172a;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .bc-btn:hover { background: #e2e8f0; transform: translateY(-1px); }
-    .bc-btn:active { transform: translateY(1px); }
-
-    /* Scientific Calculator */
-    .sci-btn {
-      padding: 12px 0;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      background: #f1f5f9;
-      color: #2563eb;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
+    /* Basic & Scientific Calculators (Home) */
+    .bc-btn { padding: 18px 0; font-size: 1.2rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; color: #0f172a; cursor: pointer; transition: all 0.15s; }
+    .bc-btn:hover { background: #e2e8f0; }
+    .sci-btn { padding: 12px 0; font-size: 0.85rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background: #f1f5f9; color: #2563eb; cursor: pointer; transition: all 0.15s; }
     .sci-btn:hover { background: #e2e8f0; }
-    .sci-btn:active { transform: translateY(1px); }
 
     @media (max-width: 768px) { 
       .search-bar { width: 100%; margin-top: 10px; } 
       .main-header { flex-wrap: wrap; }
-      .selectors input { width: 100px; }
       .hero h1 { font-size: 1.8rem; }
       .home-calc-wrapper { grid-template-columns: 1fr !important; }
     }
   </style>
-</head>
-<body>
+</head><body>
 
-  <!-- Top Bar with Google Translate -->
+  <!-- Top Bar -->
   <div class="top-bar">
     <div class="selectors">
-      <input type="text" id="countrySearchInput" placeholder="Search Country..." onkeyup="filterCountries()" />
-      <select id="countrySelect" onchange="changeCountry()">
-        <option value="">Select Country</option>
+      <!-- Full Country/Language Selector -->
+      <select id="languageSelect" onchange="changeLanguage(this.value)" class="notranslate">
+        <option value="en">🇺🇸 English (United States)</option>
+        <option value="hi">🇮🇳 हिन्दी (Hindi - India)</option>
+        <option value="es">🇪🇸 Español (Spanish - Spain)</option>
+        <option value="fr">🇫🇷 Français (French - France)</option>
+        <option value="de">🇩🇪 Deutsch (German - Germany)</option>
+        <option value="ar">🇸🇦 العربية (Arabic - Saudi Arabia)</option>
+        <option value="zh-CN">🇨🇳 中文 (Chinese - China)</option>
+        <option value="ja">🇯🇵 日本語 (Japanese - Japan)</option>
+        <option value="ru">🇷🇺 Русский (Russian - Russia)</option>
+        <option value="pt">🇵🇹 Português (Portuguese - Portugal)</option>
+        <option value="bn">🇧🇩 বাংলা (Bengali - Bangladesh)</option>
+        <option value="ur">🇵🇰 اردو (Urdu - Pakistan)</option>
+        <option value="id">🇮🇩 Bahasa Indonesia (Indonesia)</option>
+        <option value="tr">🇹🇷 Türkçe (Turkish - Turkey)</option>
+        <option value="ko">🇰🇷 한국어 (Korean - South Korea)</option>
+        <option value="it">🇮🇹 Italiano (Italian - Italy)</option>
+        <option value="nl">🇳🇱 Nederlands (Dutch - Netherlands)</option>
+        <option value="pl">🇵🇱 Polski (Polish - Poland)</option>
+        <option value="th">🇹🇭 ไทย (Thai - Thailand)</option>
+        <option value="vi">🇻🇳 Tiếng Việt (Vietnamese - Vietnam)</option>
+        <option value="fa">🇮🇷 فارسی (Persian - Iran)</option>
+        <option value="he">🇮🇱 עברית (Hebrew - Israel)</option>
+        <option value="el">🇬🇷 Ελληνικά (Greek - Greece)</option>
+        <option value="uk">🇺🇦 Українська (Ukrainian - Ukraine)</option>
+        <option value="ro">🇷🇴 Română (Romanian - Romania)</option>
+        <option value="hu">🇭🇺 Magyar (Hungarian - Hungary)</option>
+        <option value="cs">🇨🇿 Čeština (Czech - Czech Republic)</option>
+        <option value="sv">🇸🇪 Svenska (Swedish - Sweden)</option>
+        <option value="da">🇩🇰 Dansk (Danish - Denmark)</option>
+        <option value="fi">🇫🇮 Suomi (Finnish - Finland)</option>
+        <option value="no">🇳🇴 Norsk (Norwegian - Norway)</option>
+        <option value="sk">🇸🇰 Slovenčina (Slovak - Slovakia)</option>
+        <option value="bg">🇧🇬 Български (Bulgarian - Bulgaria)</option>
+        <option value="hr">🇭🇷 Hrvatski (Croatian - Croatia)</option>
+        <option value="sr">🇷🇸 Српски (Serbian - Serbia)</option>
+        <option value="sl">🇸🇮 Slovenščina (Slovenian - Slovenia)</option>
+        <option value="lt">🇱🇹 Lietuvių (Lithuanian - Lithuania)</option>
+        <option value="lv">🇱🇻 Latviešu (Latvian - Latvia)</option>
+        <option value="et">🇪🇪 Eesti (Estonian - Estonia)</option>
+        <option value="ms">🇲🇾 Bahasa Melayu (Malay - Malaysia)</option>
+        <option value="tl">🇵🇭 Tagalog (Filipino - Philippines)</option>
+        <option value="sw">🇰🇪 Kiswahili (Swahili - Kenya)</option>
+        <option value="am">🇪🇹 አማርኛ (Amharic - Ethiopia)</option>
+        <option value="ta">🇱🇰 தமிழ் (Tamil - Sri Lanka)</option>
+        <option value="te">🇮🇳 తెలుగు (Telugu - India)</option>
+        <option value="ml">🇮🇳 മലയാളം (Malayalam - India)</option>
+        <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada - India)</option>
+        <option value="gu">🇮🇳 ગુજરાતી (Gujarati - India)</option>
+        <option value="mr">🇮🇳 मराठी (Marathi - India)</option>
+        <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi - India)</option>
+        <option value="ne">🇳🇵 नेपाली (Nepali - Nepal)</option>
+        <option value="si">🇱🇰 සිංහල (Sinhala - Sri Lanka)</option>
+        <option value="my">🇲🇲 မြန်မာ (Burmese - Myanmar)</option>
+        <option value="km">🇰🇭 ខ្មែរ (Khmer - Cambodia)</option>
+        <option value="lo">🇱🇦 ລາວ (Lao - Laos)</option>
+        <option value="ka">🇬🇪 ქართული (Georgian - Georgia)</option>
+        <option value="hy">🇦🇲 Հայերեն (Armenian - Armenia)</option>
+        <option value="az">🇦🇿 Azərbaycan (Azerbaijani - Azerbaijan)</option>
+        <option value="kk">🇰🇿 Қазақ (Kazakh - Kazakhstan)</option>
+        <option value="uz">🇺🇿 Oʻzbek (Uzbek - Uzbekistan)</option>
+        <option value="be">🇧🇾 Беларуская (Belarusian - Belarus)</option>
+        <option value="mk">🇲🇰 Македонски (Macedonian - North Macedonia)</option>
+        <option value="sq">🇦🇱 Shqip (Albanian - Albania)</option>
+        <option value="bs">🇧🇦 Bosanski (Bosnian - Bosnia)</option>
+        <option value="is">🇮🇸 Íslenska (Icelandic - Iceland)</option>
+        <option value="ga">🇮🇪 Gaeilge (Irish - Ireland)</option>
+        <option value="mt">🇲🇹 Malti (Maltese - Malta)</option>
+        <option value="cy">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Cymraeg (Welsh - Wales)</option>
       </select>
-      <div id="google_translate_element"></div>
     </div>
     <div style="display:flex; gap:15px;">
       <a onclick="showPage('report')">Report Issue</a>
@@ -146,7 +181,7 @@
       <div class="logo" onclick="showHome()">World<span>Calculators</span></div>
     </div>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="🔍 Search any calculator (e.g., EMI, BMI, Scientific...)" onkeyup="searchTools()" onfocus="searchTools()" />
+      <input type="text" id="searchInput" placeholder="🔍 Search calculator (e.g. BMI, EMI, Scientific)..." onkeyup="searchTools()" onfocus="searchTools()" />
       <ul class="search-results" id="searchResults"></ul>
     </div>
   </header>
@@ -173,15 +208,14 @@
     <p>Your Global Online Toolkit – Free for Everyone!</p>
   </section>
 
-  <!-- HOME PAGE CALCULATORS (Basic + Scientific side by side) -->
+  <!-- HOME PAGE CALCULATORS -->
   <div class="home-calc-wrapper" style="max-width:900px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
     
     <!-- BASIC CALCULATOR -->
     <div id="home-basic-calc" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
       <h2 style="color:#0f172a; margin-bottom:15px; font-size:1.2rem; text-align:center;">🧮 Basic Calculator</h2>
-      <input type="text" id="bc_display" readonly
-        style="width:100%; padding:15px; font-size:1.6rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:10px; background:#f8fafc; font-family:monospace;"
-        value="0" />
+      <input type="text" id="bc_display" readonly style="width:100%; padding:15px; font-size:1.6rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:10px; background:#f8fafc; font-family:monospace;" value="0" />
+      
       <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px;">
         <button class="bc-btn" onclick="bcClear()" style="background:#ef4444; color:#fff;">C</button>
         <button class="bc-btn" onclick="bcBackspace()" style="background:#f59e0b; color:#fff;">⌫</button>
@@ -210,9 +244,8 @@
     <!-- SCIENTIFIC CALCULATOR -->
     <div id="home-scientific-calc" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
       <h2 style="color:#0f172a; margin-bottom:15px; font-size:1.2rem; text-align:center;">🔬 Scientific Calculator</h2>
-      <input type="text" id="sc_display" readonly
-        style="width:100%; padding:12px; font-size:1.4rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:8px; background:#f8fafc; font-family:monospace;"
-        value="0" />
+      <input type="text" id="sc_display" readonly style="width:100%; padding:12px; font-size:1.4rem; text-align:right; border:2px solid #e2e8f0; border-radius:8px; margin-bottom:8px; background:#f8fafc; font-family:monospace;" value="0" />
+      
       <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:5px;">
         <button class="sci-btn" onclick="scFn('sin')">sin</button>
         <button class="sci-btn" onclick="scFn('cos')">cos</button>
@@ -257,16 +290,12 @@
         <button class="sci-btn" onclick="scCalculate()" style="background:#10b981; color:#fff; grid-row:span 2;">=</button>
       </div>
     </div>
-
   </div>
 
   <!-- Grid -->
   <div class="container" id="grid-section">
     <h2 style="text-align:center; margin-bottom:20px;">Explore All Tools</h2>
-    <div id="category-list">
-      <!-- Fallback text if JS fails -->
-      <p style="text-align:center; color:#64748b;">Loading calculators...</p>
-    </div>
+    <div id="category-list"></div>
   </div>
 
   <!-- Display Area -->
@@ -277,37 +306,15 @@
   </div>
 
   <!-- Static Pages -->
-  <div id="page-about" class="page-box">
-    <a onclick="showHome()" style="color: var(--accent);">← Back</a>
-    <h1>About Us</h1>
-    <p>World Calculators is a free online toolkit for everyone. We offer 150+ calculators and tools with 100+ languages support.</p>
-  </div>
-  <div id="page-privacy" class="page-box">
-    <a onclick="showHome()" style="color: var(--accent);">← Back</a>
-    <h1>Privacy Policy</h1>
-    <p>All calculations run in your browser. We use Google AdSense and cookies for better experience.</p>
-  </div>
-  <div id="page-terms" class="page-box">
-    <a onclick="showHome()" style="color: var(--accent);">← Back</a>
-    <h1>Terms & Conditions</h1>
-    <p>Tools are for informational purposes only. Use at your own risk.</p>
-  </div>
-  <div id="page-contact" class="page-box">
-    <a onclick="showHome()" style="color: var(--accent);">← Back</a>
-    <h1>Contact Us</h1>
-    <p>Email: <strong>aakashsuryavanshi860@gmail.com</strong></p>
-  </div>
-  <div id="page-report" class="page-box">
-    <a onclick="showHome()" style="color: var(--accent);">← Back</a>
-    <h1>Report an Issue</h1>
-    <p>Found a bug? Email: <strong>aakashsuryavanshi860@gmail.com</strong></p>
-  </div>
+  <div id="page-about" class="page-box"><a onclick="showHome()" style="color: var(--accent);">← Back</a><h1>About Us</h1><p>World Calculators is a free online toolkit for everyone.</p></div>
+  <div id="page-privacy" class="page-box"><a onclick="showHome()" style="color: var(--accent);">← Back</a><h1>Privacy Policy</h1><p>All calculations run in your browser.</p></div>
+  <div id="page-terms" class="page-box"><a onclick="showHome()" style="color: var(--accent);">← Back</a><h1>Terms & Conditions</h1><p>Tools are for informational purposes only.</p></div>
+  <div id="page-contact" class="page-box"><a onclick="showHome()" style="color: var(--accent);">← Back</a><h1>Contact Us</h1><p>Email: <b>aakashsuryavanshi860@gmail.com</b></p></div>
+  <div id="page-report" class="page-box"><a onclick="showHome()" style="color: var(--accent);">← Back</a><h1>Report an Issue</h1><p>Email: <b>aakashsuryavanshi860@gmail.com</b></p></div>
 
-  <!-- Footer -->
   <footer style="background: var(--primary); color: #fff; padding: 30px; text-align: center; margin-top: 40px;">
     <p>© 2026 World Calculators. All rights reserved.</p>
-  </footer>
-  <!-- All Calculator Scripts -->
+  </footer><!-- All Calculator Scripts -->
 <script src="calc1.js"></script>
 <script src="calc2.js"></script>
 <script src="calc3.js"></script>
@@ -327,24 +334,34 @@
 <script src="calc17.js"></script>
 <script src="calc18.js"></script>
 
-<!-- Google Translate -->
-<script type="text/javascript">
+<script>
+// ==========================================
+// GOOGLE TRANSLATE SETUP (Hidden & Safe)
+// ==========================================
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'en',
-    includedLanguages: 'en,hi,es,fr,de,ar,zh-CN,zh-TW,ja,ru,pt,it,ko,bn,ur,id,tr,nl,pl,th,vi,fa,he,el,uk,ro,hu,cs,sv,da,fi,no,sk,bg,hr,sr,sl,lt,lv,et,ms,tl,sw,am,ta,te,ml,kn,gu,mr,pa,ne,si,my,km,lo,ka,hy,az,kk,uz,be,mk,sq,bs,is,ga,mt,cy,gl,eu,ca',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: false
   }, 'google_translate_element');
 }
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+function changeLanguage(langCode) {
+  if (langCode === 'en') {
+    // Reset translation
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+    location.reload();
+  } else {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event('change'));
+    }
+  }
+}
 
-<script>
 // ==========================================
-// 1. MASTER TOOL LIST (Fallback Mechanism)
+// MASTER TOOL LIST (For Perfect Rendering)
 // ==========================================
-// Yeh list har haal mein buttons dikhayegi, chahe calc1.js load ho ya na ho.
 var masterTools = [
   { id: "emi", name: "EMI Calculator", icon: "🏦", cat: "Financial" },
   { id: "interest", name: "Simple Interest", icon: "💰", cat: "Financial" },
@@ -492,42 +509,7 @@ var masterTools = [
   { id: "qrcodegen", name: "QR Code Generator", icon: "🔲", cat: "QR & Barcode" },
   { id: "qrcodescan", name: "QR Code Scanner", icon: "📷", cat: "QR & Barcode" },
   { id: "simplecalc", name: "Simple Calculator", icon: "🔢", cat: "Basic Tools" }
-];
-
-var allTools = [];
-var allHtmls = {};
-
-// Check if calc files loaded and merge data
-if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
-if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
-if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
-if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
-if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
-if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
-if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
-if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
-if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
-if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
-if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
-if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
-if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
-if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
-if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
-if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
-if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
-if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
-
-// FIX: Agar calc files load nahi hui, toh masterTools ko use karo
-if (allTools.length === 0) {
-  allTools = masterTools; 
-}
-// Agar kuch tools miss ho gaye hain, toh unhe masterTools se add karo
-masterTools.forEach(mt => {
-  if (!allTools.find(t => t.id === mt.id)) {
-    allTools.push({ id: mt.id, name: mt.name, icon: mt.icon });
-  }
-});
-  <script>
+];<script>
 // ==========================================
 // BASIC CALCULATOR
 // ==========================================
@@ -593,57 +575,12 @@ function scCalculate() {
 }
 
 // ==========================================
-// NAVIGATION & UI LOGIC
+// RENDER TOOLS GRID
 // ==========================================
-function openTool(toolId) {
-  document.getElementById('home-hero').style.display = 'none';
-  document.getElementById('grid-section').style.display = 'none';
-  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
-  document.getElementById('tool-display-area').style.display = 'block';
-  document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
-
-  var t = allTools.find(function(x) { return x.id === toolId; });
-  if(t) {
-    document.getElementById('display-title').textContent = t.name;
-    if (allHtmls[toolId]) {
-        document.getElementById('display-content').innerHTML = allHtmls[toolId];
-    } else {
-        document.getElementById('display-content').innerHTML = "<p style='text-align:center; padding:20px; color:red;'>Calculator data not loaded! Please check if <b>calc files</b> are uploaded correctly.</p>";
-    }
-    window.history.pushState({tool: toolId}, t.name, '#' + toolId);
-  }
-  window.scrollTo(0, 0);
-}
-
-function showHome() {
-  document.getElementById('home-hero').style.display = 'block';
-  document.getElementById('grid-section').style.display = 'block';
-  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'grid');
-  document.getElementById('tool-display-area').style.display = 'none';
-  document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
-  window.history.pushState(null, '', window.location.pathname);
-  window.scrollTo(0, 0);
-}
-
-function showPage(pageId) {
-  showHome();
-  document.getElementById('home-hero').style.display = 'none';
-  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
-  document.getElementById('grid-section').style.display = 'none';
-  document.getElementById('page-' + pageId).style.display = 'block';
-  window.scrollTo(0, 0);
-}
-
-function toggleMenu() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebar-overlay').classList.toggle('open');
-}
-
-// RENDER GRID (Using Master List)
 document.addEventListener('DOMContentLoaded', function() {
   var catList = document.getElementById('category-list');
-  catList.innerHTML = ''; // Clear "Loading" text
-
+  catList.innerHTML = ''; // Clear Loading
+  
   var grouped = {};
   masterTools.forEach(function(t) {
     if (!grouped[t.cat]) grouped[t.cat] = [];
@@ -670,7 +607,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// SEARCH
+// ==========================================
+// SEARCH LOGIC
+// ==========================================
 function searchTools() {
   var input = document.getElementById('searchInput').value.toLowerCase().trim();
   var results = document.getElementById('searchResults');
@@ -704,10 +643,65 @@ document.addEventListener('click', function(e) {
   }
 });
 
+// ==========================================
+// NAVIGATION
+// ==========================================
+function openTool(toolId) {
+  document.getElementById('home-hero').style.display = 'none';
+  document.getElementById('grid-section').style.display = 'none';
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
+  document.getElementById('tool-display-area').style.display = 'block';
+  document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
+
+  var t = masterTools.find(function(x) { return x.id === toolId; });
+  if(t) {
+    document.getElementById('display-title').textContent = t.name;
+    
+    // Check if logic file is loaded
+    if (typeof allHtmls !== 'undefined' && allHtmls[toolId]) {
+        document.getElementById('display-content').innerHTML = allHtmls[toolId];
+    } else {
+        // Fallback if calc files failed to load
+        document.getElementById('display-content').innerHTML = "<p style='text-align:center; padding:20px; color:red;'>Calculator data not loaded! Please check if <b>calc files</b> are uploaded to the server.</p>";
+    }
+    window.history.pushState({tool: toolId}, t.name, '#' + toolId);
+  }
+  window.scrollTo(0, 0);
+}
+
+function showHome() {
+  document.getElementById('home-hero').style.display = 'block';
+  document.getElementById('grid-section').style.display = 'block';
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'grid');
+  document.getElementById('tool-display-area').style.display = 'none';
+  document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
+  window.history.pushState(null, '', window.location.pathname);
+  window.scrollTo(0, 0);
+}
+
+function showPage(pageId) {
+  showHome();
+  document.getElementById('home-hero').style.display = 'none';
+  document.querySelectorAll('.home-calc-wrapper').forEach(el => el.style.display = 'none');
+  document.getElementById('grid-section').style.display = 'none';
+  document.getElementById('page-' + pageId).style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
+}
+
 window.addEventListener('load', function() {
   var hash = window.location.hash.replace('#', '');
   if(hash && masterTools.find(function(x){ return x.id === hash; })) { openTool(hash); }
 });
 </script>
+
+<!-- Hidden Google Translate Engine -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
