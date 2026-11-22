@@ -23,13 +23,11 @@
     body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
     a { text-decoration: none; color: inherit; cursor: pointer; }
     
-    /* Top Bar */
     .top-bar { background: var(--primary); color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; z-index: 1000; position: relative; }
     .lang-search { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     .lang-search input { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; }
     .lang-search select { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; max-width: 250px;}
     
-    /* Main Header */
     .main-header { background: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
     .menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
     .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
@@ -39,7 +37,6 @@
     .search-results { position: absolute; top: 110%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; max-height: 300px; overflow-y: auto; list-style: none; display: none; z-index: 100; }
     .search-results li { padding: 10px; border-bottom: 1px solid var(--border); cursor: pointer; }
     
-    /* Sidebar */
     .sidebar { position: fixed; top: 0; left: -320px; width: 320px; height: 100vh; background: #fff; z-index: 200; transition: left 0.3s; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
     .sidebar.open { left: 0; }
     .sidebar-header { padding: 20px; background: var(--primary); color: #fff; display: flex; justify-content: space-between; }
@@ -48,7 +45,6 @@
     .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; display: none; }
     .sidebar-overlay.open { display: block; }
 
-    /* Hero & Grid */
     .hero { background: linear-gradient(135deg, #e0f2fe 0%, #f8fafc 100%); padding: 40px 20px; text-align: center; }
     .hero h1 { font-size: 2.5rem; color: var(--primary); }
     .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
@@ -58,12 +54,10 @@
     .tool-card .icon { font-size: 2rem; }
     .tool-card .name { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
 
-    /* Page Content */
     .page-box { display: none; max-width: 900px; margin: 40px auto; padding: 30px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
     .page-box h1 { color: var(--primary); margin-bottom: 20px; }
     .page-box h2 { color: var(--accent); margin-top: 20px; margin-bottom: 10px; }
     
-    /* Display Area */
     #tool-display-area { display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
     
     .input-group { margin-bottom: 15px; }
@@ -72,7 +66,6 @@
     .btn { background: var(--accent); color: white; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; }
     .result-box { display: none; margin-top: 15px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
 
-    /* Calculator Widget */
     .calc-widget { max-width: 360px; margin: 20px auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); }
     .calc-tabs { display: flex; gap: 10px; margin-bottom: 10px; }
     .calc-tab { flex: 1; text-align: center; padding: 8px; background: #f1f5f9; border-radius: 6px; cursor: pointer; font-weight: bold; color: var(--text-light); }
@@ -88,16 +81,15 @@
     .calc-btn.equal { background: var(--accent); color: #fff; }
     .calc-btn.sci { font-size: 0.85rem; padding: 8px 0; background: #f1f5f9; color: var(--accent); }
 
-    /* Google Translate Hide */
     .goog-te-banner-frame { display: none !important; }
     body { top: 0 !important; }
     .skiptranslate { display: none; }
     
     @media (max-width: 768px) { .search-bar { display: none; } }
   </style>
-</hea<body>
+</head>
+<body>
 
-  <!-- Top Bar (Language) -->
   <div class="top-bar">
     <div class="lang-search">
       <input type="text" id="langSearchInput" placeholder="Search language..." onkeyup="filterLanguages()" />
@@ -111,7 +103,6 @@
     </div>
   </div>
 
-  <!-- Main Header -->
   <header class="main-header">
     <div style="display:flex; align-items:center; gap:15px;">
       <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -123,7 +114,6 @@
     </div>
   </header>
 
-  <!-- Sidebar -->
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMenu()"></div>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -141,12 +131,10 @@
     <a onclick="showPage('report'); toggleMenu();">🚩 Report an Issue</a>
   </div>
 
-  <!-- Hero Section with Calculator & Search -->
   <section class="hero" id="home-hero">
     <h1>World Calculators - All in One</h1>
     <p>Your Global Online Toolkit – Free for Everyone!</p>
 
-    <!-- Calculator Widget -->
     <div class="calc-widget">
       <div class="calc-tabs">
         <div class="calc-tab active" id="tab-basic" onclick="switchCalcTab('basic')">Basic</div>
@@ -198,33 +186,27 @@
       </div>
     </div>
 
-    <!-- Tool Search inside Hero -->
     <div style="max-width: 500px; margin: 20px auto; position: relative;">
       <input type="text" id="toolSearchHero" placeholder="🔍 Search any calculator or tool..." onkeyup="searchHeroTools()" style="width:100%; padding: 15px 20px; border-radius: 30px; border: 2px solid var(--accent); outline: none; font-size: 1rem; box-shadow: var(--shadow);" />
       <ul id="heroSearchResults" style="position: absolute; top: 110%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 10px; max-height: 250px; overflow-y: auto; list-style: none; display: none; z-index: 100; box-shadow: var(--shadow); text-align: left;"></ul>
     </div>
   </section>
 
-  <!-- Tools Grid Container -->
   <div class="container" id="grid-section">
     <div id="category-list"></div>
   </div>
 
-  <!-- Tool Display Area -->
   <div id="tool-display-area">
     <a onclick="showHome()" style="color: var(--accent); font-weight: bold;">← Back</a>
     <h1 id="display-title" style="text-align:center; color: var(--primary); margin: 20px 0;"></h1>
     <div id="display-content"></div>
   </div>
-  d>
-<!-- ABOUT US PAGE -->
-<div id="page-about" class="page-box">
+  <div id="page-about" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>About Us</h1>
   <p>Welcome to <strong>World Calculators</strong>, your ultimate destination for fast, free, and accurate online tools.</p>
 </div>
 
-<!-- HOW IT WORKS PAGE -->
 <div id="page-how-it-works" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>How Our Website Works</h1>
@@ -235,7 +217,6 @@
   </ul>
 </div>
 
-<!-- WHY CHOOSE US PAGE -->
 <div id="page-why-us" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Why Choose World Calculators?</h1>
@@ -246,21 +227,18 @@
   </ul>
 </div>
 
-<!-- TERMS AND CONDITIONS PAGE -->
 <div id="page-terms" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Terms & Conditions</h1>
   <p>Our tools are provided for informational and educational purposes only. We are not responsible for any financial, health, or legal decisions made based on the results provided by our calculators.</p>
 </div>
 
-<!-- PRIVACY POLICY PAGE -->
 <div id="page-privacy" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Privacy Policy</h1>
   <p>Your privacy is our top priority. All calculations and file conversions occur entirely within your web browser. Your files are never uploaded to our servers.</p>
 </div>
 
-<!-- SITEMAP PAGE -->
 <div id="page-sitemap" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Sitemap</h1>
@@ -275,7 +253,6 @@
   </ul>
 </div>
 
-<!-- CUSTOMER SUPPORT PAGE -->
 <div id="page-support" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Customer Support</h1>
@@ -283,7 +260,6 @@
   <p><strong>Email:</strong> aakashsuryavanshi860@gmail.com</p>
 </div>
 
-<!-- REPORT AN ISSUE PAGE -->
 <div id="page-report" class="page-box">
   <a onclick="showHome()" style="color: var(--accent);">← Back</a>
   <h1>Report an Issue</h1>
@@ -291,12 +267,10 @@
   <p><strong>Email:</strong> aakashsuryavanshi860@gmail.com</p>
 </div>
 
-<!-- Footer -->
 <footer style="background: var(--primary); color: #fff; padding: 30px; text-align: center; margin-top: 40px;">
   <p>© 2026 World Calculators. All rights reserved.</p>
 </footer>
 
-<!-- Google Translate -->
 <div id="google_translate_element" style="display:none;"></div>
 <script type="text/javascript">
   function googleTranslateElementInit() {
@@ -305,7 +279,6 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- All Calculator Scripts -->
 <script src="calc1.js"></script>
 <script src="calc2.js"></script>
 <script src="calc3.js"></script>
@@ -323,155 +296,13 @@
 <script src="calc15.js"></script>
 <script src="calc16.js"></script>
 <script src="calc17.js"></script>
-<script src="calc18.js"></script>
-  <script>
-    // ==========================================
-    // LANGUAGE LOGIC (Google Translate)
-    // ==========================================
-    const languages = {
-      "af": "Afrikaans", "sq": "Albanian", "am": "Amharic", "ar": "Arabic", "hy": "Armenian", "az": "Azerbaijani",
-      "eu": "Basque", "be": "Belarusian", "bn": "Bengali", "bs": "Bosnian", "bg": "Bulgarian", "ca": "Catalan",
-      "ceb": "Cebuano", "ny": "Chichewa", "zh-CN": "Chinese (Simplified)", "zh-TW": "Chinese (Traditional)",
-      "co": "Corsican", "hr": "Croatian", "cs": "Czech", "da": "Danish", "nl": "Dutch", "en": "English",
-      "eo": "Esperanto", "et": "Estonian", "tl": "Filipino", "fi": "Finnish", "fr": "French", "fy": "Frisian",
-      "gl": "Galician", "ka": "Georgian", "de": "German", "el": "Greek", "gu": "Gujarati", "ht": "Haitian Creole",
-      "ha": "Hausa", "haw": "Hawaiian", "iw": "Hebrew", "hi": "Hindi", "hmn": "Hmong", "hu": "Hungarian",
-      "is": "Icelandic", "ig": "Igbo", "id": "Indonesian", "ga": "Irish", "it": "Italian", "ja": "Japanese",
-      "jw": "Javanese", "kn": "Kannada", "kk": "Kazakh", "km": "Khmer", "ko": "Korean", "ku": "Kurdish",
-      "ky": "Kyrgyz", "lo": "Lao", "la": "Latin", "lv": "Latvian", "lt": "Lithuanian", "lb": "Luxembourgish",
-      "mk": "Macedonian", "mg": "Malagasy", "ms": "Malay", "ml": "Malayalam", "mt": "Maltese", "mi": "Maori",
-      "mr": "Marathi", "mn": "Mongolian", "my": "Myanmar (Burmese)", "ne": "Nepali", "no": "Norwegian",
-      "ps": "Pashto", "fa": "Persian", "pl": "Polish", "pt": "Portuguese", "pa": "Punjabi", "ro": "Romanian",
-      "ru": "Russian", "sm": "Samoan", "gd": "Scots Gaelic", "sr": "Serbian", "st": "Sesotho", "sn": "Shona",
-      "sd": "Sindhi", "si": "Sinhala", "sk": "Slovak", "sl": "Slovenian", "so": "Somali", "es": "Spanish",
-      "su": "Sundanese", "sw": "Swahili", "sv": "Swedish", "tg": "Tajik", "ta": "Tamil", "te": "Telugu",
-      "th": "Thai", "tr": "Turkish", "uk": "Ukrainian", "ur": "Urdu", "uz": "Uzbek", "vi": "Vietnamese",
-      "cy": "Welsh", "xh": "Xhosa", "yi": "Yiddish", "yo": "Yoruba", "zu": "Zulu"
-    };
-
-    let fullLangList = [];
-    function loadLanguages() {
-      const sel = document.getElementById('languageSelect');
-      for (let code in languages) { fullLangList.push({code: code, name: languages[code]}); }
-      fullLangList.sort((a,b) => a.name.localeCompare(b.name));
-      fullLangList.forEach(lang => {
-        let opt = document.createElement('option');
-        opt.value = lang.code;
-        opt.textContent = lang.name;
-        sel.appendChild(opt);
-      });
-    }
-    loadLanguages();
-
-    function filterLanguages() {
-      var input = document.getElementById('langSearchInput').value.toLowerCase();
-      var sel = document.getElementById('languageSelect');
-      sel.innerHTML = '<option value="">Select Language...</option>';
-      fullLangList.forEach(lang => {
-        if(lang.name.toLowerCase().includes(input)) {
-          let opt = document.createElement('option');
-          opt.value = lang.code;
-          opt.textContent = lang.name;
-          sel.appendChild(opt);
-        }
-      });
-    }
-
-    function changeLanguage() {
-      let lang = document.getElementById('languageSelect').value;
-      if (!lang) return;
-      var select = document.querySelector('.goog-te-combo');
-      if (select) { select.value = lang; select.dispatchEvent(new Event('change')); }
-      else { setTimeout(() => { var s = document.querySelector('.goog-te-combo'); if (s) { s.value = lang; s.dispatchEvent(new Event('change')); } }, 1000); }
-      localStorage.setItem('selectedLang', lang);
-    }
-
-    // ==========================================
-    // TOOL DATA AGGREGATION
-    // ==========================================
-    var allTools = [];
-    var allHtmls = {};
-    if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
-    if(typeof tools2 !== 'undefined') { allTools = allTools.concat(tools2); Object.assign(allHtmls, htmls2); }
-    if(typeof tools3 !== 'undefined') { allTools = allTools.concat(tools3); Object.assign(allHtmls, htmls3); }
-    if(typeof tools4 !== 'undefined') { allTools = allTools.concat(tools4); Object.assign(allHtmls, htmls4); }
-    if(typeof tools5 !== 'undefined') { allTools = allTools.concat(tools5); Object.assign(allHtmls, htmls5); }
-    if(typeof tools6 !== 'undefined') { allTools = allTools.concat(tools6); Object.assign(allHtmls, htmls6); }
-    if(typeof tools7 !== 'undefined') { allTools = allTools.concat(tools7); Object.assign(allHtmls, htmls7); }
-    if(typeof tools8 !== 'undefined') { allTools = allTools.concat(tools8); Object.assign(allHtmls, htmls8); }
-    if(typeof tools9 !== 'undefined') { allTools = allTools.concat(tools9); Object.assign(allHtmls, htmls9); }
-    if(typeof tools10 !== 'undefined') { allTools = allTools.concat(tools10); Object.assign(allHtmls, htmls10); }
-    if(typeof tools11 !== 'undefined') { allTools = allTools.concat(tools11); Object.assign(allHtmls, htmls11); }
-    if(typeof tools12 !== 'undefined') { allTools = allTools.concat(tools12); Object.assign(allHtmls, htmls12); }
-    if(typeof tools13 !== 'undefined') { allTools = allTools.concat(tools13); Object.assign(allHtmls, htmls13); }
-    if(typeof tools14 !== 'undefined') { allTools = allTools.concat(tools14); Object.assign(allHtmls, htmls14); }
-    if(typeof tools15 !== 'undefined') { allTools = allTools.concat(tools15); Object.assign(allHtmls, htmls15); }
-    if(typeof tools16 !== 'undefined') { allTools = allTools.concat(tools16); Object.assign(allHtmls, htmls16); }
-    if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
-    if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
-
-    // ==========================================
-    // CATEGORIES
-    // ==========================================
-    var categories = {
-      "Financial": ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"],
-      "Health & Fitness": ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"],
-      "Math": ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"],
-      "Everyday Life": ["date-diff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"],
-      "Physics & Engineering": ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"],
-      "Image Tools": ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"],
-      "PDF Tools": ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"],
-      "Text Tools": ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"],
-      "Developer Tools": ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlenc", "urldec", "uuid", "pwgen", "hashgen", "regextest", "base64", "roman", "binary", "hex"],
-      "QR & Barcode": ["qrcodegen", "qrcodescan"],
-      "Basic Tools": ["simplecalc"]
-    };
-
-    // ==========================================
-    // RENDER TOOLS
-    // ==========================================
-    document.addEventListener('DOMContentLoaded', function() {
-      var catList = document.getElementById('category-list');
-      for (var catName in categories) {
-        var catTitle = document.createElement('div');
-        catTitle.className = 'cat-title';
-        catTitle.textContent = catName;
-        catList.appendChild(catTitle);
-
-        var gridDiv = document.createElement('div');
-        gridDiv.className = 'tool-grid';
-
-        var items = categories[catName];
-        for (var i = 0; i < items.length; i++) {
-          var toolId = items[i];
-          var t = allTools.find(function(x) { return x.id === toolId; });
-          if (t) {
-            var card = document.createElement('div');
-            card.className = 'tool-card';
-            card.onclick = (function(id) { return function() { openTool(id); }; })(t.id);
-            card.innerHTML = '<div class="icon">' + t.icon + '</div><div class="name">' + t.name + '</div>';
-            gridDiv.appendChild(card);
-          }
-        }
-        catList.appendChild(gridDiv);
-      }
-    });
-
-    // ==========================================
-    // NAVIGATION
-    // ==========================================
+    <script>
+    // ... (बाकी सारा कोड वैसा ही रहेगा, जैसे languages, tools, categories, renderTools) ...
+    
+    // (यहाँ आपका पुराना `openTool` फंक्शन है, जिसे हमने बदल दिया है)
     function openTool(toolId) {
-      document.getElementById('home-hero').style.display = 'none';
-      document.getElementById('grid-section').style.display = 'none';
-      document.getElementById('tool-display-area').style.display = 'block';
-      document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
-      var t = allTools.find(function(x) { return x.id === toolId; });
-      if(t) {
-        document.getElementById('display-title').textContent = t.name;
-        document.getElementById('display-content').innerHTML = allHtmls[toolId];
-        window.history.pushState(null, '', '#' + toolId);
-      }
-      window.scrollTo(0, 0);
+      // URL को बदलकर tool.html पर भेजें
+      window.location.href = 'tool.html?tool=' + toolId;
     }
 
     function showHome() {
@@ -483,131 +314,8 @@
       window.scrollTo(0, 0);
     }
 
-    function showPage(pageId) {
-      showHome();
-      document.getElementById('home-hero').style.display = 'none';
-      document.getElementById('grid-section').style.display = 'none';
-      document.getElementById('page-' + pageId).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('sidebar-overlay').classList.toggle('open');
-    }
-
-    // ==========================================
-    // SEARCH TOOLS (Global & Hero Search)
-    // ==========================================
-    function searchTools() {
-      var input = document.getElementById('searchInput').value.toLowerCase();
-      var results = document.getElementById('searchResults');
-      results.innerHTML = '';
-      if (input === '') { results.style.display = 'none'; return; }
-      var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
-      if (matches.length === 0) { results.innerHTML = '<li>No tools found</li>'; }
-      else {
-        matches.slice(0, 10).forEach(function(t) {
-          var li = document.createElement('li');
-          li.innerHTML = '<a onclick="openTool(\'' + t.id + '\')">' + t.name + '</a>';
-          results.appendChild(li);
-        });
-      }
-      results.style.display = 'block';
-    }
-
-    // Hero specific search
-    function searchHeroTools() {
-      var input = document.getElementById('toolSearchHero').value.toLowerCase();
-      var results = document.getElementById('heroSearchResults');
-      results.innerHTML = '';
-      if (input === '') { results.style.display = 'none'; return; }
-      var matches = allTools.filter(function(t) { return t.name.toLowerCase().indexOf(input) !== -1; });
-      if (matches.length === 0) { results.innerHTML = '<li>No tools found</li>'; }
-      else {
-        matches.slice(0, 10).forEach(function(t) {
-          var li = document.createElement('li');
-          li.style.padding = '10px';
-          li.style.cursor = 'pointer';
-          li.innerHTML = '<a onclick="openTool(\'' + t.id + '\')">' + t.name + '</a>';
-          results.appendChild(li);
-        });
-      }
-      results.style.display = 'block';
-    }
-
-    // ==========================================
-    // CALCULATOR LOGIC (Basic & Scientific)
-    // ==========================================
-    var calcExpr = "0"; 
-    var displayStr = "0"; 
-    var lastAns = 0;
-
-    function switchCalcTab(type) {
-      document.getElementById('tab-basic').classList.remove('active');
-      document.getElementById('tab-scientific').classList.remove('active');
-      if(type === 'basic') {
-        document.getElementById('tab-basic').classList.add('active');
-        document.getElementById('pad-scientific').classList.remove('active');
-      } else {
-        document.getElementById('tab-scientific').classList.add('active');
-        document.getElementById('pad-scientific').classList.add('active');
-      }
-    }
-    function updateDisplay() { document.getElementById('calc-display').textContent = displayStr; }
-    function showCalcError(msg) { var err = document.getElementById('calc-error'); err.textContent = msg; err.style.display = 'block'; setTimeout(() => { err.style.display = 'none'; }, 3000); }
+    // ... (बाकी सारे फंक्शन्स वैसे ही रहेंगे) ...
     
-    function calcInput(val) {
-      document.getElementById('calc-error').style.display = 'none';
-      if (displayStr === "0" && val !== "." && val !== "+" && val !== "-" && val !== "*" && val !== "/") { displayStr = ""; calcExpr = ""; }
-      if (val === 'ans') { displayStr += lastAns; calcExpr += lastAns; }
-      else if (val === '+/-') { displayStr = (-parseFloat(displayStr)).toString(); calcExpr = displayStr; }
-      else if (val === '*') { displayStr += '×'; calcExpr += '*'; }
-      else if (val === '/') { displayStr += '÷'; calcExpr += '/'; }
-      else { displayStr += val; calcExpr += val; }
-      updateDisplay();
-    }
-    function calcSciInput(val) {
-      document.getElementById('calc-error').style.display = 'none';
-      if (val === 'π') { displayStr += 'π'; calcExpr += Math.PI; }
-      else if (val === 'e') { displayStr += 'e'; calcExpr += Math.E; }
-      else if (val === '^') { displayStr += '^'; calcExpr += '**'; }
-      else if (val === '^2') { displayStr += '²'; calcExpr += '**2'; }
-      else if (val === '√(') { displayStr += '√('; calcExpr += 'Math.sqrt('; }
-      else if (val === 'log(') { displayStr += 'log('; calcExpr += 'Math.log10('; }
-      else if (val === 'ln(') { displayStr += 'ln('; calcExpr += 'Math.log('; }
-      else if (val === '!') { 
-        var match = calcExpr.match(/(\d+)$/);
-        if(match) { 
-          var n = parseInt(match[1]); 
-          if(n > 170) { showCalcError("Number too large"); return; }
-          var fact = 1; for(var i=2; i<=n; i++) fact *= i;
-          displayStr = displayStr.replace(match[1], fact); 
-          calcExpr = calcExpr.replace(match[1], fact); 
-        }
-      }
-      else if (val === '1/') { displayStr += '1/('; calcExpr += '1/('; }
-      else if (val === 'sin(' || val === 'cos(' || val === 'tan(') {
-        displayStr += val; calcExpr += 'Math.' + val.replace('(', '') + '((Math.PI/180)*';
-      } else { displayStr += val; calcExpr += val; }
-      updateDisplay();
-    }
-    function calcClear() { calcExpr = "0"; displayStr = "0"; updateDisplay(); document.getElementById('calc-error').style.display = 'none'; }
-    function calcBack() { displayStr = displayStr.slice(0, -1); if (displayStr === "") displayStr = "0"; calcExpr = displayStr.replace(/×/g, '*').replace(/÷/g, '/').replace(/π/g, Math.PI).replace(/√/g,'Math.sqrt'); updateDisplay(); }
-    function calcCalculate() {
-      try {
-        var openBrackets = (calcExpr.match(/\(/g) || []).length;
-        var closeBrackets = (calcExpr.match(/\)/g) || []).length;
-        for(var i=0; i < (openBrackets - closeBrackets); i++) { calcExpr += ')'; }
-        var result = eval(calcExpr);
-        if (result === Infinity || isNaN(result)) throw Error();
-        lastAns = result; displayStr = result.toString(); calcExpr = result.toString(); updateDisplay();
-      } catch (e) {
-        showCalcError("Invalid Input! Please check your calculation.");
-        displayStr = "0"; calcExpr = "0"; updateDisplay();
-      }
-    }
-
     window.addEventListener('load', function() {
       var hash = window.location.hash.replace('#', '');
       if(hash) { openTool(hash); }
@@ -615,3 +323,4 @@
   </script>
 </body>
 </html>
+<script src="calc18.js"></script>
