@@ -54,6 +54,7 @@
     </div>
   </div>
 
+  <!-- सभी कैलकुलेटर फाइलें -->
   <script src="calc1.js"></script>
   <script src="calc2.js"></script>
   <script src="calc3.js"></script>
@@ -74,6 +75,7 @@
   <script src="calc18.js"></script>
 
   <script>
+    // डेटा इकट्ठा करना
     var allTools = [];
     var allHtmls = {};
     if(typeof tools1 !== 'undefined') { allTools = allTools.concat(tools1); Object.assign(allHtmls, htmls1); }
@@ -95,12 +97,17 @@
     if(typeof tools17 !== 'undefined') { allTools = allTools.concat(tools17); Object.assign(allHtmls, htmls17); }
     if(typeof tools18 !== 'undefined') { allTools = allTools.concat(tools18); Object.assign(allHtmls, htmls18); }
 
+    // URL से टूल का नाम निकालें (जैसे ?tool=emi से emi)
     window.addEventListener('load', function() {
-      // URL से टूल का नाम निकालें
-      var path = window.location.pathname;
-      var fileName = path.split('/').pop(); // bmi-calculator.html
-      var toolId = fileName.replace('-calculator.html', '').replace('.html', '');
+      var urlParams = new URLSearchParams(window.location.search);
+      var toolId = urlParams.get('tool');
       
+      if(!toolId) {
+        document.getElementById('tool-title').textContent = "Tool Not Found";
+        document.getElementById('tool-content').innerHTML = "<p>Sorry, no tool specified.</p><a href='index.html'>Go to Home</a>";
+        return;
+      }
+
       var t = allTools.find(function(x) { return x.id === toolId; });
       if(t) {
         document.getElementById('tool-title').textContent = t.name;
