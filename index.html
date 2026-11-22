@@ -461,17 +461,7 @@
     // NAVIGATION
     // ==========================================
     function openTool(toolId) {
-      document.getElementById('home-hero').style.display = 'none';
-      document.getElementById('grid-section').style.display = 'none';
-      document.getElementById('tool-display-area').style.display = 'block';
-      document.querySelectorAll('.page-box').forEach(b => b.style.display = 'none');
-      var t = allTools.find(function(x) { return x.id === toolId; });
-      if(t) {
-        document.getElementById('display-title').textContent = t.name;
-        document.getElementById('display-content').innerHTML = allHtmls[toolId];
-        window.location.href = toolId + '-calculator.html';
-      }
-      window.scrollTo(0, 0);
+  window.location.href = '/tool.html?tool=' + toolId;
     }
 
     function showHome() {
