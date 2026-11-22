@@ -469,7 +469,7 @@
       if(t) {
         document.getElementById('display-title').textContent = t.name;
         document.getElementById('display-content').innerHTML = allHtmls[toolId];
-        window.history.pushState(null, '', '#' + toolId);
+        window.location.href = toolId + '-calculator.html';
       }
       window.scrollTo(0, 0);
     }
