@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Calculators - Free Online Calculators &amp; Tools</title>
+  <meta name="description" content="World Calculators: free online calculators and tools for finance, health, math, everyday life, images, PDF, text and developers. Fast, private and works in your browser." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="World Calculators" />
+  <meta property="og:title" content="World Calculators - Free Online Calculators &amp; Tools" />
+  <meta property="og:description" content="Free online calculators and tools for finance, health, math, images, PDF, text and developers." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"World Calculators","url":"https://world-calculator.aakashsuryavanshi860.workers.dev/"}</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0f172a; --accent: #2563eb;
+      --text: #334155; --text-light: #475569;
+      --bg: #f8fafc; --border: #e2e8f0; --radius: 12px;
+      --font: 'Segoe UI', Roboto, Arial, sans-serif;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    button, input, select, textarea { font-family: inherit; }
+    :focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
+
+    .skip-link { position: absolute; left: -9999px; top: 0; background: #fff; color: var(--primary); padding: 10px 16px; z-index: 3000; font-weight: bold; border-radius: 0 0 8px 0; }
+    .skip-link:focus { left: 0; }
+
+    /* Top Bar */
+    .top-bar { background: var(--primary); color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; z-index: 1000; position: relative; }
+    .lang-search { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .lang-search input { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; }
+    .lang-search select { padding: 6px; border-radius: 4px; border: none; font-size: 0.85rem; max-width: 250px; }
+    .top-links { display: flex; gap: 15px; }
+    .top-links a { text-decoration: underline; }
+
+    /* Main Header */
+    .main-header { background: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+    .menu-btn { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); line-height: 1; }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .logo span { color: var(--accent); }
+    .search-bar { position: relative; width: 300px; }
+    .search-bar input { width: 100%; padding: 8px 15px; border: 1px solid #94a3b8; border-radius: 20px; outline: none; }
+    .search-results { position: absolute; top: 110%; left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 8px; max-height: 300px; overflow-y: auto; list-style: none; display: none; z-index: 100; text-align: left; box-shadow: var(--shadow); }
+    .search-results li { border-bottom: 1px solid var(--border); }
+    .search-results li a, .search-results li span { display: block; padding: 10px; }
+    .search-results li a:hover { background: var(--bg); color: var(--accent); }
+
+    /* Sidebar */
+    .sidebar { position: fixed; top: 0; left: -320px; width: 320px; max-width: 90vw; height: 100vh; background: #fff; z-index: 200; transition: left 0.3s, visibility 0s linear 0.3s; visibility: hidden; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+    .sidebar.open { left: 0; visibility: visible; transition: left 0.3s; }
+    .sidebar-header { padding: 20px; background: var(--primary); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+    .close-btn { background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; line-height: 1; }
+    .sidebar a { display: block; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+    .sidebar a:hover { background: var(--bg); color: var(--accent); }
+    .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; display: none; }
+    .sidebar-overlay.open { display: block; }
+
+    /* Hero & Grid */
+    .hero { background: linear-gradient(135deg, #e0f2fe 0%, #f8fafc 100%); padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2.5rem; color: var(--primary); }
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .cat-title { background: var(--primary); color: #fff; padding: 10px 15px; border-radius: 8px; margin: 30px 0 15px; font-size: 1.2rem; font-weight: bold; }
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+    .tool-card { display: block; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; text-align: center; cursor: pointer; }
+    .tool-card:hover { border-color: var(--accent); }
+    .tool-card .icon { display: block; font-size: 2rem; }
+    .tool-card .name { display: block; font-weight: 600; color: var(--primary); font-size: 0.9rem; }
+
+    /* Page Content */
+    .page-box { display: none; max-width: 900px; margin: 40px auto; padding: 30px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .page-box h1 { color: var(--primary); margin-bottom: 20px; }
+    .page-box h2 { color: #1d4ed8; margin-top: 20px; margin-bottom: 10px; }
+    .page-box ul { padding-left: 22px; }
+    .page-box li { margin: 6px 0; }
+    .page-box p a, .page-box li a, .back-link { color: #1d4ed8; text-decoration: underline; }
+    .back-link { font-weight: bold; }
+
+    /* Display Area */
+    #tool-display-area { display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-weight: 600; margin-bottom: 5px; }
+    .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #94a3b8; border-radius: 6px; }
+    .btn { background: var(--accent); color: white; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; }
+    .btn:hover { background: #1d4ed8; }
+    .result-box { display: none; margin-top: 15px; padding: 15px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; text-align: center; }
+
+    /* Calculator Widget */
+    .calc-widget { max-width: 360px; margin: 20px auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); }
+    .calc-tabs { display: flex; gap: 10px; margin-bottom: 10px; }
+    .calc-tab { flex: 1; text-align: center; padding: 8px; background: #f1f5f9; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; color: var(--text-light); }
+    .calc-tab.active { background: #1d4ed8; color: #fff; }
+    .calc-display { background: #0f172a; color: #fff; padding: 15px; border-radius: 6px; text-align: right; font-size: 2rem; min-height: 60px; overflow-x: auto; margin-bottom: 5px; white-space: nowrap; }
+    .calc-error { display: none; background: #fef2f2; color: #b91c1c; padding: 5px; border-radius: 4px; text-align: center; font-size: 0.85rem; margin-bottom: 5px; }
+    .calc-pad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .calc-sci-pad { display: none; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 8px; }
+    .calc-sci-pad.active { display: grid; }
+    .calc-btn { padding: 12px 0; border-radius: 6px; border: 1px solid var(--border); background: #f8fafc; font-size: 1.1rem; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.1s; }
+    .calc-btn:hover { background: #e2e8f0; }
+    .calc-btn.op { background: #eff6ff; color: #1d4ed8; }
+    .calc-btn.equal { background: #1d4ed8; color: #fff; }
+    .calc-btn.sci { font-size: 0.85rem; padding: 8px 0; background: #f1f5f9; color: #1d4ed8; }
+
+    footer { background: var(--primary); color: #fff; padding: 30px; text-align: center; margin-top: 40px; }
+    footer nav { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    footer nav a { text-decoration: underline; }
+
+    /* Google Translate Hide */
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+    .skiptranslate { display: none; }
+
+    @media (max-width: 768px) { .search-bar { display: none; } .hero h1 { font-size: 1.8rem; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Top Bar (Language) -->
+  <div class="top-bar">
+    <div class="lang-search">
+      <input type="text" id="langSearchInput" placeholder="Search language..." aria-label="Search language" autocomplete="off" />
+      <select id="languageSelect" aria-label="Select language">
+        <option value="">Select Language...</option>
+      </select>
+    </div>
+    <div class="top-links">
+      <a href="?page=support" data-nav>Customer Support</a>
+      <a href="?page=report" data-nav>Report Issue</a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div style="display:flex; align-items:center; gap:15px;">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">&#9776;</button>
+      <a class="logo" href="/" data-nav aria-label="World Calculators - Home">World<span>Calculators</span></a>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search tools..." aria-label="Search tools" autocomplete="off" />
+      <ul class="search-results" id="searchResults"></ul>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <nav class="sidebar" id="sidebar" aria-label="Main menu">
+    <div class="sidebar-header">
+      <span>Menu</span>
+      <button type="button" class="close-btn" id="menuClose" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="/" data-nav>🏠 Home</a>
+    <a href="?page=about" data-nav>ℹ️ About Us</a>
+    <a href="?page=how-it-works" data-nav>⚙️ How It Works</a>
+    <a href="?page=why-us" data-nav>🏆 Why Choose Us</a>
+    <a href="?page=terms" data-nav>📜 Terms &amp; Conditions</a>
+    <a href="?page=privacy" data-nav>🔒 Privacy Policy</a>
+    <a href="?page=sitemap" data-nav>🗺️ Sitemap</a>
+    <a href="?page=support" data-nav>📞 Customer Support</a>
+    <a href="?page=report" data-nav>🚩 Report an Issue</a>
+  </nav>
+
+  <main id="main-content" tabindex="-1">
+    <noscript><p style="padding:20px;text-align:center;">Please enable JavaScript to use the calculators.</p></noscript>
+
+    <!-- Hero Section with Calculator & Search -->
+    <section class="hero" id="home-hero">
+      <h1 id="home-title">World Calculators - All in One</h1>
+      <p>Your Global Online Toolkit – Free for Everyone!</p>
+
+      <!-- Calculator Widget -->
+      <div class="calc-widget">
+        <div class="calc-tabs">
+          <button type="button" class="calc-tab active" id="tab-basic" aria-pressed="true">Basic</button>
+          <button type="button" class="calc-tab" id="tab-scientific" aria-pressed="false">Scientific</button>
+        </div>
+
+        <div class="calc-display" id="calc-display" role="status" aria-label="Calculator display">0</div>
+        <div class="calc-error" id="calc-error" role="alert"></div>
+
+        <div class="calc-sci-pad" id="pad-scientific">
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('sin(')">sin</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('cos(')">cos</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('tan(')">tan</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('log(')">log</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('ln(')">ln</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('π')" aria-label="pi">π</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('e')" aria-label="Euler's number e">e</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('√(')" aria-label="square root">√</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('^2')" aria-label="square">x²</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('^')" aria-label="power">x^y</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('(')" aria-label="open bracket">(</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput(')')" aria-label="close bracket">)</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('!')" aria-label="factorial">n!</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('%')" aria-label="percent">%</button>
+          <button type="button" class="calc-btn sci" onclick="calcSciInput('1/')" aria-label="reciprocal">1/x</button>
+        </div>
+
+        <div class="calc-pad">
+          <button type="button" class="calc-btn op" onclick="calcClear()" aria-label="All clear">AC</button>
+          <button type="button" class="calc-btn op" onclick="calcBack()" aria-label="Backspace">⌫</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('%')" aria-label="percent">%</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('/')" aria-label="divide">÷</button>
+          <button type="button" class="calc-btn" onclick="calcInput('7')">7</button>
+          <button type="button" class="calc-btn" onclick="calcInput('8')">8</button>
+          <button type="button" class="calc-btn" onclick="calcInput('9')">9</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('*')" aria-label="multiply">×</button>
+          <button type="button" class="calc-btn" onclick="calcInput('4')">4</button>
+          <button type="button" class="calc-btn" onclick="calcInput('5')">5</button>
+          <button type="button" class="calc-btn" onclick="calcInput('6')">6</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('-')" aria-label="minus">−</button>
+          <button type="button" class="calc-btn" onclick="calcInput('1')">1</button>
+          <button type="button" class="calc-btn" onclick="calcInput('2')">2</button>
+          <button type="button" class="calc-btn" onclick="calcInput('3')">3</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('+')" aria-label="plus">+</button>
+          <button type="button" class="calc-btn" onclick="calcInput('0')">0</button>
+          <button type="button" class="calc-btn" onclick="calcInput('.')" aria-label="decimal point">.</button>
+          <button type="button" class="calc-btn equal" onclick="calcCalculate()" aria-label="equals">=</button>
+          <button type="button" class="calc-btn op" onclick="calcInput('ans')" aria-label="previous answer">Ans</button>
+        </div>
+      </div>
+
+      <!-- Tool Search inside Hero -->
+      <div style="max-width: 500px; margin: 20px auto; position: relative;">
+        <input type="text" id="toolSearchHero" placeholder="🔍 Search any calculator or tool..." aria-label="Search any calculator or tool" autocomplete="off" style="width:100%; padding: 15px 20px; border-radius: 30px; border: 2px solid var(--accent); outline: none; font-size: 1rem; box-shadow: var(--shadow);" />
+        <ul id="heroSearchResults" class="search-results" style="top:110%;"></ul>
+      </div>
+    </section>
+
+    <!-- Tools Grid Container -->
+    <div class="container" id="grid-section">
+      <div id="category-list"></div>
+    </div>
+
+    <!-- Tool Display Area -->
+    <div id="tool-display-area">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 id="display-title" tabindex="-1" style="text-align:center; color: var(--primary); margin: 20px 0;"></h1>
+      <div id="display-content"></div>
+    </div>
+
+    <!-- ABOUT US PAGE -->
+    <div id="page-about" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">About Us</h1>
+      <p>Welcome to <strong>World Calculators</strong>, your ultimate destination for fast, free, and accurate online tools.</p>
+    </div>
+
+    <!-- HOW IT WORKS PAGE -->
+    <div id="page-how-it-works" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">How Our Website Works</h1>
+      <ul>
+        <li><strong>Search or Browse:</strong> Use the search bar to find the tool you need.</li>
+        <li><strong>Enter Your Details:</strong> Click on a tool, enter your numbers.</li>
+        <li><strong>Get Instant Results:</strong> Our tools run 100% in your browser.</li>
+      </ul>
+    </div>
+
+    <!-- WHY CHOOSE US PAGE -->
+    <div id="page-why-us" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Why Choose World Calculators?</h1>
+      <ul>
+        <li><strong>100% Free Forever:</strong> No hidden charges, no subscriptions.</li>
+        <li><strong>Privacy First:</strong> All calculations happen locally on your device.</li>
+        <li><strong>Global Support:</strong> Available in 130+ languages.</li>
+      </ul>
+    </div>
+
+    <!-- TERMS AND CONDITIONS PAGE -->
+    <div id="page-terms" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Terms &amp; Conditions</h1>
+      <p>Our tools are provided for informational and educational purposes only. We are not responsible for any financial, health, or legal decisions made based on the results provided by our calculators.</p>
+    </div>
+
+    <!-- PRIVACY POLICY PAGE -->
+    <div id="page-privacy" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Privacy Policy</h1>
+      <p>Your privacy is our top priority. All calculations and file conversions occur entirely within your web browser. Your files are never uploaded to our servers.</p>
+    </div>
+
+    <!-- SITEMAP PAGE -->
+    <div id="page-sitemap" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Sitemap</h1>
+      <ul>
+        <li><a href="/" data-nav>Home Page</a></li>
+        <li><a href="?page=about" data-nav>About Us</a></li>
+        <li><a href="?page=how-it-works" data-nav>How It Works</a></li>
+        <li><a href="?page=why-us" data-nav>Why Choose Us</a></li>
+        <li><a href="?page=privacy" data-nav>Privacy Policy</a></li>
+        <li><a href="?page=terms" data-nav>Terms &amp; Conditions</a></li>
+        <li><a href="?page=support" data-nav>Customer Support</a></li>
+        <li><a href="?page=report" data-nav>Report an Issue</a></li>
+      </ul>
+      <div id="sitemap-tools"></div>
+    </div>
+
+    <!-- CUSTOMER SUPPORT PAGE -->
+    <div id="page-support" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Customer Support</h1>
+      <p>If you have any questions, please reach out to us.</p>
+      <p><strong>Email:</strong> <a href="mailto:aakashsuryavanshi860@gmail.com">aakashsuryavanshi860@gmail.com</a></p>
+    </div>
+
+    <!-- REPORT AN ISSUE PAGE -->
+    <div id="page-report" class="page-box">
+      <a href="/" data-nav class="back-link">← Back</a>
+      <h1 tabindex="-1">Report an Issue</h1>
+      <p>Found a bug? Please let us know.</p>
+      <p><strong>Email:</strong> <a href="mailto:aakashsuryavanshi860@gmail.com">aakashsuryavanshi860@gmail.com</a></p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <nav aria-label="Footer">
+      <a href="?page=about" data-nav>About Us</a>
+      <a href="?page=privacy" data-nav>Privacy Policy</a>
+      <a href="?page=terms" data-nav>Terms &amp; Conditions</a>
+      <a href="?page=support" data-nav>Customer Support</a>
+      <a href="?page=sitemap" data-nav>Sitemap</a>
+    </nav>
+    <p>© 2026 World Calculators. All rights reserved.</p>
+  </footer>
+
+  <!-- Google Translate (script is loaded only when a language is chosen) -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <!-- All Calculator Scripts (inlined: calc1.js ... calc18.js) -->
+<script>
+// ---- calc1.js ----
+var tools1 = [
+  { name: "BMI Calculator", id: "bmi", icon: "⚖️" },
+  { name: "Percentage Calculator", id: "percentage", icon: "％" },
+  { name: "Age Calculator", id: "age", icon: "🎂" },
+  { name: "EMI Calculator", id: "emi", icon: "🏦" },
+  { name: "Simple Interest", id: "interest", icon: "💰" },
+  { name: "GST Calculator", id: "gst", icon: "🧾" },
+  { name: "Discount Calculator", id: "discount", icon: "🏷️" },
+  { name: "Tip Calculator", id: "tip", icon: "🍽️" },
+  { name: "Average Calculator", id: "average", icon: "📊" },
+  { name: "Compound Interest", id: "compound", icon: "📈" }
+];
+
+var htmls1 = {
+  bmi: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="weight" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="height" /></div><button class="btn" onclick="calcBMI()">Calculate</button><div id="bmiResult" class="result-box"><p id="bmiValue" style="font-size: 2rem; font-weight: bold; color: #1e40af;">0</p></div>',
+  percentage: '<div class="input-group"><label>X</label><input type="number" id="p1_percent" /></div><div class="input-group"><label>Y</label><input type="number" id="p1_value" /></div><button class="btn" onclick="calcP1()">Calculate</button><div id="res1" class="result-box">Result: <span id="val1"></span></div>',
+  age: '<div class="input-group"><label>DOB</label><input type="date" id="dob" /></div><button class="btn" onclick="calcAge()">Calculate</button><div id="ageResult" class="result-box"><p id="ageValue">0</p></div>',
+  emi: '<div class="input-group"><label>Loan (₹)</label><input type="number" id="loanAmount" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="interestRate" /></div><div class="input-group"><label>Years</label><input type="number" id="loanTenure" /></div><button class="btn" onclick="calcEMI()">Calculate</button><div id="emiResult" class="result-box"><p id="emiValue">₹0</p></div>',
+  interest: '<div class="input-group"><label>Principal (₹)</label><input type="number" id="si_principal" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="si_rate" /></div><div class="input-group"><label>Time</label><input type="number" id="si_time" /></div><button class="btn" onclick="calcSI()">Calculate</button><div id="siResult" class="result-box"><p id="siValue">₹0</p></div>',
+  gst: '<div class="input-group"><label>Amount (₹)</label><input type="number" id="gst_amount" /></div><div class="input-group"><label>GST (%)</label><input type="number" id="gst_rate" /></div><button class="btn" onclick="calcGST()">Calculate</button><div id="gstResult" class="result-box"><p id="gstValue">₹0</p></div>',
+  discount: '<div class="input-group"><label>Price (₹)</label><input type="number" id="disc_price" /></div><div class="input-group"><label>Discount (%)</label><input type="number" id="disc_percent" /></div><button class="btn" onclick="calcDiscount()">Calculate</button><div id="discResult" class="result-box"><p id="discValue">₹0</p></div>',
+  tip: '<div class="input-group"><label>Bill (₹)</label><input type="number" id="tip_bill" /></div><div class="input-group"><label>Tip (%)</label><input type="number" id="tip_percent" /></div><button class="btn" onclick="calcTip()">Calculate</button><div id="tipResult" class="result-box"><p id="tipValue">₹0</p></div>',
+  average: '<div class="input-group"><label>Numbers (comma)</label><input type="text" id="avg_numbers" /></div><button class="btn" onclick="calcAverage()">Calculate</button><div id="avgResult" class="result-box"><p id="avgValue">0</p></div>',
+  compound: '<div class="input-group"><label>Principal (₹)</label><input type="number" id="ci_p" /></div><div class="input-group"><label>Rate (%)</label><input type="number" id="ci_r" /></div><div class="input-group"><label>Years</label><input type="number" id="ci_t" /></div><button class="btn" onclick="calcCI()">Calculate</button><div id="ciResult" class="result-box"><p id="ciValue">₹0</p></div>'
+};
+
+function calcBMI() { var w=parseFloat(document.getElementById('weight').value), h=parseFloat(document.getElementById('height').value); if(!isNaN(w)&&!isNaN(h)&&w>0&&h>0) { document.getElementById('bmiValue').textContent=(w/Math.pow(h/100,2)).toFixed(1); document.getElementById('bmiResult').style.display='block'; } }
+function calcP1() { var p=parseFloat(document.getElementById('p1_percent').value), v=parseFloat(document.getElementById('p1_value').value); if(!isNaN(p)&&!isNaN(v)){ document.getElementById('val1').textContent=((p/100)*v).toFixed(2); document.getElementById('res1').style.display='block'; } }
+function calcAge() { var d=document.getElementById('dob').value; if(d){ var y=new Date().getFullYear()-new Date(d).getFullYear(); document.getElementById('ageValue').textContent=y+" Years"; document.getElementById('ageResult').style.display='block'; } }
+function calcEMI() { var p=parseFloat(document.getElementById('loanAmount').value), r=parseFloat(document.getElementById('interestRate').value)/1200, n=parseFloat(document.getElementById('loanTenure').value)*12; if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var e=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); document.getElementById('emiValue').textContent="₹"+e.toFixed(0); document.getElementById('emiResult').style.display='block'; } }
+function calcSI() { var p=parseFloat(document.getElementById('si_principal').value), r=parseFloat(document.getElementById('si_rate').value), t=parseFloat(document.getElementById('si_time').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(t)){ document.getElementById('siValue').textContent="₹"+((p*r*t)/100).toFixed(2); document.getElementById('siResult').style.display='block'; } }
+function calcGST() { var a=parseFloat(document.getElementById('gst_amount').value), r=parseFloat(document.getElementById('gst_rate').value); if(!isNaN(a)&&!isNaN(r)){ document.getElementById('gstValue').textContent="₹"+((a*r)/100).toFixed(2); document.getElementById('gstResult').style.display='block'; } }
+function calcDiscount() { var p=parseFloat(document.getElementById('disc_price').value), d=parseFloat(document.getElementById('disc_percent').value); if(!isNaN(p)&&!isNaN(d)){ document.getElementById('discValue').textContent="₹"+(p-(p*d/100)).toFixed(2); document.getElementById('discResult').style.display='block'; } }
+function calcTip() { var b=parseFloat(document.getElementById('tip_bill').value), t=parseFloat(document.getElementById('tip_percent').value); if(!isNaN(b)&&!isNaN(t)){ document.getElementById('tipValue').textContent="₹"+(b+(b*t/100)).toFixed(2); document.getElementById('tipResult').style.display='block'; } }
+function calcAverage() { var i=document.getElementById('avg_numbers').value; if(i){ var n=i.split(',').map(Number); var s=n.reduce(function(a,b){return a+b;},0); document.getElementById('avgValue').textContent=(s/n.length).toFixed(2); document.getElementById('avgResult').style.display='block'; } }
+function calcCI() { var p=parseFloat(document.getElementById('ci_p').value), r=parseFloat(document.getElementById('ci_r').value), t=parseFloat(document.getElementById('ci_t').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(t)){ document.getElementById('ciValue').textContent="₹"+(p*Math.pow(1+r/100,t)).toFixed(2); document.getElementById('ciResult').style.display='block'; } }
+</script>
+<script>
+// ---- calc2.js ----
+var tools2 = [
+  { name: "SIP Calculator", id: "sip", icon: "💹" },
+  { name: "GPA Calculator", id: "gpa", icon: "🎓" },
+  { name: "Time Calculator", id: "time", icon: "⏱️" },
+  { name: "Date Difference", id: "date-diff", icon: "📅" },
+  { name: "Random Number", id: "random", icon: "🎲" },
+  { name: "Fuel Cost", id: "fuel", icon: "⛽" },
+  { name: "Electricity Cost", id: "electricity", icon: "💡" },
+  { name: "Body Fat %", id: "bodyfat", icon: "🏃" },
+  { name: "BMR Calculator", id: "bmr", icon: "🔥" },
+  { name: "Simple Calculator", id: "simplecalc", icon: "🔢" }
+];
+
+var htmls2 = {
+  sip: '<div class="input-group"><label>Monthly (₹)</label><input type="number" id="sip_m" /></div><div class="input-group"><label>Return (%)</label><input type="number" id="sip_r" /></div><div class="input-group"><label>Years</label><input type="number" id="sip_t" /></div><button class="btn" onclick="calcSIP()">Calculate</button><div id="sipResult" class="result-box"><p id="sipValue">₹0</p></div>',
+  gpa: '<div class="input-group"><label>Grade Points</label><input type="number" id="gpa_points" /></div><div class="input-group"><label>Credits</label><input type="number" id="gpa_credits" /></div><button class="btn" onclick="calcGPA()">Calculate</button><div id="gpaResult" class="result-box"><p id="gpaValue">0</p></div>',
+  time: '<div class="input-group"><label>Hours 1</label><input type="number" id="t1h" /></div><div class="input-group"><label>Mins 1</label><input type="number" id="t1m" /></div><div class="input-group"><label>Hours 2</label><input type="number" id="t2h" /></div><div class="input-group"><label>Mins 2</label><input type="number" id="t2m" /></div><button class="btn" onclick="calcTime()">Calculate</button><div id="timeResult" class="result-box"><p id="timeValue">0</p></div>',
+  'date-diff': '<div class="input-group"><label>Start</label><input type="date" id="date1" /></div><div class="input-group"><label>End</label><input type="date" id="date2" /></div><button class="btn" onclick="calcDateDiff()">Calculate</button><div id="dateDiffResult" class="result-box"><p id="dateDiffValue">0</p></div>',
+  random: '<div class="input-group"><label>Min</label><input type="number" id="rand_min" /></div><div class="input-group"><label>Max</label><input type="number" id="rand_max" /></div><button class="btn" onclick="calcRandom()">Generate</button><div id="randResult" class="result-box"><p id="randValue">0</p></div>',
+  fuel: '<div class="input-group"><label>Distance (km)</label><input type="number" id="fuel_dist" /></div><div class="input-group"><label>Mileage</label><input type="number" id="fuel_mileage" /></div><div class="input-group"><label>Price/litre</label><input type="number" id="fuel_price" /></div><button class="btn" onclick="calcFuel()">Calculate</button><div id="fuelResult" class="result-box"><p id="fuelValue">₹0</p></div>',
+  electricity: '<div class="input-group"><label>Power (W)</label><input type="number" id="elec_watt" /></div><div class="input-group"><label>Hours/day</label><input type="number" id="elec_hours" /></div><div class="input-group"><label>Rate/unit</label><input type="number" id="elec_rate" /></div><button class="btn" onclick="calcElec()">Calculate</button><div id="elecResult" class="result-box"><p id="elecValue">₹0</p></div>',
+  bodyfat: '<div class="input-group"><label>Age</label><input type="number" id="bf_age" /></div><div class="input-group"><label>Gender (1=M, 0=F)</label><input type="number" id="bf_gender" /></div><div class="input-group"><label>BMI</label><input type="number" id="bf_bmi" /></div><button class="btn" onclick="calcBodyFat()">Calculate</button><div id="bfResult" class="result-box"><p id="bfValue">0%</p></div>',
+  bmr: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="bmr_w" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="bmr_h" /></div><div class="input-group"><label>Age</label><input type="number" id="bmr_age" /></div><div class="input-group"><label>Gender (1=M, 0=F)</label><input type="number" id="bmr_g" /></div><button class="btn" onclick="calcBMR()">Calculate</button><div id="bmrResult" class="result-box"><p id="bmrValue">0</p></div>',
+  simplecalc: '<div class="input-group"><label>Num 1</label><input type="number" id="sc_n1" /></div><div class="input-group"><label>Op</label><select id="sc_op"><option value="+">+</option><option value="-">-</option><option value="*">×</option><option value="/">÷</option></select></div><div class="input-group"><label>Num 2</label><input type="number" id="sc_n2" /></div><button class="btn" onclick="calcSimple()">Calculate</button><div id="scResult" class="result-box"><p id="scValue">0</p></div>'
+};
+
+function calcSIP() { var m=parseFloat(document.getElementById('sip_m').value), r=parseFloat(document.getElementById('sip_r').value)/1200, t=parseFloat(document.getElementById('sip_t').value)*12; if(!isNaN(m)&&!isNaN(r)&&!isNaN(t)){ var a=(r===0)?(m*t):(m*((Math.pow(1+r,t)-1)/r)*(1+r)); document.getElementById('sipValue').textContent="₹"+a.toFixed(0); document.getElementById('sipResult').style.display='block'; } }
+function calcGPA() { var p=parseFloat(document.getElementById('gpa_points').value), c=parseFloat(document.getElementById('gpa_credits').value); if(!isNaN(p)&&!isNaN(c)&&c>0){ document.getElementById('gpaValue').textContent=(p/c).toFixed(2); document.getElementById('gpaResult').style.display='block'; } }
+function calcTime() { var h1=parseFloat(document.getElementById('t1h').value)||0, m1=parseFloat(document.getElementById('t1m').value)||0, h2=parseFloat(document.getElementById('t2h').value)||0, m2=parseFloat(document.getElementById('t2m').value)||0; var tm=m1+m2, th=h1+h2+Math.floor(tm/60); document.getElementById('timeValue').textContent=th+" hrs "+(tm%60)+" mins"; document.getElementById('timeResult').style.display='block'; }
+function calcDateDiff() { var d1=new Date(document.getElementById('date1').value), d2=new Date(document.getElementById('date2').value); if(!isNaN(d1)&&!isNaN(d2)){ document.getElementById('dateDiffValue').textContent=Math.ceil(Math.abs(d2-d1)/(1000*60*60*24))+" Days"; document.getElementById('dateDiffResult').style.display='block'; } }
+function calcRandom() { var a=parseInt(document.getElementById('rand_min').value), b=parseInt(document.getElementById('rand_max').value); if(!isNaN(a)&&!isNaN(b)&&a<=b){ document.getElementById('randValue').textContent=Math.floor(Math.random()*(b-a+1))+a; document.getElementById('randResult').style.display='block'; } }
+function calcFuel() { var d=parseFloat(document.getElementById('fuel_dist').value), m=parseFloat(document.getElementById('fuel_mileage').value), p=parseFloat(document.getElementById('fuel_price').value); if(!isNaN(d)&&!isNaN(m)&&!isNaN(p)&&m>0){ document.getElementById('fuelValue').textContent="₹"+((d/m)*p).toFixed(2); document.getElementById('fuelResult').style.display='block'; } }
+function calcElec() { var w=parseFloat(document.getElementById('elec_watt').value), h=parseFloat(document.getElementById('elec_hours').value), r=parseFloat(document.getElementById('elec_rate').value); if(!isNaN(w)&&!isNaN(h)&&!isNaN(r)){ document.getElementById('elecValue').textContent="₹"+(((w*h)/1000)*30*r).toFixed(2); document.getElementById('elecResult').style.display='block'; } }
+function calcBodyFat() { var a=parseFloat(document.getElementById('bf_age').value), g=parseFloat(document.getElementById('bf_gender').value), b=parseFloat(document.getElementById('bf_bmi').value); if(!isNaN(a)&&!isNaN(g)&&!isNaN(b)){ var f=(1.20*b)+(0.23*a)-(10.8*g)-5.4; document.getElementById('bfValue').textContent=(f<0?0:f).toFixed(1)+"%"; document.getElementById('bfResult').style.display='block'; } }
+function calcBMR() { var w=parseFloat(document.getElementById('bmr_w').value), h=parseFloat(document.getElementById('bmr_h').value), a=parseFloat(document.getElementById('bmr_age').value), g=parseFloat(document.getElementById('bmr_g').value); if(!isNaN(w)&&!isNaN(h)&&!isNaN(a)&&!isNaN(g)){ document.getElementById('bmrValue').textContent=((10*w)+(6.25*h)-(5*a)+(g===1?5:-161)).toFixed(0); document.getElementById('bmrResult').style.display='block'; } }
+function calcSimple() { var n1=parseFloat(document.getElementById('sc_n1').value), n2=parseFloat(document.getElementById('sc_n2').value), o=document.getElementById('sc_op').value; if(!isNaN(n1)&&!isNaN(n2)){ var r=0; if(o==='+')r=n1+n2; if(o==='-')r=n1-n2; if(o==='*')r=n1*n2; if(o==='/')r=n1/n2; document.getElementById('scValue').textContent=r; document.getElementById('scResult').style.display='block'; } }
+</script>
+<script>
+// ---- calc3.js ----
+var tools3 = [
+  { name: "Scientific Calculator", id: "scientific", icon: "🧪" },
+  { name: "Fraction Calculator", id: "fraction", icon: "🍕" },
+  { name: "Time Difference", id: "timediff", icon: "⏳" },
+  { name: "Mileage Calculator", id: "mileage", icon: "🚗" },
+  { name: "Currency Converter", id: "currency", icon: "💵" },
+  { name: "Income Tax", id: "tax", icon: "📑" },
+  { name: "Salary Calculator", id: "salary", icon: "💼" },
+  { name: "Retirement Corpus", id: "retire", icon: "🏖️" },
+  { name: "Weight Loss Time", id: "weightloss", icon: "🏋️" },
+  { name: "Pregnancy Due Date", id: "pregnancy", icon: "👶" }
+];
+
+var htmls3 = {
+  scientific: '<div class="input-group"><label>Function</label><select id="sci_func"><option value="sin">Sin</option><option value="cos">Cos</option><option value="tan">Tan</option><option value="log">Log</option><option value="ln">Ln</option><option value="sqrt">Sqrt</option><option value="square">Square</option></select></div><div class="input-group"><label>Value</label><input type="number" id="sci_val" /></div><button class="btn" onclick="calcSci()">Calculate</button><div id="sciResult" class="result-box"><p id="sciValue">0</p></div>',
+  fraction: '<div class="input-group"><label>Num 1</label><input type="number" id="fr_n1" /></div><div class="input-group"><label>Den 1</label><input type="number" id="fr_d1" /></div><div class="input-group"><label>Op</label><select id="fr_op"><option value="+">+</option><option value="-">-</option><option value="*">×</option><option value="/">÷</option></select></div><div class="input-group"><label>Num 2</label><input type="number" id="fr_n2" /></div><div class="input-group"><label>Den 2</label><input type="number" id="fr_d2" /></div><button class="btn" onclick="calcFraction()">Calculate</button><div id="frResult" class="result-box"><p id="frValue">0</p></div>',
+  timediff: '<div class="input-group"><label>Start</label><input type="time" id="td_start" /></div><div class="input-group"><label>End</label><input type="time" id="td_end" /></div><button class="btn" onclick="calcTimeDiff()">Calculate</button><div id="tdResult" class="result-box"><p id="tdValue">0</p></div>',
+  mileage: '<div class="input-group"><label>Distance (km)</label><input type="number" id="mil_dist" /></div><div class="input-group"><label>Fuel (L)</label><input type="number" id="mil_fuel" /></div><button class="btn" onclick="calcMileage()">Calculate</button><div id="milResult" class="result-box"><p id="milValue">0</p></div>',
+  currency: '<div class="input-group"><label>USD ($)</label><input type="number" id="curr_usd" /></div><button class="btn" onclick="calcCurrency()">Convert to INR</button><div id="currResult" class="result-box"><p id="currValue">₹0</p></div>',
+  tax: '<div class="input-group"><label>Annual Income (₹)</label><input type="number" id="tax_inc" /></div><button class="btn" onclick="calcTax()">Calculate</button><div id="taxResult" class="result-box"><p id="taxValue">₹0</p></div>',
+  salary: '<div class="input-group"><label>Monthly (₹)</label><input type="number" id="sal_month" /></div><button class="btn" onclick="calcSalary()">Yearly</button><div id="salResult" class="result-box"><p id="salValue">₹0</p></div>',
+  retire: '<div class="input-group"><label>Current Age</label><input type="number" id="ret_age" /></div><div class="input-group"><label>Retire Age</label><input type="number" id="ret_ret" /></div><div class="input-group"><label>Monthly Exp (₹)</label><input type="number" id="ret_exp" /></div><button class="btn" onclick="calcRetire()">Calculate</button><div id="retResult" class="result-box"><p id="retValue">₹0</p></div>',
+  weightloss: '<div class="input-group"><label>Current (kg)</label><input type="number" id="wl_curr" /></div><div class="input-group"><label>Target (kg)</label><input type="number" id="wl_targ" /></div><button class="btn" onclick="calcWeightLoss()">Calculate</button><div id="wlResult" class="result-box"><p id="wlValue">0</p></div>',
+  pregnancy: '<div class="input-group"><label>Last Period Date</label><input type="date" id="preg_date" /></div><button class="btn" onclick="calcPregnancy()">Calculate</button><div id="pregResult" class="result-box"><p id="pregValue">0</p></div>'
+};
+
+function calcSci() { var f=document.getElementById('sci_func').value, v=parseFloat(document.getElementById('sci_val').value); if(!isNaN(v)){ var r=0, rad=v*(Math.PI/180); if(f==='sin')r=Math.sin(rad); if(f==='cos')r=Math.cos(rad); if(f==='tan')r=Math.tan(rad); if(f==='log')r=Math.log10(v); if(f==='ln')r=Math.log(v); if(f==='sqrt'){if(v<0)return;r=Math.sqrt(v);} if(f==='square')r=v*v; document.getElementById('sciValue').textContent=r.toFixed(4); document.getElementById('sciResult').style.display='block'; } }
+function calcFraction() { var n1=parseInt(document.getElementById('fr_n1').value), d1=parseInt(document.getElementById('fr_d1').value), n2=parseInt(document.getElementById('fr_n2').value), d2=parseInt(document.getElementById('fr_d2').value), o=document.getElementById('fr_op').value; if(!isNaN(n1)&&!isNaN(d1)&&!isNaN(n2)&&!isNaN(d2)&&d1!==0&&d2!==0){ var num=0, den=0; if(o==='+'){num=(n1*d2)+(n2*d1);den=d1*d2;} if(o==='-'){num=(n1*d2)-(n2*d1);den=d1*d2;} if(o==='*'){num=n1*n2;den=d1*d2;} if(o==='/'){num=n1*d2;den=d1*n2;} document.getElementById('frValue').textContent=num+"/"+den+" ("+(num/den).toFixed(2)+")"; document.getElementById('frResult').style.display='block'; } }
+function calcTimeDiff() { var s=document.getElementById('td_start').value, e=document.getElementById('td_end').value; if(s&&e){ var sp=s.split(':'), ep=e.split(':'), sm=parseInt(sp[0])*60+parseInt(sp[1]), em=parseInt(ep[0])*60+parseInt(ep[1]), d=em-sm; if(d<0)d+=1440; document.getElementById('tdValue').textContent=Math.floor(d/60)+" hrs "+(d%60)+" mins"; document.getElementById('tdResult').style.display='block'; } }
+function calcMileage() { var d=parseFloat(document.getElementById('mil_dist').value), f=parseFloat(document.getElementById('mil_fuel').value); if(!isNaN(d)&&!isNaN(f)&&f>0){ document.getElementById('milValue').textContent=(d/f).toFixed(2)+" km/l"; document.getElementById('milResult').style.display='block'; } }
+function calcCurrency() { var u=parseFloat(document.getElementById('curr_usd').value); if(!isNaN(u)){ document.getElementById('currValue').textContent="₹"+(u*83).toFixed(2); document.getElementById('currResult').style.display='block'; } }
+function calcTax() { var i=parseFloat(document.getElementById('tax_inc').value); if(!isNaN(i)&&i>=0){ var t=0; if(i>300000&&i<=600000)t=(i-300000)*0.05; else if(i>600000&&i<=900000)t=15000+(i-600000)*0.10; else if(i>900000&&i<=1200000)t=45000+(i-900000)*0.15; else if(i>1200000&&i<=1500000)t=90000+(i-1200000)*0.20; else if(i>1500000)t=150000+(i-1500000)*0.30; document.getElementById('taxValue').textContent="₹"+t.toFixed(0); document.getElementById('taxResult').style.display='block'; } }
+function calcSalary() { var m=parseFloat(document.getElementById('sal_month').value); if(!isNaN(m)&&m>0){ document.getElementById('salValue').textContent="₹"+(m*12).toFixed(0); document.getElementById('salResult').style.display='block'; } }
+function calcRetire() { var c=parseFloat(document.getElementById('ret_age').value), r=parseFloat(document.getElementById('ret_ret').value), e=parseFloat(document.getElementById('ret_exp').value); if(!isNaN(c)&&!isNaN(r)&&!isNaN(e)&&r>c){ var corpus=e*Math.pow(1.06,r-c)*12*25; document.getElementById('retValue').textContent="₹"+(corpus/100000).toFixed(1)+" Lakhs"; document.getElementById('retResult').style.display='block'; } }
+function calcWeightLoss() { var c=parseFloat(document.getElementById('wl_curr').value), t=parseFloat(document.getElementById('wl_targ').value); if(!isNaN(c)&&!isNaN(t)&&c>t){ document.getElementById('wlValue').textContent=((c-t)/0.5).toFixed(0)+" Weeks"; document.getElementById('wlResult').style.display='block'; } }
+function calcPregnancy() { var l=document.getElementById('preg_date').value; if(l){ var d=new Date(l); d.setDate(d.getDate()+280); document.getElementById('pregValue').textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); document.getElementById('pregResult').style.display='block'; } }
+</script>
+<script>
+// ---- calc4.js ----
+var tools4 = [
+  { name: "Area Calculator", id: "area", icon: "📐" },
+  { name: "Volume (Box)", id: "volume", icon: "📦" },
+  { name: "Quadratic Equation", id: "quadratic", icon: "📉" },
+  { name: "Pythagorean Theorem", id: "pythagoras", icon: "🔺" },
+  { name: "Circle Circumference", id: "circumference", icon: "⭕" },
+  { name: "Standard Deviation", id: "stdev", icon: "📈" },
+  { name: "Probability", id: "probability", icon: "🎯" },
+  { name: "Permutation/Combination", id: "permcomb", icon: "🔀" },
+  { name: "Ohm's Law", id: "ohm", icon: "⚡" },
+  { name: "Speed, Distance, Time", id: "speeddist", icon: "🏎️" }
+];
+
+var htmls4 = {
+  area: '<div class="input-group"><label>Length</label><input type="number" id="ar_l" /></div><div class="input-group"><label>Width</label><input type="number" id="ar_w" /></div><button class="btn" onclick="calcArea()">Calculate</button><div id="arResult" class="result-box"><p id="arValue">0</p></div>',
+  volume: '<div class="input-group"><label>Length</label><input type="number" id="vol_l" /></div><div class="input-group"><label>Width</label><input type="number" id="vol_w" /></div><div class="input-group"><label>Height</label><input type="number" id="vol_h" /></div><button class="btn" onclick="calcVolume()">Calculate</button><div id="volResult" class="result-box"><p id="volValue">0</p></div>',
+  quadratic: '<div class="input-group"><label>a</label><input type="number" id="q_a" /></div><div class="input-group"><label>b</label><input type="number" id="q_b" /></div><div class="input-group"><label>c</label><input type="number" id="q_c" /></div><button class="btn" onclick="calcQuad()">Calculate</button><div id="qResult" class="result-box"><p id="qValue">0</p></div>',
+  pythagoras: '<div class="input-group"><label>Side A</label><input type="number" id="py_a" /></div><div class="input-group"><label>Side B</label><input type="number" id="py_b" /></div><button class="btn" onclick="calcPyth()">Find C</button><div id="pyResult" class="result-box"><p id="pyValue">0</p></div>',
+  circumference: '<div class="input-group"><label>Radius</label><input type="number" id="cc_r" /></div><button class="btn" onclick="calcCirc()">Calculate</button><div id="ccResult" class="result-box"><p id="ccValue">0</p></div>',
+  stdev: '<div class="input-group"><label>Numbers (comma)</label><input type="text" id="sd_nums" /></div><button class="btn" onclick="calcStdev()">Calculate</button><div id="sdResult" class="result-box"><p id="sdValue">0</p></div>',
+  probability: '<div class="input-group"><label>Favorable</label><input type="number" id="pr_fav" /></div><div class="input-group"><label>Total</label><input type="number" id="pr_total" /></div><button class="btn" onclick="calcProb()">Calculate</button><div id="prResult" class="result-box"><p id="prValue">0</p></div>',
+  permcomb: '<div class="input-group"><label>n</label><input type="number" id="pc_n" /></div><div class="input-group"><label>r</label><input type="number" id="pc_r" /></div><div class="input-group"><label>Type</label><select id="pc_type"><option value="perm">nPr</option><option value="comb">nCr</option></select></div><button class="btn" onclick="calcPermComb()">Calculate</button><div id="pcResult" class="result-box"><p id="pcValue">0</p></div>',
+  ohm: '<div class="input-group"><label>Voltage (V)</label><input type="number" id="ohm_v" /></div><div class="input-group"><label>Resistance (Ω)</label><input type="number" id="ohm_r" /></div><button class="btn" onclick="calcOhm()">Find Current</button><div id="ohmResult" class="result-box"><p id="ohmValue">0</p></div>',
+  speeddist: '<div class="input-group"><label>Distance (km)</label><input type="number" id="sdt_d" /></div><div class="input-group"><label>Time (h)</label><input type="number" id="sdt_t" /></div><button class="btn" onclick="calcSpeed()">Calculate Speed</button><div id="sdtResult" class="result-box"><p id="sdtValue">0</p></div>'
+};
+
+function calcArea() { var l=parseFloat(document.getElementById('ar_l').value), w=parseFloat(document.getElementById('ar_w').value); if(!isNaN(l)&&!isNaN(w)){ document.getElementById('arValue').textContent=(l*w).toFixed(2)+" sq units"; document.getElementById('arResult').style.display='block'; } }
+function calcVolume() { var l=parseFloat(document.getElementById('vol_l').value), w=parseFloat(document.getElementById('vol_w').value), h=parseFloat(document.getElementById('vol_h').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(h)){ document.getElementById('volValue').textContent=(l*w*h).toFixed(2)+" cubic units"; document.getElementById('volResult').style.display='block'; } }
+function calcQuad() { var a=parseFloat(document.getElementById('q_a').value), b=parseFloat(document.getElementById('q_b').value), c=parseFloat(document.getElementById('q_c').value); if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)&&a!==0){ var d=b*b-4*a*c; if(d<0){ document.getElementById('qValue').textContent="No real roots"; } else { var x1=(-b+Math.sqrt(d))/(2*a), x2=(-b-Math.sqrt(d))/(2*a); document.getElementById('qValue').innerHTML="x₁="+x1.toFixed(2)+"<br>x₂="+x2.toFixed(2); } document.getElementById('qResult').style.display='block'; } }
+function calcPyth() { var a=parseFloat(document.getElementById('py_a').value), b=parseFloat(document.getElementById('py_b').value); if(!isNaN(a)&&!isNaN(b)){ document.getElementById('pyValue').textContent=Math.sqrt(a*a+b*b).toFixed(2); document.getElementById('pyResult').style.display='block'; } }
+function calcCirc() { var r=parseFloat(document.getElementById('cc_r').value); if(!isNaN(r)){ document.getElementById('ccValue').textContent=(2*Math.PI*r).toFixed(2); document.getElementById('ccResult').style.display='block'; } }
+function calcStdev() { var i=document.getElementById('sd_nums').value; if(i){ var a=i.split(',').map(Number), n=a.length; if(n>1){ var m=a.reduce(function(x,y){return x+y;},0)/n; var v=a.map(function(x){return Math.pow(x-m,2);}).reduce(function(x,y){return x+y;},0)/n; document.getElementById('sdValue').textContent=Math.sqrt(v).toFixed(4); document.getElementById('sdResult').style.display='block'; } } }
+function calcProb() { var f=parseFloat(document.getElementById('pr_fav').value), t=parseFloat(document.getElementById('pr_total').value); if(!isNaN(f)&&!isNaN(t)&&t>0){ document.getElementById('prValue').textContent=(f/t).toFixed(4); document.getElementById('prResult').style.display='block'; } }
+function calcPermComb() { var n=parseInt(document.getElementById('pc_n').value), r=parseInt(document.getElementById('pc_r').value), t=document.getElementById('pc_type').value; if(!isNaN(n)&&!isNaN(r)&&n>=r&&r>=0){ function fact(x){if(x===0||x===1)return 1;var res=1;for(var i=2;i<=x;i++)res*=i;return res;} document.getElementById('pcValue').textContent=(t==='perm')?fact(n)/fact(n-r):fact(n)/(fact(r)*fact(n-r)); document.getElementById('pcResult').style.display='block'; } }
+function calcOhm() { var v=parseFloat(document.getElementById('ohm_v').value), r=parseFloat(document.getElementById('ohm_r').value); if(!isNaN(v)&&!isNaN(r)&&r>0){ document.getElementById('ohmValue').textContent=(v/r).toFixed(3)+" A"; document.getElementById('ohmResult').style.display='block'; } }
+function calcSpeed() { var d=parseFloat(document.getElementById('sdt_d').value), t=parseFloat(document.getElementById('sdt_t').value); if(!isNaN(d)&&!isNaN(t)&&t>0){ document.getElementById('sdtValue').textContent=(d/t).toFixed(2)+" km/h"; document.getElementById('sdtResult').style.display='block'; } }
+</script>
+<script>
+// ---- calc5.js ----
+var tools5 = [
+  { name: "Force (F = ma)", id: "force", icon: "💪" },
+  { name: "Work & Energy", id: "work", icon: "🔧" },
+  { name: "Density", id: "density", icon: "⚗️" },
+  { name: "Molarity", id: "molar", icon: "🧪" },
+  { name: "BMI for Kids", id: "bmikids", icon: "🧒" },
+  { name: "Calorie Deficit", id: "caldef", icon: "🍏" },
+  { name: "Water Intake", id: "water", icon: "💧" },
+  { name: "Concrete Calculator", id: "concrete", icon: "🧱" },
+  { name: "Paint Calculator", id: "paint", icon: "🎨" },
+  { name: "Tile Calculator", id: "tile", icon: "🟫" }
+];
+
+var htmls5 = {
+  force: '<div class="input-group"><label>Mass (kg)</label><input type="number" id="f_m" /></div><div class="input-group"><label>Acceleration (m/s²)</label><input type="number" id="f_a" /></div><button class="btn" onclick="calcForce()">Calculate</button><div id="fResult" class="result-box"><p id="fValue">0</p></div>',
+  work: '<div class="input-group"><label>Force (N)</label><input type="number" id="w_f" /></div><div class="input-group"><label>Distance (m)</label><input type="number" id="w_d" /></div><button class="btn" onclick="calcWork()">Calculate</button><div id="wResult" class="result-box"><p id="wValue">0</p></div>',
+  density: '<div class="input-group"><label>Mass (kg)</label><input type="number" id="dn_m" /></div><div class="input-group"><label>Volume (m³)</label><input type="number" id="dn_v" /></div><button class="btn" onclick="calcDensity()">Calculate</button><div id="dnResult" class="result-box"><p id="dnValue">0</p></div>',
+  molar: '<div class="input-group"><label>Moles</label><input type="number" id="mo_m" /></div><div class="input-group"><label>Volume (L)</label><input type="number" id="mo_v" /></div><button class="btn" onclick="calcMolar()">Calculate</button><div id="moResult" class="result-box"><p id="moValue">0</p></div>',
+  bmikids: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="bk_w" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="bk_h" /></div><button class="btn" onclick="calcBMIKids()">Calculate</button><div id="bkResult" class="result-box"><p id="bkValue">0</p></div>',
+  caldef: '<div class="input-group"><label>Maintenance</label><input type="number" id="cd_m" /></div><div class="input-group"><label>Target</label><input type="number" id="cd_t" /></div><button class="btn" onclick="calcCalDef()">Calculate</button><div id="cdResult" class="result-box"><p id="cdValue">0</p></div>',
+  water: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="wa_w" /></div><div class="input-group"><label>Activity (mins)</label><input type="number" id="wa_a" /></div><button class="btn" onclick="calcWater()">Calculate</button><div id="waResult" class="result-box"><p id="waValue">0</p></div>',
+  concrete: '<div class="input-group"><label>Length (m)</label><input type="number" id="con_l" /></div><div class="input-group"><label>Width (m)</label><input type="number" id="con_w" /></div><div class="input-group"><label>Depth (m)</label><input type="number" id="con_d" /></div><button class="btn" onclick="calcConcrete()">Calculate</button><div id="conResult" class="result-box"><p id="conValue">0</p></div>',
+  paint: '<div class="input-group"><label>Wall Length (m)</label><input type="number" id="pt_l" /></div><div class="input-group"><label>Wall Height (m)</label><input type="number" id="pt_h" /></div><button class="btn" onclick="calcPaint()">Calculate</button><div id="ptResult" class="result-box"><p id="ptValue">0</p></div>',
+  tile: '<div class="input-group"><label>Room Length (m)</label><input type="number" id="tl_l" /></div><div class="input-group"><label>Room Width (m)</label><input type="number" id="tl_w" /></div><div class="input-group"><label>Tile Size (sqm)</label><input type="number" id="tl_s" /></div><button class="btn" onclick="calcTile()">Calculate</button><div id="tlResult" class="result-box"><p id="tlValue">0</p></div>'
+};
+
+function calcForce() { var m=parseFloat(document.getElementById('f_m').value), a=parseFloat(document.getElementById('f_a').value); if(!isNaN(m)&&!isNaN(a)){ document.getElementById('fValue').textContent=(m*a).toFixed(2)+" N"; document.getElementById('fResult').style.display='block'; } }
+function calcWork() { var f=parseFloat(document.getElementById('w_f').value), d=parseFloat(document.getElementById('w_d').value); if(!isNaN(f)&&!isNaN(d)){ document.getElementById('wValue').textContent=(f*d).toFixed(2)+" J"; document.getElementById('wResult').style.display='block'; } }
+function calcDensity() { var m=parseFloat(document.getElementById('dn_m').value), v=parseFloat(document.getElementById('dn_v').value); if(!isNaN(m)&&!isNaN(v)&&v>0){ document.getElementById('dnValue').textContent=(m/v).toFixed(2)+" kg/m³"; document.getElementById('dnResult').style.display='block'; } }
+function calcMolar() { var m=parseFloat(document.getElementById('mo_m').value), v=parseFloat(document.getElementById('mo_v').value); if(!isNaN(m)&&!isNaN(v)&&v>0){ document.getElementById('moValue').textContent=(m/v).toFixed(3)+" M"; document.getElementById('moResult').style.display='block'; } }
+function calcBMIKids() { var w=parseFloat(document.getElementById('bk_w').value), h=parseFloat(document.getElementById('bk_h').value); if(!isNaN(w)&&!isNaN(h)&&w>0&&h>0){ document.getElementById('bkValue').textContent=(w/Math.pow(h/100,2)).toFixed(1); document.getElementById('bkResult').style.display='block'; } }
+function calcCalDef() { var m=parseFloat(document.getElementById('cd_m').value), t=parseFloat(document.getElementById('cd_t').value); if(!isNaN(m)&&!isNaN(t)){ document.getElementById('cdValue').textContent=(m-t).toFixed(0)+" kcal/day"; document.getElementById('cdResult').style.display='block'; } }
+function calcWater() { var w=parseFloat(document.getElementById('wa_w').value), a=parseFloat(document.getElementById('wa_a').value); if(!isNaN(w)&&!isNaN(a)){ document.getElementById('waValue').textContent=(w*0.033+(a/30)*0.35).toFixed(2)+" Liters"; document.getElementById('waResult').style.display='block'; } }
+function calcConcrete() { var l=parseFloat(document.getElementById('con_l').value), w=parseFloat(document.getElementById('con_w').value), d=parseFloat(document.getElementById('con_d').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(d)){ document.getElementById('conValue').textContent=(l*w*d).toFixed(3)+" m³"; document.getElementById('conResult').style.display='block'; } }
+function calcPaint() { var l=parseFloat(document.getElementById('pt_l').value), h=parseFloat(document.getElementById('pt_h').value); if(!isNaN(l)&&!isNaN(h)){ document.getElementById('ptValue').textContent=((l*h)/10).toFixed(2)+" Liters"; document.getElementById('ptResult').style.display='block'; } }
+function calcTile() { var l=parseFloat(document.getElementById('tl_l').value), w=parseFloat(document.getElementById('tl_w').value), s=parseFloat(document.getElementById('tl_s').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(s)&&s>0){ document.getElementById('tlValue').textContent=Math.ceil((l*w)/s)+" Tiles"; document.getElementById('tlResult').style.display='block'; } }
+</script>
+<script>
+// ---- calc6.js ----
+var tools6 = [
+  { name: "Mortgage Calculator", id: "mortgage", icon: "🏠" },
+  { name: "Auto Loan Calculator", id: "autoloan", icon: "🚗" },
+  { name: "Payment Calculator", id: "payment", icon: "💳" },
+  { name: "Amortization Calculator", id: "amortization", icon: "📊" },
+  { name: "Investment Calculator", id: "investment", icon: "📈" },
+  { name: "Inflation Calculator", id: "inflation", icon: "🎈" },
+  { name: "Sales Tax Calculator", id: "salestax", icon: "🧾" },
+  { name: "VAT Calculator", id: "vat", icon: "📑" },
+  { name: "ROI Calculator", id: "roi", icon: "💰" },
+  { name: "Margin Calculator", id: "margin", icon: "📉" }
+];
+
+var htmls6 = {
+  mortgage: '<div class="input-group"><label>Home Price (₹)</label><input type="number" id="m_price" /></div><div class="input-group"><label>Down Payment (₹)</label><input type="number" id="m_down" /></div><div class="input-group"><label>Interest Rate (%)</label><input type="number" id="m_rate" /></div><div class="input-group"><label>Loan Term (Years)</label><input type="number" id="m_term" /></div><button class="btn" onclick="calcMortgage()">Calculate</button><div id="m_result" class="result-box"><p id="m_val"></p></div>',
+  autoloan: '<div class="input-group"><label>Car Price (₹)</label><input type="number" id="a_price" /></div><div class="input-group"><label>Down Payment (₹)</label><input type="number" id="a_down" /></div><div class="input-group"><label>Interest Rate (%)</label><input type="number" id="a_rate" /></div><div class="input-group"><label>Loan Term (Months)</label><input type="number" id="a_term" /></div><button class="btn" onclick="calcAutoLoan()">Calculate</button><div id="a_result" class="result-box"><p id="a_val"></p></div>',
+  payment: '<div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="p_amt" /></div><div class="input-group"><label>Interest Rate (%)</label><input type="number" id="p_rate" /></div><div class="input-group"><label>Tenure (Years)</label><input type="number" id="p_term" /></div><button class="btn" onclick="calcPayment()">Calculate</button><div id="p_result" class="result-box"><p id="p_val"></p></div>',
+  amortization: '<div class="input-group"><label>Loan Amount (₹)</label><input type="number" id="am_amt" /></div><div class="input-group"><label>Interest Rate (%)</label><input type="number" id="am_rate" /></div><div class="input-group"><label>Years</label><input type="number" id="am_years" /></div><button class="btn" onclick="calcAmortization()">Calculate</button><div id="am_result" class="result-box"><p id="am_val"></p></div>',
+  investment: '<div class="input-group"><label>Initial Amount (₹)</label><input type="number" id="inv_amt" /></div><div class="input-group"><label>Monthly Contribution (₹)</label><input type="number" id="inv_mon" /></div><div class="input-group"><label>Expected Return (%)</label><input type="number" id="inv_rate" /></div><div class="input-group"><label>Years</label><input type="number" id="inv_years" /></div><button class="btn" onclick="calcInvestment()">Calculate</button><div id="inv_result" class="result-box"><p id="inv_val"></p></div>',
+  inflation: '<div class="input-group"><label>Current Amount (₹)</label><input type="number" id="inf_amt" /></div><div class="input-group"><label>Inflation Rate (%)</label><input type="number" id="inf_rate" /></div><div class="input-group"><label>Years</label><input type="number" id="inf_years" /></div><button class="btn" onclick="calcInflation()">Calculate</button><div id="inf_result" class="result-box"><p id="inf_val"></p></div>',
+  salestax: '<div class="input-group"><label>Amount Before Tax (₹)</label><input type="number" id="st_amt" /></div><div class="input-group"><label>Tax Rate (%)</label><input type="number" id="st_rate" /></div><button class="btn" onclick="calcSalesTax()">Calculate</button><div id="st_result" class="result-box"><p id="st_val"></p></div>',
+  vat: '<div class="input-group"><label>Amount Before VAT (₹)</label><input type="number" id="vat_amt" /></div><div class="input-group"><label>VAT Rate (%)</label><input type="number" id="vat_rate" /></div><button class="btn" onclick="calcVAT()">Calculate</button><div id="vat_result" class="result-box"><p id="vat_val"></p></div>',
+  roi: '<div class="input-group"><label>Initial Investment (₹)</label><input type="number" id="roi_init" /></div><div class="input-group"><label>Final Value (₹)</label><input type="number" id="roi_final" /></div><button class="btn" onclick="calcROI()">Calculate</button><div id="roi_result" class="result-box"><p id="roi_val"></p></div>',
+  margin: '<div class="input-group"><label>Cost Price (₹)</label><input type="number" id="mar_cost" /></div><div class="input-group"><label>Selling Price (₹)</label><input type="number" id="mar_sell" /></div><button class="btn" onclick="calcMargin()">Calculate</button><div id="margin_result" class="result-box"><p id="mar_val"></p></div>'
+};
+
+function calcMortgage() { var p=parseFloat(document.getElementById('m_price').value)-parseFloat(document.getElementById('m_down').value), r=parseFloat(document.getElementById('m_rate').value)/1200, n=parseFloat(document.getElementById('m_term').value)*12; if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var emi=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); document.getElementById('m_val').textContent="Monthly EMI: ₹"+emi.toFixed(2); document.getElementById('m_result').style.display='block'; } }
+function calcAutoLoan() { var p=parseFloat(document.getElementById('a_price').value)-parseFloat(document.getElementById('a_down').value), r=parseFloat(document.getElementById('a_rate').value)/1200, n=parseFloat(document.getElementById('a_term').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var emi=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); document.getElementById('a_val').textContent="Monthly EMI: ₹"+emi.toFixed(2); document.getElementById('a_result').style.display='block'; } }
+function calcPayment() { var p=parseFloat(document.getElementById('p_amt').value), r=parseFloat(document.getElementById('p_rate').value)/1200, n=parseFloat(document.getElementById('p_term').value)*12; if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var emi=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); document.getElementById('p_val').textContent="Monthly Payment: ₹"+emi.toFixed(2); document.getElementById('p_result').style.display='block'; } }
+function calcAmortization() { var p=parseFloat(document.getElementById('am_amt').value), r=parseFloat(document.getElementById('am_rate').value)/1200, n=parseFloat(document.getElementById('am_years').value)*12; if(!isNaN(p)&&!isNaN(r)&&!isNaN(n)&&p>0&&n>0){ var emi=(r===0)?p/n:(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); var total=emi*n; document.getElementById('am_val').innerHTML="Monthly EMI: ₹"+emi.toFixed(2)+"<br>Total Payable: ₹"+total.toFixed(2)+"<br>Total Interest: ₹"+(total-p).toFixed(2); document.getElementById('am_result').style.display='block'; } }
+function calcInvestment() { var p=parseFloat(document.getElementById('inv_amt').value), m=parseFloat(document.getElementById('inv_mon').value), r=parseFloat(document.getElementById('inv_rate').value)/1200, t=parseFloat(document.getElementById('inv_years').value)*12; if(!isNaN(p)&&!isNaN(m)&&!isNaN(r)&&!isNaN(t)){ var amt=(r===0)?(p+m*t):(p*Math.pow(1+r,t) + m*((Math.pow(1+r,t)-1)/r)*(1+r)); document.getElementById('inv_val').textContent="Future Value: ₹"+amt.toFixed(2); document.getElementById('inv_result').style.display='block'; } }
+function calcInflation() { var p=parseFloat(document.getElementById('inf_amt').value), r=parseFloat(document.getElementById('inf_rate').value)/100, t=parseFloat(document.getElementById('inf_years').value); if(!isNaN(p)&&!isNaN(r)&&!isNaN(t)){ var future=p*Math.pow(1+r,t); document.getElementById('inf_val').innerHTML="Future Cost: ₹"+future.toFixed(2)+"<br>Value Lost: ₹"+(future-p).toFixed(2); document.getElementById('inf_result').style.display='block'; } }
+function calcSalesTax() { var p=parseFloat(document.getElementById('st_amt').value), r=parseFloat(document.getElementById('st_rate').value); if(!isNaN(p)&&!isNaN(r)){ var tax=p*r/100; document.getElementById('st_val').innerHTML="Tax Amount: ₹"+tax.toFixed(2)+"<br>Total: ₹"+(p+tax).toFixed(2); document.getElementById('st_result').style.display='block'; } }
+function calcVAT() { var p=parseFloat(document.getElementById('vat_amt').value), r=parseFloat(document.getElementById('vat_rate').value); if(!isNaN(p)&&!isNaN(r)){ var tax=p*r/100; document.getElementById('vat_val').innerHTML="VAT Amount: ₹"+tax.toFixed(2)+"<br>Total: ₹"+(p+tax).toFixed(2); document.getElementById('vat_result').style.display='block'; } }
+function calcROI() { var i=parseFloat(document.getElementById('roi_init').value), f=parseFloat(document.getElementById('roi_final').value); if(!isNaN(i)&&!isNaN(f)&&i>0){ var roi=((f-i)/i)*100; document.getElementById('roi_val').textContent="ROI: "+roi.toFixed(2)+"%"; document.getElementById('roi_result').style.display='block'; } }
+function calcMargin() { var c=parseFloat(document.getElementById('mar_cost').value), s=parseFloat(document.getElementById('mar_sell').value); if(!isNaN(c)&&!isNaN(s)&&s>0){ var margin=((s-c)/s)*100; document.getElementById('mar_val').textContent="Profit Margin: "+margin.toFixed(2)+"%"; document.getElementById('margin_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc7.js ----
+var tools7 = [
+  { name: "Body Fat (Navy)", id: "bodyfat_navy", icon: "🏃" },
+  { name: "Macro Calculator", id: "macro", icon: "🍗" },
+  { name: "Pace Calculator", id: "pace", icon: "🏃‍♂️" },
+  { name: "Carbohydrate Calculator", id: "carbs", icon: "🍚" },
+  { name: "Healthy Weight", id: "healthyweight", icon: "⚖️" },
+  { name: "One Rep Max", id: "onerepmax", icon: "🏋️" },
+  { name: "Protein Calculator", id: "protein", icon: "🥩" },
+  { name: "TDEE Calculator", id: "tdee", icon: "🔥" },
+  { name: "Conception Calculator", id: "conception", icon: "🤰" },
+  { name: "Due Date Calculator", id: "due_date", icon: "👶" }
+];
+
+var htmls7 = {
+  bodyfat_navy: '<div class="input-group"><label>Gender (1=Male, 0=Female)</label><input type="number" id="bfn_g" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="bfn_h" /></div><div class="input-group"><label>Neck (cm)</label><input type="number" id="bfn_n" /></div><div class="input-group"><label>Waist (cm)</label><input type="number" id="bfn_w" /></div><button class="btn" onclick="calcBodyFatNavy()">Calculate</button><div id="bfn_result" class="result-box"><p id="bfn_val"></p></div>',
+  macro: '<div class="input-group"><label>Daily Calories</label><input type="number" id="mac_cal" /></div><div class="input-group"><label>Diet Type</label><select id="mac_type"><option value="balanced">Balanced</option><option value="lowcarb">Low Carb</option><option value="keto">Keto</option></select></div><button class="btn" onclick="calcMacro()">Calculate</button><div id="mac_result" class="result-box"><p id="mac_val"></p></div>',
+  pace: '<div class="input-group"><label>Distance (km)</label><input type="number" id="pace_dist" /></div><div class="input-group"><label>Time (minutes)</label><input type="number" id="pace_time" /></div><button class="btn" onclick="calcPace()">Calculate</button><div id="pace_result" class="result-box"><p id="pace_val"></p></div>',
+  carbs: '<div class="input-group"><label>Daily Calories</label><input type="number" id="carb_cal" /></div><div class="input-group"><label>Activity Level</label><select id="carb_act"><option value="0.4">Sedentary</option><option value="0.5">Moderate</option><option value="0.6">Active</option></select></div><button class="btn" onclick="calcCarbs()">Calculate</button><div id="carb_result" class="result-box"><p id="carb_val"></p></div>',
+  healthyweight: '<div class="input-group"><label>Height (cm)</label><input type="number" id="hw_h" /></div><button class="btn" onclick="calcHealthyWeight()">Calculate</button><div id="hw_result" class="result-box"><p id="hw_val"></p></div>',
+  onerepmax: '<div class="input-group"><label>Weight Lifted (kg)</label><input type="number" id="orm_w" /></div><div class="input-group"><label>Reps</label><input type="number" id="orm_r" /></div><button class="btn" onclick="calcOneRepMax()">Calculate</button><div id="orm_result" class="result-box"><p id="orm_val"></p></div>',
+  protein: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="pro_w" /></div><div class="input-group"><label>Activity</label><select id="pro_act"><option value="0.8">Sedentary</option><option value="1.2">Active</option><option value="1.6">Athlete</option></select></div><button class="btn" onclick="calcProtein()">Calculate</button><div id="pro_result" class="result-box"><p id="pro_val"></p></div>',
+  tdee: '<div class="input-group"><label>Weight (kg)</label><input type="number" id="tdee_w" /></div><div class="input-group"><label>Height (cm)</label><input type="number" id="tdee_h" /></div><div class="input-group"><label>Age</label><input type="number" id="tdee_age" /></div><div class="input-group"><label>Gender (1=M, 0=F)</label><input type="number" id="tdee_g" /></div><div class="input-group"><label>Activity</label><select id="tdee_act"><option value="1.2">Sedentary</option><option value="1.375">Light</option><option value="1.55">Moderate</option><option value="1.725">Very Active</option></select></div><button class="btn" onclick="calcTDEE()">Calculate</button><div id="tdee_result" class="result-box"><p id="tdee_val"></p></div>',
+  conception: '<div class="input-group"><label>First Day of Last Period</label><input type="date" id="conc_date" /></div><div class="input-group"><label>Cycle Length (Days)</label><input type="number" id="conc_cycle" /></div><button class="btn" onclick="calcConception()">Calculate</button><div id="conc_result" class="result-box"><p id="conc_val"></p></div>',
+  due_date: '<div class="input-group"><label>First Day of Last Period</label><input type="date" id="dd_date" /></div><button class="btn" onclick="calcDueDate()">Calculate</button><div id="dd_result" class="result-box"><p id="dd_val"></p></div>'
+};
+
+function calcBodyFatNavy() { var g=parseFloat(document.getElementById('bfn_g').value), h=parseFloat(document.getElementById('bfn_h').value), n=parseFloat(document.getElementById('bfn_n').value), w=parseFloat(document.getElementById('bfn_w').value); if(!isNaN(g)&&!isNaN(h)&&!isNaN(n)&&!isNaN(w)){ var f = g===1 ? (495/(1.0324 - 0.19077*Math.log10(w-n) + 0.15456*Math.log10(h))) - 450 : (495/(1.29579 - 0.35004*Math.log10(w+n-h) + 0.22100*Math.log10(h))) - 450; document.getElementById('bfn_val').textContent="Body Fat: "+(f<0?0:f).toFixed(1)+"%"; document.getElementById('bfn_result').style.display='block'; } }
+function calcMacro() { var c=parseFloat(document.getElementById('mac_cal').value), t=document.getElementById('mac_type').value; if(!isNaN(c)&&c>0){ var carb, pro, fat; if(t==='balanced'){carb=c*0.5/4; pro=c*0.3/4; fat=c*0.2/9;} else if(t==='lowcarb'){carb=c*0.2/4; pro=c*0.4/4; fat=c*0.4/9;} else {carb=c*0.05/4; pro=c*0.25/4; fat=c*0.7/9;} document.getElementById('mac_val').innerHTML="Carbs: "+carb.toFixed(0)+"g<br>Protein: "+pro.toFixed(0)+"g<br>Fat: "+fat.toFixed(0)+"g"; document.getElementById('mac_result').style.display='block'; } }
+function calcPace() { var d=parseFloat(document.getElementById('pace_dist').value), t=parseFloat(document.getElementById('pace_time').value); if(!isNaN(d)&&!isNaN(t)&&d>0){ var pace=t/d; var m=Math.floor(pace); var s=((pace-m)*60).toFixed(0); document.getElementById('pace_val').textContent="Pace: "+m+" min "+s+" sec per km"; document.getElementById('pace_result').style.display='block'; } }
+function calcCarbs() { var c=parseFloat(document.getElementById('carb_cal').value), a=parseFloat(document.getElementById('carb_act').value); if(!isNaN(c)&&!isNaN(a)){ var carbs=(c*a)/4; document.getElementById('carb_val').textContent="Carbs Needed: "+carbs.toFixed(0)+"g/day"; document.getElementById('carb_result').style.display='block'; } }
+function calcHealthyWeight() { var h=parseFloat(document.getElementById('hw_h').value); if(!isNaN(h)){ var min=18.5*Math.pow(h/100,2); var max=24.9*Math.pow(h/100,2); document.getElementById('hw_val').textContent="Healthy Weight: "+min.toFixed(1)+"kg - "+max.toFixed(1)+"kg"; document.getElementById('hw_result').style.display='block'; } }
+function calcOneRepMax() { var w=parseFloat(document.getElementById('orm_w').value), r=parseFloat(document.getElementById('orm_r').value); if(!isNaN(w)&&!isNaN(r)&&r>0){ var max=w*(1 + r/30); document.getElementById('orm_val').textContent="1 Rep Max: "+max.toFixed(1)+" kg"; document.getElementById('orm_result').style.display='block'; } }
+function calcProtein() { var w=parseFloat(document.getElementById('pro_w').value), a=parseFloat(document.getElementById('pro_act').value); if(!isNaN(w)&&!isNaN(a)){ document.getElementById('pro_val').textContent="Protein Needed: "+(w*a).toFixed(1)+"g/day"; document.getElementById('pro_result').style.display='block'; } }
+function calcTDEE() { var w=parseFloat(document.getElementById('tdee_w').value), h=parseFloat(document.getElementById('tdee_h').value), a=parseFloat(document.getElementById('tdee_age').value), g=parseFloat(document.getElementById('tdee_g').value), act=parseFloat(document.getElementById('tdee_act').value); if(!isNaN(w)&&!isNaN(h)&&!isNaN(a)&&!isNaN(g)&&!isNaN(act)){ var bmr=(10*w)+(6.25*h)-(5*a)+(g===1?5:-161); var tdee=bmr*act; document.getElementById('tdee_val').textContent="TDEE: "+tdee.toFixed(0)+" kcal/day"; document.getElementById('tdee_result').style.display='block'; } }
+function calcConception() { var l=document.getElementById('conc_date').value, c=parseFloat(document.getElementById('conc_cycle').value); if(l&&!isNaN(c)){ var d=new Date(l); d.setDate(d.getDate()+(c-14)); document.getElementById('conc_val').textContent="Estimated Conception: "+d.toLocaleDateString('en-GB'); document.getElementById('conc_result').style.display='block'; } }
+function calcDueDate() { var l=document.getElementById('dd_date').value; if(l){ var d=new Date(l); d.setDate(d.getDate()+280); document.getElementById('dd_val').textContent="Due Date: "+d.toLocaleDateString('en-GB'); document.getElementById('dd_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc8.js ----
+var tools8 = [
+  { name: "Z-Score Calculator", id: "zscore", icon: "📊" },
+  { name: "Ratio Calculator", id: "ratio", icon: "⚖️" },
+  { name: "Circle Calculator", id: "circle", icon: "⭕" },
+  { name: "Root Calculator", id: "root", icon: "√" },
+  { name: "GCF Calculator", id: "gcf", icon: "🔢" },
+  { name: "LCM Calculator", id: "lcm", icon: "🔢" },
+  { name: "Rounding Calculator", id: "rounding", icon: "🔘" },
+  { name: "Prime Factorization", id: "primefactor", icon: "🔍" },
+  { name: "Scientific Notation", id: "scinotation", icon: "🔬" },
+  { name: "Slope Calculator", id: "slope", icon: "📈" }
+];
+
+var htmls8 = {
+  zscore: '<div class="input-group"><label>Data Value (x)</label><input type="number" id="z_x" /></div><div class="input-group"><label>Mean (μ)</label><input type="number" id="z_mean" /></div><div class="input-group"><label>Standard Deviation (σ)</label><input type="number" id="z_sd" /></div><button class="btn" onclick="calcZScore()">Calculate</button><div id="z_result" class="result-box"><p id="z_val"></p></div>',
+  ratio: '<div class="input-group"><label>A</label><input type="number" id="rt_a" /></div><div class="input-group"><label>B</label><input type="number" id="rt_b" /></div><div class="input-group"><label>C</label><input type="number" id="rt_c" /></div><button class="btn" onclick="calcRatio()">Find D (A:B = C:D)</button><div id="rt_result" class="result-box"><p id="rt_val"></p></div>',
+  circle: '<div class="input-group"><label>Radius (r)</label><input type="number" id="cir_r" /></div><button class="btn" onclick="calcCircle()">Calculate</button><div id="cir_result" class="result-box"><p id="cir_val"></p></div>',
+  root: '<div class="input-group"><label>Number</label><input type="number" id="rt_num" /></div><div class="input-group"><label>Root (n)</label><input type="number" id="rt_n" value="2" /></div><button class="btn" onclick="calcRoot()">Calculate</button><div id="rtn_result" class="result-box"><p id="rtn_val"></p></div>',
+  gcf: '<div class="input-group"><label>Number 1</label><input type="number" id="gcf_a" /></div><div class="input-group"><label>Number 2</label><input type="number" id="gcf_b" /></div><button class="btn" onclick="calcGCF()">Calculate</button><div id="gcf_result" class="result-box"><p id="gcf_val"></p></div>',
+  lcm: '<div class="input-group"><label>Number 1</label><input type="number" id="lcm_a" /></div><div class="input-group"><label>Number 2</label><input type="number" id="lcm_b" /></div><button class="btn" onclick="calcLCM()">Calculate</button><div id="lcm_result" class="result-box"><p id="lcm_val"></p></div>',
+  rounding: '<div class="input-group"><label>Number</label><input type="number" id="rnd_num" step="any" /></div><div class="input-group"><label>Decimal Places</label><input type="number" id="rnd_dec" value="2" /></div><button class="btn" onclick="calcRounding()">Round</button><div id="rnd_result" class="result-box"><p id="rnd_val"></p></div>',
+  primefactor: '<div class="input-group"><label>Number</label><input type="number" id="pf_num" /></div><button class="btn" onclick="calcPrime()">Find Factors</button><div id="pf_result" class="result-box"><p id="pf_val"></p></div>',
+  scinotation: '<div class="input-group"><label>Number</label><input type="number" id="sn_num" step="any" /></div><button class="btn" onclick="calcSciNotation()">Convert</button><div id="sn_result" class="result-box"><p id="sn_val"></p></div>',
+  slope: '<div class="input-group"><label>X1</label><input type="number" id="sl_x1" /></div><div class="input-group"><label>Y1</label><input type="number" id="sl_y1" /></div><div class="input-group"><label>X2</label><input type="number" id="sl_x2" /></div><div class="input-group"><label>Y2</label><input type="number" id="sl_y2" /></div><button class="btn" onclick="calcSlope()">Calculate</button><div id="sl_result" class="result-box"><p id="sl_val"></p></div>'
+};
+
+function calcZScore() { var x=parseFloat(document.getElementById('z_x').value), m=parseFloat(document.getElementById('z_mean').value), s=parseFloat(document.getElementById('z_sd').value); if(!isNaN(x)&&!isNaN(m)&&!isNaN(s)&&s>0){ document.getElementById('z_val').textContent="Z-Score: "+((x-m)/s).toFixed(4); document.getElementById('z_result').style.display='block'; } }
+function calcRatio() { var a=parseFloat(document.getElementById('rt_a').value), b=parseFloat(document.getElementById('rt_b').value), c=parseFloat(document.getElementById('rt_c').value); if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)&&a>0){ document.getElementById('rt_val').textContent="D = "+((b*c)/a).toFixed(4); document.getElementById('rt_result').style.display='block'; } }
+function calcCircle() { var r=parseFloat(document.getElementById('cir_r').value); if(!isNaN(r)&&r>0){ document.getElementById('cir_val').innerHTML="Area: "+(Math.PI*r*r).toFixed(4)+"<br>Circumference: "+(2*Math.PI*r).toFixed(4); document.getElementById('cir_result').style.display='block'; } }
+function calcRoot() { var n=parseFloat(document.getElementById('rt_num').value), r=parseFloat(document.getElementById('rt_n').value); if(!isNaN(n)&&!isNaN(r)&&r!==0){ document.getElementById('rtn_val').textContent="Result: "+Math.pow(n, 1/r).toFixed(4); document.getElementById('rtn_result').style.display='block'; } }
+function calcGCF() { var a=parseInt(document.getElementById('gcf_a').value), b=parseInt(document.getElementById('gcf_b').value); if(!isNaN(a)&&!isNaN(b)&&a>0&&b>0){ function gcd(x,y){return y===0?x:gcd(y,x%y);} document.getElementById('gcf_val').textContent="GCF: "+gcd(a,b); document.getElementById('gcf_result').style.display='block'; } }
+function calcLCM() { var a=parseInt(document.getElementById('lcm_a').value), b=parseInt(document.getElementById('lcm_b').value); if(!isNaN(a)&&!isNaN(b)&&a>0&&b>0){ function gcd(x,y){return y===0?x:gcd(y,x%y);} document.getElementById('lcm_val').textContent="LCM: "+((a*b)/gcd(a,b)); document.getElementById('lcm_result').style.display='block'; } }
+function calcRounding() { var n=parseFloat(document.getElementById('rnd_num').value), d=parseInt(document.getElementById('rnd_dec').value); if(!isNaN(n)&&!isNaN(d)){ document.getElementById('rnd_val').textContent="Rounded: "+n.toFixed(d); document.getElementById('rnd_result').style.display='block'; } }
+function calcPrime() { var n=parseInt(document.getElementById('pf_num').value); if(!isNaN(n)&&n>1){ var factors=[]; var num=n; for(var i=2;i<=num;i++){ while(num%i===0){ factors.push(i); num/=i; } } document.getElementById('pf_val').textContent="Factors: "+factors.join(' × '); document.getElementById('pf_result').style.display='block'; } }
+function calcSciNotation() { var n=parseFloat(document.getElementById('sn_num').value); if(!isNaN(n)){ document.getElementById('sn_val').textContent="Scientific: "+n.toExponential(4); document.getElementById('sn_result').style.display='block'; } }
+function calcSlope() { var x1=parseFloat(document.getElementById('sl_x1').value), y1=parseFloat(document.getElementById('sl_y1').value), x2=parseFloat(document.getElementById('sl_x2').value), y2=parseFloat(document.getElementById('sl_y2').value); if(!isNaN(x1)&&!isNaN(y1)&&!isNaN(x2)&&!isNaN(y2)&&x2!==x1){ document.getElementById('sl_val').textContent="Slope (m): "+((y2-y1)/(x2-x1)).toFixed(4); document.getElementById('sl_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc9.js ----
+var tools9 = [
+  { name: "Roofing Calculator", id: "roofing", icon: "🏠" },
+  { name: "Mulch Calculator", id: "mulch", icon: "🌱" },
+  { name: "Wind Chill Calculator", id: "windchill", icon: "🌬️" },
+  { name: "Dew Point Calculator", id: "dewpoint", icon: "💧" },
+  { name: "Time Duration Calculator", id: "timeduration", icon: "⏳" },
+  { name: "Day of the Week", id: "dayofweek", icon: "📅" },
+  { name: "Love Calculator", id: "love", icon: "❤️" },
+  { name: "Gas Mileage Calculator", id: "gasmileage", icon: "⛽" },
+  { name: "Horsepower Calculator", id: "horsepower", icon: "🏎️" },
+  { name: "Resistor Calculator", id: "resistor", icon: "🔌" }
+];
+
+var htmls9 = {
+  roofing: '<div class="input-group"><label>Roof Length (ft)</label><input type="number" id="rf_l" /></div><div class="input-group"><label>Roof Width (ft)</label><input type="number" id="rf_w" /></div><div class="input-group"><label>Roof Slope (Pitch)</label><select id="rf_pitch"><option value="1">Flat</option><option value="1.12">Low (1/12)</option><option value="1.25">Medium (4/12)</option><option value="1.42">Steep (8/12)</option></select></div><button class="btn" onclick="calcRoofing()">Calculate</button><div id="rf_result" class="result-box"><p id="rf_val"></p></div>',
+  mulch: '<div class="input-group"><label>Area Length (ft)</label><input type="number" id="ml_l" /></div><div class="input-group"><label>Area Width (ft)</label><input type="number" id="ml_w" /></div><div class="input-group"><label>Depth (inches)</label><input type="number" id="ml_d" /></div><button class="btn" onclick="calcMulch()">Calculate</button><div id="ml_result" class="result-box"><p id="ml_val"></p></div>',
+  windchill: '<div class="input-group"><label>Temperature (°C)</label><input type="number" id="wc_t" /></div><div class="input-group"><label>Wind Speed (km/h)</label><input type="number" id="wc_s" /></div><button class="btn" onclick="calcWindChill()">Calculate</button><div id="wc_result" class="result-box"><p id="wc_val"></p></div>',
+  dewpoint: '<div class="input-group"><label>Temperature (°C)</label><input type="number" id="dp_t" /></div><div class="input-group"><label>Humidity (%)</label><input type="number" id="dp_h" /></div><button class="btn" onclick="calcDewPoint()">Calculate</button><div id="dp_result" class="result-box"><p id="dp_val"></p></div>',
+  timeduration: '<div class="input-group"><label>Start Time</label><input type="time" id="td_st" /></div><div class="input-group"><label>End Time</label><input type="time" id="td_en" /></div><button class="btn" onclick="calcTimeDuration()">Calculate</button><div id="tdres_result" class="result-box"><p id="tdres_val"></p></div>',
+  dayofweek: '<div class="input-group"><label>Select Date</label><input type="date" id="dow_date" /></div><button class="btn" onclick="calcDayOfWeek()">Find Day</button><div id="dow_result" class="result-box"><p id="dow_val"></p></div>',
+  love: '<div class="input-group"><label>Your Name</label><input type="text" id="lv_n1" /></div><div class="input-group"><label>Partner\'s Name</label><input type="text" id="lv_n2" /></div><button class="btn" onclick="calcLove()">Calculate Love</button><div id="lv_result" class="result-box"><p id="lv_val"></p></div>',
+  gasmileage: '<div class="input-group"><label>Distance (km/miles)</label><input type="number" id="gm_d" /></div><div class="input-group"><label>Fuel Used (liters/gallons)</label><input type="number" id="gm_f" /></div><button class="btn" onclick="calcGasMileage()">Calculate</button><div id="gm_result" class="result-box"><p id="gm_val"></p></div>',
+  horsepower: '<div class="input-group"><label>Torque (lb-ft)</label><input type="number" id="hp_t" /></div><div class="input-group"><label>RPM</label><input type="number" id="hp_r" /></div><button class="btn" onclick="calcHorsepower()">Calculate HP</button><div id="hp_result" class="result-box"><p id="hp_val"></p></div>',
+  resistor: '<div class="input-group"><label>Resistance 1 (Ω)</label><input type="number" id="rs_r1" /></div><div class="input-group"><label>Resistance 2 (Ω)</label><input type="number" id="rs_r2" /></div><button class="btn" onclick="calcResistor()">Calculate Series</button><div id="rs_result" class="result-box"><p id="rs_val"></p></div>'
+};
+
+function calcRoofing() { var l=parseFloat(document.getElementById('rf_l').value), w=parseFloat(document.getElementById('rf_w').value), p=parseFloat(document.getElementById('rf_pitch').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(p)){ document.getElementById('rf_val').textContent="Roof Area: "+(l*w*p).toFixed(2)+" sq ft"; document.getElementById('rf_result').style.display='block'; } }
+function calcMulch() { var l=parseFloat(document.getElementById('ml_l').value), w=parseFloat(document.getElementById('ml_w').value), d=parseFloat(document.getElementById('ml_d').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(d)){ var vol=(l*w*d)/12; document.getElementById('ml_val').textContent="Mulch Needed: "+(vol/27).toFixed(2)+" cubic yards"; document.getElementById('ml_result').style.display='block'; } }
+function calcWindChill() { var t=parseFloat(document.getElementById('wc_t').value), s=parseFloat(document.getElementById('wc_s').value); if(!isNaN(t)&&!isNaN(s)&&t<=10&&s>4.8){ var wc=13.12 + 0.6215*t - 11.37*Math.pow(s,0.16) + 0.3965*t*Math.pow(s,0.16); document.getElementById('wc_val').textContent="Wind Chill: "+wc.toFixed(1)+" °C"; document.getElementById('wc_result').style.display='block'; } else { document.getElementById('wc_val').textContent="Temp must be <=10°C & Wind >4.8km/h"; document.getElementById('wc_result').style.display='block'; } }
+function calcDewPoint() { var t=parseFloat(document.getElementById('dp_t').value), h=parseFloat(document.getElementById('dp_h').value); if(!isNaN(t)&&!isNaN(h)&&h>0){ var a=17.27, b=237.7; var alpha=((a*t)/(b+t)) + Math.log(h/100); var dp=(b*alpha)/(a-alpha); document.getElementById('dp_val').textContent="Dew Point: "+dp.toFixed(1)+" °C"; document.getElementById('dp_result').style.display='block'; } }
+function calcTimeDuration() { var s=document.getElementById('td_st').value, e=document.getElementById('td_en').value; if(s&&e){ var sm=s.split(':'), em=e.split(':'); var mins=(parseInt(em[0])*60+parseInt(em[1])) - (parseInt(sm[0])*60+parseInt(sm[1])); if(mins<0) mins += 1440; document.getElementById('tdres_val').textContent="Duration: "+Math.floor(mins/60)+" hours "+(mins%60)+" mins"; document.getElementById('tdres_result').style.display='block'; } }
+function calcDayOfWeek() { var d=document.getElementById('dow_date').value; if(d){ var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; var date=new Date(d); document.getElementById('dow_val').textContent="Day: "+days[date.getDay()]; document.getElementById('dow_result').style.display='block'; } }
+function calcLove() { var n1=document.getElementById('lv_n1').value, n2=document.getElementById('lv_n2').value; if(n1&&n2){ var p=Math.floor(Math.random()*100)+1; document.getElementById('lv_val').textContent="Love Score: "+p+"%"; document.getElementById('lv_result').style.display='block'; } }
+function calcGasMileage() { var d=parseFloat(document.getElementById('gm_d').value), f=parseFloat(document.getElementById('gm_f').value); if(!isNaN(d)&&!isNaN(f)&&f>0){ document.getElementById('gm_val').textContent="Mileage: "+(d/f).toFixed(2); document.getElementById('gm_result').style.display='block'; } }
+function calcHorsepower() { var t=parseFloat(document.getElementById('hp_t').value), r=parseFloat(document.getElementById('hp_r').value); if(!isNaN(t)&&!isNaN(r)){ document.getElementById('hp_val').textContent="Horsepower: "+((t*r)/5252).toFixed(2)+" HP"; document.getElementById('hp_result').style.display='block'; } }
+function calcResistor() { var r1=parseFloat(document.getElementById('rs_r1').value), r2=parseFloat(document.getElementById('rs_r2').value); if(!isNaN(r1)&&!isNaN(r2)){ document.getElementById('rs_val').textContent="Series Resistance: "+(r1+r2).toFixed(2)+" Ω"; document.getElementById('rs_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc10.js ----
+var tools10 = [
+  { name: "BTU Calculator", id: "btu", icon: "❄️" },
+  { name: "Time Card Calculator", id: "timecard", icon: "⏰" },
+  { name: "Shoe Size Conversion", id: "shoesize", icon: "👟" },
+  { name: "Mass Calculator", id: "mass", icon: "⚖️" },
+  { name: "Speed Calculator", id: "speed", icon: "🚀" },
+  { name: "Molecular Weight", id: "molweight", icon: "🧪" },
+  { name: "Golf Handicap", id: "golf", icon: "⛳" },
+  { name: "Tire Size Calculator", id: "tiresize", icon: "🛞" },
+  { name: "Gravel Calculator", id: "gravel", icon: "🪨" },
+  { name: "Heat Index Calculator", id: "heatindex", icon: "🌡️" }
+];
+
+var htmls10 = {
+  btu: '<div class="input-group"><label>Room Length (ft)</label><input type="number" id="btu_l" /></div><div class="input-group"><label>Room Width (ft)</label><input type="number" id="btu_w" /></div><div class="input-group"><label>Ceiling Height (ft)</label><input type="number" id="btu_h" value="8" /></div><button class="btn" onclick="calcBTU()">Calculate</button><div id="btu_result" class="result-box"><p id="btu_val"></p></div>',
+  timecard: '<div class="input-group"><label>Start Time</label><input type="time" id="tc_st" /></div><div class="input-group"><label>End Time</label><input type="time" id="tc_en" /></div><div class="input-group"><label>Break (minutes)</label><input type="number" id="tc_brk" value="0" /></div><button class="btn" onclick="calcTimeCard()">Calculate</button><div id="tc_result" class="result-box"><p id="tc_val"></p></div>',
+  shoesize: '<div class="input-group"><label>Foot Length (cm)</label><input type="number" id="ss_cm" step="0.1" /></div><button class="btn" onclick="calcShoeSize()">Calculate</button><div id="ss_result" class="result-box"><p id="ss_val"></p></div>',
+  mass: '<div class="input-group"><label>Density (kg/m³)</label><input type="number" id="mass_d" /></div><div class="input-group"><label>Volume (m³)</label><input type="number" id="mass_v" /></div><button class="btn" onclick="calcMass()">Calculate</button><div id="mass_result" class="result-box"><p id="mass_val"></p></div>',
+  speed: '<div class="input-group"><label>Distance (m)</label><input type="number" id="sp_d" /></div><div class="input-group"><label>Time (s)</label><input type="number" id="sp_t" /></div><button class="btn" onclick="calcSpeedNow()">Calculate</button><div id="sp_result" class="result-box"><p id="sp_val"></p></div>',
+  molweight: '<div class="input-group"><label>Formula (e.g. H2O, CO2)</label><input type="text" id="mw_formula" /></div><button class="btn" onclick="calcMolWeight()">Calculate</button><div id="mw_result" class="result-box"><p id="mw_val"></p></div>',
+  golf: '<div class="input-group"><label>Course Rating</label><input type="number" id="golf_cr" step="0.1" /></div><div class="input-group"><label>Slope Rating</label><input type="number" id="golf_sr" /></div><div class="input-group"><label>Score</label><input type="number" id="golf_score" /></div><button class="btn" onclick="calcGolf()">Calculate</button><div id="golf_result" class="result-box"><p id="golf_val"></p></div>',
+  tiresize: '<div class="input-group"><label>Tire Width (mm)</label><input type="number" id="tire_w" /></div><div class="input-group"><label>Aspect Ratio (%)</label><input type="number" id="tire_ar" /></div><div class="input-group"><label>Rim Size (inch)</label><input type="number" id="tire_r" /></div><button class="btn" onclick="calcTireSize()">Calculate</button><div id="tire_result" class="result-box"><p id="tire_val"></p></div>',
+  gravel: '<div class="input-group"><label>Length (ft)</label><input type="number" id="gv_l" /></div><div class="input-group"><label>Width (ft)</label><input type="number" id="gv_w" /></div><div class="input-group"><label>Depth (inches)</label><input type="number" id="gv_d" /></div><button class="btn" onclick="calcGravel()">Calculate</button><div id="gv_result" class="result-box"><p id="gv_val"></p></div>',
+  heatindex: '<div class="input-group"><label>Temperature (°F)</label><input type="number" id="hi_t" /></div><div class="input-group"><label>Humidity (%)</label><input type="number" id="hi_h" /></div><button class="btn" onclick="calcHeatIndex()">Calculate</button><div id="hi_result" class="result-box"><p id="hi_val"></p></div>'
+};
+
+function calcBTU() { var l=parseFloat(document.getElementById('btu_l').value), w=parseFloat(document.getElementById('btu_w').value), h=parseFloat(document.getElementById('btu_h').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(h)){ var vol=l*w*h; document.getElementById('btu_val').textContent="BTU Needed: "+(vol*4.5).toFixed(0)+" BTUs"; document.getElementById('btu_result').style.display='block'; } }
+function calcTimeCard() { var s=document.getElementById('tc_st').value, e=document.getElementById('tc_en').value, b=parseFloat(document.getElementById('tc_brk').value)||0; if(s&&e){ var sp=s.split(':'), ep=e.split(':'); var mins=(parseInt(ep[0])*60+parseInt(ep[1])) - (parseInt(sp[0])*60+parseInt(sp[1])) - b; if(mins<0) mins+=1440; document.getElementById('tc_val').textContent="Hours Worked: "+Math.floor(mins/60)+"h "+(mins%60)+"m"; document.getElementById('tc_result').style.display='block'; } }
+function calcShoeSize() { var cm=parseFloat(document.getElementById('ss_cm').value); if(!isNaN(cm)&&cm>0){ var usM=((cm/2.54)*3)-22; document.getElementById('ss_val').textContent="US Men: "+usM.toFixed(1)+" | UK: "+(usM-0.5).toFixed(1)+" | EU: "+(cm/2*1.5).toFixed(1); document.getElementById('ss_result').style.display='block'; } }
+function calcMass() { var d=parseFloat(document.getElementById('mass_d').value), v=parseFloat(document.getElementById('mass_v').value); if(!isNaN(d)&&!isNaN(v)){ document.getElementById('mass_val').textContent="Mass: "+(d*v).toFixed(2)+" kg"; document.getElementById('mass_result').style.display='block'; } }
+function calcSpeedNow() { var d=parseFloat(document.getElementById('sp_d').value), t=parseFloat(document.getElementById('sp_t').value); if(!isNaN(d)&&!isNaN(t)&&t>0){ document.getElementById('sp_val').textContent="Speed: "+(d/t).toFixed(2)+" m/s"; document.getElementById('sp_result').style.display='block'; } }
+function calcMolWeight() { var f=document.getElementById('mw_formula').value; if(f){ var weights={'H':1.008,'C':12.011,'N':14.007,'O':15.999,'Na':22.990,'Cl':35.45,'S':32.06}; var regex=/([A-Z][a-z]?)(\d*)/g; var match, total=0; while((match=regex.exec(f))!==null){ var el=match[1], count=match[2]?parseInt(match[2]):1; if(weights[el]) total += weights[el]*count; } document.getElementById('mw_val').textContent="Molar Mass: "+total.toFixed(2)+" g/mol"; document.getElementById('mw_result').style.display='block'; } }
+function calcGolf() { var cr=parseFloat(document.getElementById('golf_cr').value), sr=parseFloat(document.getElementById('golf_sr').value), sc=parseFloat(document.getElementById('golf_score').value); if(!isNaN(cr)&&!isNaN(sr)&&!isNaN(sc)){ var hcp=((sc-cr)*113)/sr; document.getElementById('golf_val').textContent="Handicap: "+hcp.toFixed(1); document.getElementById('golf_result').style.display='block'; } }
+function calcTireSize() { var w=parseFloat(document.getElementById('tire_w').value), ar=parseFloat(document.getElementById('tire_ar').value), r=parseFloat(document.getElementById('tire_r').value); if(!isNaN(w)&&!isNaN(ar)&&!isNaN(r)){ var side=(w*(ar/100))/25.4; var dia=side*2+r; document.getElementById('tire_val').textContent="Tire Diameter: "+dia.toFixed(2)+" inches"; document.getElementById('tire_result').style.display='block'; } }
+function calcGravel() { var l=parseFloat(document.getElementById('gv_l').value), w=parseFloat(document.getElementById('gv_w').value), d=parseFloat(document.getElementById('gv_d').value); if(!isNaN(l)&&!isNaN(w)&&!isNaN(d)){ var vol=(l*w*d)/12; document.getElementById('gv_val').textContent="Gravel: "+(vol/27).toFixed(2)+" cubic yards"; document.getElementById('gv_result').style.display='block'; } }
+function calcHeatIndex() { var t=parseFloat(document.getElementById('hi_t').value), h=parseFloat(document.getElementById('hi_h').value); if(!isNaN(t)&&!isNaN(h)){ var hi=-42.379 + 2.04901523*t + 10.14333127*h - 0.22475541*t*h - 0.00683783*t*t - 0.05481717*h*h + 0.00122874*t*t*h + 0.00085282*t*h*h - 0.00000199*t*t*h*h; document.getElementById('hi_val').textContent="Heat Index: "+hi.toFixed(1)+" °F"; document.getElementById('hi_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc11.js ----
+var tools11 = [
+  { name: "Bandwidth Calculator", id: "bandwidth", icon: "📡" },
+  { name: "Base64 Encode/Decode", id: "base64", icon: "🔐" },
+  { name: "URL Encode/Decode", id: "urlencode", icon: "🔗" },
+  { name: "Roman Numeral Converter", id: "roman", icon: "🏛️" },
+  { name: "Binary Calculator", id: "binary", icon: "💻" },
+  { name: "Hex Calculator", id: "hex", icon: "💻" },
+  { name: "Day Counter", id: "daycounter", icon: "📆" },
+  { name: "Hours Calculator", id: "hours", icon: "⏰" },
+  { name: "Grade Calculator", id: "grade", icon: "📝" },
+  { name: "Dice Roller", id: "dice", icon: "🎲" }
+];
+
+var htmls11 = {
+  bandwidth: '<div class="input-group"><label>File Size (MB)</label><input type="number" id="bw_size" /></div><div class="input-group"><label>Time (seconds)</label><input type="number" id="bw_time" /></div><button class="btn" onclick="calcBandwidth()">Calculate</button><div id="bw_result" class="result-box"><p id="bw_val"></p></div>',
+  base64: '<div class="input-group"><label>Text</label><input type="text" id="b64_text" /></div><button class="btn" onclick="calcBase64Encode()" style="margin-bottom:0.5rem;">Encode</button><button class="btn" onclick="calcBase64Decode()">Decode</button><div id="b64_result" class="result-box"><p id="b64_val"></p></div>',
+  urlencode: '<div class="input-group"><label>Text/URL</label><input type="text" id="url_text" /></div><button class="btn" onclick="calcURLEncode()" style="margin-bottom:0.5rem;">Encode</button><button class="btn" onclick="calcURLDecode()">Decode</button><div id="url_result" class="result-box"><p id="url_val"></p></div>',
+  roman: '<div class="input-group"><label>Number</label><input type="number" id="rm_num" /></div><button class="btn" onclick="calcRoman()">Convert</button><div id="rm_result" class="result-box"><p id="rm_val"></p></div>',
+  binary: '<div class="input-group"><label>Decimal Number</label><input type="number" id="bin_dec" /></div><button class="btn" onclick="calcBinary()">Convert to Binary</button><div id="bin_result" class="result-box"><p id="bin_val"></p></div>',
+  hex: '<div class="input-group"><label>Decimal Number</label><input type="number" id="hex_dec" /></div><button class="btn" onclick="calcHex()">Convert to Hex</button><div id="hex_result" class="result-box"><p id="hex_val"></p></div>',
+  daycounter: '<div class="input-group"><label>Start Date</label><input type="date" id="dc_st" /></div><div class="input-group"><label>End Date</label><input type="date" id="dc_en" /></div><button class="btn" onclick="calcDayCounter()">Calculate</button><div id="dc_result" class="result-box"><p id="dc_val"></p></div>',
+  hours: '<div class="input-group"><label>Start Time</label><input type="time" id="hr_st" /></div><div class="input-group"><label>End Time</label><input type="time" id="hr_en" /></div><button class="btn" onclick="calcHours()">Calculate</button><div id="hr_result" class="result-box"><p id="hr_val"></p></div>',
+  grade: '<div class="input-group"><label>Score Obtained</label><input type="number" id="gr_ob" /></div><div class="input-group"><label>Total Marks</label><input type="number" id="gr_total" /></div><button class="btn" onclick="calcGrade()">Calculate</button><div id="gr_result" class="result-box"><p id="gr_val"></p></div>',
+  dice: '<div class="input-group"><label>Number of Dice</label><input type="number" id="dice_n" value="1" /></div><div class="input-group"><label>Sides per Die</label><input type="number" id="dice_s" value="6" /></div><button class="btn" onclick="calcDice()">Roll Dice</button><div id="dice_result" class="result-box"><p id="dice_val"></p></div>'
+};
+
+function calcBandwidth() { var s=parseFloat(document.getElementById('bw_size').value), t=parseFloat(document.getElementById('bw_time').value); if(!isNaN(s)&&!isNaN(t)&&t>0){ document.getElementById('bw_val').textContent="Speed: "+((s*8)/t).toFixed(2)+" Mbps"; document.getElementById('bw_result').style.display='block'; } }
+function calcBase64Encode() { var t=document.getElementById('b64_text').value; try { document.getElementById('b64_val').textContent=btoa(t); document.getElementById('b64_result').style.display='block'; } catch(e) { document.getElementById('b64_val').textContent="Invalid Input"; document.getElementById('b64_result').style.display='block'; } }
+function calcBase64Decode() { var t=document.getElementById('b64_text').value; try { document.getElementById('b64_val').textContent=atob(t); document.getElementById('b64_result').style.display='block'; } catch(e) { document.getElementById('b64_val').textContent="Invalid Base64"; document.getElementById('b64_result').style.display='block'; } }
+function calcURLEncode() { var t=document.getElementById('url_text').value; document.getElementById('url_val').textContent=encodeURIComponent(t); document.getElementById('url_result').style.display='block'; }
+function calcURLDecode() { var t=document.getElementById('url_text').value; try { document.getElementById('url_val').textContent=decodeURIComponent(t); document.getElementById('url_result').style.display='block'; } catch(e) { document.getElementById('url_val').textContent="Invalid URL"; document.getElementById('url_result').style.display='block'; } }
+function calcRoman() { var n=parseInt(document.getElementById('rm_num').value); if(!isNaN(n)&&n>0&&n<4000){ var r=""; var v=[1000,900,500,400,100,90,50,40,10,9,5,4,1]; var s=["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]; for(var i=0;i<v.length;i++){ while(n>=v[i]){ r+=s[i]; n-=v[i]; } } document.getElementById('rm_val').textContent="Roman: "+r; document.getElementById('rm_result').style.display='block'; } }
+function calcBinary() { var n=parseInt(document.getElementById('bin_dec').value); if(!isNaN(n)){ document.getElementById('bin_val').textContent="Binary: "+n.toString(2); document.getElementById('bin_result').style.display='block'; } }
+function calcHex() { var n=parseInt(document.getElementById('hex_dec').value); if(!isNaN(n)){ document.getElementById('hex_val').textContent="Hexadecimal: "+n.toString(16).toUpperCase(); document.getElementById('hex_result').style.display='block'; } }
+function calcDayCounter() { var s=new Date(document.getElementById('dc_st').value), e=new Date(document.getElementById('dc_en').value); if(!isNaN(s)&&!isNaN(e)){ document.getElementById('dc_val').textContent="Days: "+Math.ceil(Math.abs(e-s)/(1000*60*60*24)); document.getElementById('dc_result').style.display='block'; } }
+function calcHours() { var s=document.getElementById('hr_st').value, e=document.getElementById('hr_en').value; if(s&&e){ var sp=s.split(':'), ep=e.split(':'); var mins=(parseInt(ep[0])*60+parseInt(ep[1])) - (parseInt(sp[0])*60+parseInt(sp[1])); if(mins<0) mins+=1440; document.getElementById('hr_val').textContent="Hours: "+Math.floor(mins/60)+"h "+(mins%60)+"m"; document.getElementById('hr_result').style.display='block'; } }
+function calcGrade() { var o=parseFloat(document.getElementById('gr_ob').value), t=parseFloat(document.getElementById('gr_total').value); if(!isNaN(o)&&!isNaN(t)&&t>0){ var p=(o/t)*100; var g = p>=90?'A':p>=80?'B':p>=70?'C':p>=60?'D':'F'; document.getElementById('gr_val').textContent="Score: "+p.toFixed(2)+"% (Grade "+g+")"; document.getElementById('gr_result').style.display='block'; } }
+function calcDice() { var n=parseInt(document.getElementById('dice_n').value), s=parseInt(document.getElementById('dice_s').value); if(!isNaN(n)&&!isNaN(s)&&n>0&&s>0){ var rolls=[]; var total=0; for(var i=0;i<n;i++){ var r=Math.floor(Math.random()*s)+1; rolls.push(r); total+=r; } document.getElementById('dice_val').innerHTML="Rolls: "+rolls.join(', ')+"<br>Total: "+total; document.getElementById('dice_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc12.js ----
+var tools12 = [
+  { name: "Height Calculator", id: "height", icon: "📏" },
+  { name: "Password Generator", id: "password", icon: "🔐" },
+  { name: "Conversion Calculator", id: "convcalc", icon: "🔁" },
+  { name: "Voltage Drop Calculator", id: "voltagedrop", icon: "⚡" },
+  { name: "Square Footage Calculator", id: "sqft", icon: "📐" },
+  { name: "Time Zone Calculator", id: "timezone", icon: "🌍" },
+  { name: "GDP Calculator", id: "gdp", icon: "💵" },
+  { name: "Stair Calculator", id: "stair", icon: "🪜" },
+  { name: "Ohms Law Calculator", id: "ohmslaw", icon: "⚡" },
+  { name: "Matrix Calculator", id: "matrix", icon: "🔢" }
+];
+
+var htmls12 = {
+  height: '<div class="input-group"><label>Father\'s Height (cm)</label><input type="number" id="ht_f" /></div><div class="input-group"><label>Mother\'s Height (cm)</label><input type="number" id="ht_m" /></div><div class="input-group"><label>Child Gender (1=Male, 0=Female)</label><input type="number" id="ht_g" /></div><button class="btn" onclick="calcHeight()">Predict</button><div id="ht_result" class="result-box"><p id="ht_val"></p></div>',
+  password: '<div class="input-group"><label>Length</label><input type="number" id="pwd_len" value="12" /></div><div class="input-group"><label>Include Numbers</label><select id="pwd_num"><option value="1">Yes</option><option value="0">No</option></select></div><button class="btn" onclick="calcPassword()">Generate</button><div id="pwd_result" class="result-box"><p id="pwd_val" style="word-break:break-all;"></p></div>',
+  convcalc: '<div class="input-group"><label>Value</label><input type="number" id="cv_val" /></div><div class="input-group"><label>From Unit</label><select id="cv_from"><option value="m">Meters</option><option value="km">Kilometers</option><option value="mi">Miles</option><option value="ft">Feet</option></select></div><div class="input-group"><label>To Unit</label><select id="cv_to"><option value="km">Kilometers</option><option value="m">Meters</option><option value="mi">Miles</option><option value="ft">Feet</option></select></div><button class="btn" onclick="calcConversion()">Convert</button><div id="cv_result" class="result-box"><p id="cv_ans"></p></div>',
+  voltagedrop: '<div class="input-group"><label>Current (Amps)</label><input type="number" id="vd_i" /></div><div class="input-group"><label>Resistance (Ohms)</label><input type="number" id="vd_r" /></div><button class="btn" onclick="calcVoltageDrop()">Calculate</button><div id="vd_result" class="result-box"><p id="vd_val"></p></div>',
+  sqft: '<div class="input-group"><label>Length (ft)</label><input type="number" id="sqft_l" /></div><div class="input-group"><label>Width (ft)</label><input type="number" id="sqft_w" /></div><button class="btn" onclick="calcSqFt()">Calculate</button><div id="sqft_result" class="result-box"><p id="sqft_val"></p></div>',
+  timezone: '<div class="input-group"><label>Local Time</label><input type="time" id="tz_time" /></div><div class="input-group"><label>Offset (Hours)</label><input type="number" id="tz_off" /></div><button class="btn" onclick="calcTimezone()">Convert</button><div id="tz_result" class="result-box"><p id="tz_val"></p></div>',
+  gdp: '<div class="input-group"><label>Consumption (C)</label><input type="number" id="gdp_c" /></div><div class="input-group"><label>Investment (I)</label><input type="number" id="gdp_i" /></div><div class="input-group"><label>Government Spending (G)</label><input type="number" id="gdp_g" /></div><div class="input-group"><label>Net Exports (NX)</label><input type="number" id="gdp_nx" /></div><button class="btn" onclick="calcGDP()">Calculate</button><div id="gdp_result" class="result-box"><p id="gdp_val"></p></div>',
+  stair: '<div class="input-group"><label>Total Rise (inches)</label><input type="number" id="st_rise" /></div><div class="input-group"><label>Riser Height (inches)</label><input type="number" id="st_h" value="7" /></div><button class="btn" onclick="calcStair()">Calculate</button><div id="st_result" class="result-box"><p id="st_val"></p></div>',
+  ohmslaw: '<div class="input-group"><label>Voltage (V)</label><input type="number" id="ol_v" /></div><div class="input-group"><label>Current (I)</label><input type="number" id="ol_i" /></div><div class="input-group"><label>Resistance (R)</label><input type="number" id="ol_r" /></div><button class="btn" onclick="calcOhmsLaw()">Calculate (Fill 2)</button><div id="ol_result" class="result-box"><p id="ol_val"></p></div>',
+  matrix: '<div class="input-group"><label>a</label><input type="number" id="mx_a" /></div><div class="input-group"><label>b</label><input type="number" id="mx_b" /></div><div class="input-group"><label>c</label><input type="number" id="mx_c" /></div><div class="input-group"><label>d</label><input type="number" id="mx_d" /></div><button class="btn" onclick="calcMatrix()">Determinant (2x2)</button><div id="mx_result" class="result-box"><p id="mx_val"></p></div>'
+};
+
+function calcHeight() { var f=parseFloat(document.getElementById('ht_f').value), m=parseFloat(document.getElementById('ht_m').value), g=parseFloat(document.getElementById('ht_g').value); if(!isNaN(f)&&!isNaN(m)&&!isNaN(g)){ var h = g===1 ? (f+m+13)/2 : (f+m-13)/2; document.getElementById('ht_val').textContent="Predicted Height: "+h.toFixed(1)+" cm"; document.getElementById('ht_result').style.display='block'; } }
+function calcPassword() { var l=parseInt(document.getElementById('pwd_len').value), n=document.getElementById('pwd_num').value; if(!isNaN(l)&&l>0){ var chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*"; if(n==="1") chars+="0123456789"; var pwd=""; for(var i=0;i<l;i++){ pwd+=chars.charAt(Math.floor(Math.random()*chars.length)); } document.getElementById('pwd_val').textContent=pwd; document.getElementById('pwd_result').style.display='block'; } }
+function calcConversion() { var v=parseFloat(document.getElementById('cv_val').value), f=document.getElementById('cv_from').value, t=document.getElementById('cv_to').value; if(!isNaN(v)){ var m = f==="m"?v: f==="km"?v*1000: f==="mi"?v*1609.34: v*0.3048; var res = t==="m"?m: t==="km"?m/1000: t==="mi"?m/1609.34: m/0.3048; document.getElementById('cv_ans').textContent="Result: "+res.toFixed(4)+" "+t; document.getElementById('cv_result').style.display='block'; } }
+function calcVoltageDrop() { var i=parseFloat(document.getElementById('vd_i').value), r=parseFloat(document.getElementById('vd_r').value); if(!isNaN(i)&&!isNaN(r)){ document.getElementById('vd_val').textContent="Voltage Drop: "+(i*r).toFixed(2)+" V"; document.getElementById('vd_result').style.display='block'; } }
+function calcSqFt() { var l=parseFloat(document.getElementById('sqft_l').value), w=parseFloat(document.getElementById('sqft_w').value); if(!isNaN(l)&&!isNaN(w)){ document.getElementById('sqft_val').textContent="Area: "+(l*w).toFixed(2)+" sq ft"; document.getElementById('sqft_result').style.display='block'; } }
+function calcTimezone() { var t=document.getElementById('tz_time').value, o=parseFloat(document.getElementById('tz_off').value); if(t&&!isNaN(o)){ var p=t.split(':'); var h=parseInt(p[0])+o; while(h>=24)h-=24; while(h<0)h+=24; document.getElementById('tz_val').textContent="New Time: "+h.toString().padStart(2,'0')+":"+p[1]; document.getElementById('tz_result').style.display='block'; } }
+function calcGDP() { var c=parseFloat(document.getElementById('gdp_c').value)||0, i=parseFloat(document.getElementById('gdp_i').value)||0, g=parseFloat(document.getElementById('gdp_g').value)||0, nx=parseFloat(document.getElementById('gdp_nx').value)||0; document.getElementById('gdp_val').textContent="GDP: "+(c+i+g+nx).toFixed(2); document.getElementById('gdp_result').style.display='block'; }
+function calcStair() { var rise=parseFloat(document.getElementById('st_rise').value), h=parseFloat(document.getElementById('st_h').value); if(!isNaN(rise)&&!isNaN(h)&&h>0){ document.getElementById('st_val').textContent="Number of Risers: "+Math.ceil(rise/h); document.getElementById('st_result').style.display='block'; } }
+function calcOhmsLaw() { var v=parseFloat(document.getElementById('ol_v').value), i=parseFloat(document.getElementById('ol_i').value), r=parseFloat(document.getElementById('ol_r').value); if(!isNaN(v)&&!isNaN(i)&&isNaN(r)){ document.getElementById('ol_val').textContent="R = "+(v/i).toFixed(2)+" Ω"; } else if(!isNaN(v)&&isNaN(i)&&!isNaN(r)){ document.getElementById('ol_val').textContent="I = "+(v/r).toFixed(2)+" A"; } else if(isNaN(v)&&!isNaN(i)&&!isNaN(r)){ document.getElementById('ol_val').textContent="V = "+(i*r).toFixed(2)+" V"; } else { document.getElementById('ol_val').textContent="Please fill exactly 2 fields"; } document.getElementById('ol_result').style.display='block'; }
+function calcMatrix() { var a=parseFloat(document.getElementById('mx_a').value), b=parseFloat(document.getElementById('mx_b').value), c=parseFloat(document.getElementById('mx_c').value), d=parseFloat(document.getElementById('mx_d').value); if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)&&!isNaN(d)){ document.getElementById('mx_val').textContent="Determinant: "+((a*d)-(b*c)).toFixed(2); document.getElementById('mx_result').style.display='block'; } }
+</script>
+<script>
+// ---- calc13.js ----
+var tools13 = [
+  { name: "Image Compressor", id: "imagecompressor", icon: "🗜️" },
+  { name: "Image Resizer", id: "imageresizer", icon: "📐" },
+  { name: "Image Converter", id: "imageconverter", icon: "🔄" },
+  { name: "Image Cropper", id: "imagecropper", icon: "✂️" }
+];
+
+var htmls13 = {
+  imagecompressor: '<div class="input-group"><label for="imgcmp_file">Select Image</label><input type="file" id="imgcmp_file" accept="image/*" /></div><div class="input-group"><label for="imgcmp_q">Quality (10-100)</label><input type="number" id="imgcmp_q" value="70" min="10" max="100" /></div><button class="btn" onclick="imgCompressRun()">Compress & Download</button><div id="imgcmp_result" class="result-box"><p id="imgcmp_val"></p></div>',
+  imageresizer: '<div class="input-group"><label for="imgrsz_file">Select Image</label><input type="file" id="imgrsz_file" accept="image/*" /></div><div class="input-group"><label for="imgrsz_w">Width (px)</label><input type="number" id="imgrsz_w" min="1" /></div><div class="input-group"><label for="imgrsz_h">Height (px)</label><input type="number" id="imgrsz_h" min="1" /></div><div class="input-group"><label><input type="checkbox" id="imgrsz_lock" checked style="width:auto;margin-right:6px;" />Keep aspect ratio</label></div><button class="btn" onclick="imgResizeRun()">Resize & Download</button><div id="imgrsz_result" class="result-box"><p id="imgrsz_val"></p></div>',
+  imageconverter: '<div class="input-group"><label for="imgcnv_file">Select Image</label><input type="file" id="imgcnv_file" accept="image/*" /></div><div class="input-group"><label for="imgcnv_fmt">Convert To</label><select id="imgcnv_fmt"><option value="image/png">PNG</option><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option></select></div><button class="btn" onclick="imgConvertRun()">Convert & Download</button><div id="imgcnv_result" class="result-box"><p id="imgcnv_val"></p></div>',
+  imagecropper: '<div class="input-group"><label for="imgcrp_file">Select Image</label><input type="file" id="imgcrp_file" accept="image/*" /></div><p id="imgcrp_info" style="margin-bottom:10px;"></p><div class="input-group"><label for="imgcrp_x">Start X (px)</label><input type="number" id="imgcrp_x" value="0" min="0" /></div><div class="input-group"><label for="imgcrp_y">Start Y (px)</label><input type="number" id="imgcrp_y" value="0" min="0" /></div><div class="input-group"><label for="imgcrp_w">Crop Width (px)</label><input type="number" id="imgcrp_w" min="1" /></div><div class="input-group"><label for="imgcrp_h">Crop Height (px)</label><input type="number" id="imgcrp_h" min="1" /></div><button class="btn" onclick="imgCropRun()">Crop & Download</button><div id="imgcrp_result" class="result-box"><p id="imgcrp_val"></p></div>'
+};
+
+function imgLoadFile(file, cb) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var img = new Image();
+    img.onload = function () { cb(img); };
+    img.onerror = function () { alert("This file could not be read as an image."); };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function imgDownload(canvas, type, quality, filename, resultId, valId, extra) {
+  canvas.toBlob(function (blob) {
+    if (!blob) { alert("Could not create the image. Try another format."); return; }
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    document.getElementById(valId).textContent = (extra ? extra(blob) : "Done!") ;
+    document.getElementById(resultId).style.display = 'block';
+  }, type, quality);
+}
+
+function imgBaseName(name) { return name.replace(/\.[^.]+$/, ''); }
+function imgKB(n) { return (n / 1024).toFixed(1) + " KB"; }
+
+function imgCompressRun() {
+  var file = document.getElementById('imgcmp_file').files[0];
+  var q = parseInt(document.getElementById('imgcmp_q').value, 10);
+  if (!file) { alert("Please select an image!"); return; }
+  if (isNaN(q) || q < 10 || q > 100) { alert("Quality must be between 10 and 100."); return; }
+  imgLoadFile(file, function (img) {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0);
+    imgDownload(canvas, 'image/jpeg', q / 100, 'compressed_' + imgBaseName(file.name) + '.jpg', 'imgcmp_result', 'imgcmp_val', function (blob) {
+      return "Original: " + imgKB(file.size) + " → Compressed: " + imgKB(blob.size);
+    });
+  });
+}
+
+function imgResizeRun() {
+  var file = document.getElementById('imgrsz_file').files[0];
+  var w = parseInt(document.getElementById('imgrsz_w').value, 10);
+  var h = parseInt(document.getElementById('imgrsz_h').value, 10);
+  var lock = document.getElementById('imgrsz_lock').checked;
+  if (!file) { alert("Please select an image!"); return; }
+  if ((isNaN(w) || w < 1) && (isNaN(h) || h < 1)) { alert("Enter a width or a height."); return; }
+  imgLoadFile(file, function (img) {
+    var ow = img.naturalWidth, oh = img.naturalHeight;
+    var nw = w, nh = h;
+    if (lock) {
+      if (!isNaN(w) && w > 0) { nw = w; nh = Math.round(oh * w / ow); }
+      else { nh = h; nw = Math.round(ow * h / oh); }
+    } else {
+      if (isNaN(nw) || nw < 1) nw = ow;
+      if (isNaN(nh) || nh < 1) nh = oh;
+    }
+    if (nw > 12000 || nh > 12000) { alert("Maximum size is 12000 px."); return; }
+    var canvas = document.createElement('canvas');
+    canvas.width = nw; canvas.height = nh;
+    canvas.getContext('2d').drawImage(img, 0, 0, nw, nh);
+    var type = /png$/i.test(file.type) ? 'image/png' : (/webp$/i.test(file.type) ? 'image/webp' : 'image/jpeg');
+    var ext = type === 'image/png' ? '.png' : (type === 'image/webp' ? '.webp' : '.jpg');
+    imgDownload(canvas, type, 0.92, 'resized_' + imgBaseName(file.name) + ext, 'imgrsz_result', 'imgrsz_val', function () {
+      return "Resized: " + ow + "×" + oh + " → " + nw + "×" + nh + " px";
+    });
+  });
+}
+
+function imgConvertRun() {
+  var file = document.getElementById('imgcnv_file').files[0];
+  var type = document.getElementById('imgcnv_fmt').value;
+  if (!file) { alert("Please select an image!"); return; }
+  imgLoadFile(file, function (img) {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+    var ctx = canvas.getContext('2d');
+    if (type === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    ctx.drawImage(img, 0, 0);
+    var ext = type === 'image/png' ? '.png' : (type === 'image/webp' ? '.webp' : '.jpg');
+    imgDownload(canvas, type, 0.92, imgBaseName(file.name) + ext, 'imgcnv_result', 'imgcnv_val', function (blob) {
+      return "Converted to " + ext.slice(1).toUpperCase() + " (" + imgKB(blob.size) + ")";
+    });
+  });
+}
+
+var imgCropState = { w: 0, h: 0 };
+document.addEventListener('change', function (e) {
+  var t = e.target;
+  if (!t || t.id !== 'imgcrp_file' || !t.files || !t.files[0]) return;
+  imgLoadFile(t.files[0], function (img) {
+    imgCropState.w = img.naturalWidth; imgCropState.h = img.naturalHeight;
+    document.getElementById('imgcrp_info').textContent = "Image size: " + imgCropState.w + " × " + imgCropState.h + " px";
+    document.getElementById('imgcrp_x').value = 0;
+    document.getElementById('imgcrp_y').value = 0;
+    document.getElementById('imgcrp_w').value = imgCropState.w;
+    document.getElementById('imgcrp_h').value = imgCropState.h;
+  });
+});
+
+function imgCropRun() {
+  var file = document.getElementById('imgcrp_file').files[0];
+  if (!file) { alert("Please select an image!"); return; }
+  var x = parseInt(document.getElementById('imgcrp_x').value, 10) || 0;
+  var y = parseInt(document.getElementById('imgcrp_y').value, 10) || 0;
+  var w = parseInt(document.getElementById('imgcrp_w').value, 10);
+  var h = parseInt(document.getElementById('imgcrp_h').value, 10);
+  imgLoadFile(file, function (img) {
+    var ow = img.naturalWidth, oh = img.naturalHeight;
+    if (isNaN(w) || w < 1) w = ow - x;
+    if (isNaN(h) || h < 1) h = oh - y;
+    if (x < 0 || y < 0 || x >= ow || y >= oh) { alert("Start X/Y must be inside the image (" + ow + "×" + oh + ")."); return; }
+    if (x + w > ow) w = ow - x;
+    if (y + h > oh) h = oh - y;
+    var canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    canvas.getContext('2d').drawImage(img, x, y, w, h, 0, 0, w, h);
+    var type = /png$/i.test(file.type) ? 'image/png' : (/webp$/i.test(file.type) ? 'image/webp' : 'image/jpeg');
+    var ext = type === 'image/png' ? '.png' : (type === 'image/webp' ? '.webp' : '.jpg');
+    imgDownload(canvas, type, 0.92, 'cropped_' + imgBaseName(file.name) + ext, 'imgcrp_result', 'imgcrp_val', function () {
+      return "Cropped to " + w + "×" + h + " px";
+    });
+  });
+}
+</script>
+<script>
+// ---- calc14.js ----
+var tools14 = [
+  { name: "Image Rotator", id: "imagerotator", icon: "🔃" },
+  { name: "Image Watermark", id: "imagewatermark", icon: "💧" },
+  { name: "Image Filters", id: "imagefilters", icon: "🎨" },
+  { name: "Transparent Background", id: "transparentbg", icon: "🔲" }
+];
+
+var htmls14 = {
+  imagerotator: '<div class="input-group"><label>Select Image</label><input type="file" id="imgrot_file" accept="image/*" /></div><div class="input-group"><label>Rotation Angle</label><select id="imgrot_angle"><option value="90">90° Right</option><option value="180">180°</option><option value="270">90° Left</option></select></div><button class="btn" onclick="rotateImage()">Rotate & Download</button><div id="imgrot_result" class="result-box"><p id="imgrot_val"></p></div>',
+  imagewatermark: '<div class="input-group"><label>Select Image</label><input type="file" id="imgwm_file" accept="image/*" /></div><div class="input-group"><label>Watermark Text</label><input type="text" id="imgwm_text" value="World Calculators" /></div><button class="btn" onclick="addWatermark()">Add Watermark & Download</button><div id="imgwm_result" class="result-box"><p id="imgwm_val"></p></div>',
+  imagefilters: '<div class="input-group"><label>Select Image</label><input type="file" id="imgflt_file" accept="image/*" /></div><div class="input-group"><label>Filter</label><select id="imgflt_type"><option value="grayscale(100%)">Grayscale (B&W)</option><option value="sepia(100%)">Sepia (Old)</option><option value="blur(5px)">Blur</option><option value="invert(100%)">Invert</option><option value="brightness(1.5)">Brighten</option></select></div><button class="btn" onclick="applyFilter()">Apply & Download</button><div id="imgflt_result" class="result-box"><p id="imgflt_val"></p></div>',
+  transparentbg: '<div class="input-group"><label>Select Image</label><input type="file" id="imgtbg_file" accept="image/*" /></div><div class="input-group"><label>Remove Color (Hex)</label><input type="text" id="imgtbg_color" value="#ffffff" /></div><div class="input-group"><label>Tolerance (0-255)</label><input type="number" id="imgtbg_tol" value="30" /></div><button class="btn" onclick="makeTransparent()">Remove Background & Download</button><div id="imgtbg_result" class="result-box"><p id="imgtbg_val"></p></div>'
+};
+
+function rotateImage() {
+  var file = document.getElementById('imgrot_file').files[0];
+  var angle = parseInt(document.getElementById('imgrot_angle').value);
+  if (!file) { alert("Please select an image!"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      if (angle === 90 || angle === 270) {
+        canvas.width = img.height;
+        canvas.height = img.width;
+      } else {
+        canvas.width = img.width;
+        canvas.height = img.height;
+      }
+      ctx.translate(canvas.width/2, canvas.height/2);
+      ctx.rotate(angle * Math.PI / 180);
+      ctx.drawImage(img, -img.width/2, -img.height/2);
+      canvas.toBlob(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'rotated_' + file.name;
+        a.click();
+        document.getElementById('imgrot_val').textContent = "Rotated " + angle + "°!";
+        document.getElementById('imgrot_result').style.display='block';
+      }, 'image/jpeg', 0.95);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function addWatermark() {
+  var file = document.getElementById('imgwm_file').files[0];
+  var text = document.getElementById('imgwm_text').value;
+  if (!file || !text) { alert("Please select an image and enter text!"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      ctx.font = 'bold ' + Math.max(20, img.width/20) + 'px Arial';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.textAlign = 'center';
+      ctx.strokeText(text, canvas.width/2, canvas.height - 30);
+      ctx.fillText(text, canvas.width/2, canvas.height - 30);
+      canvas.toBlob(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'watermarked_' + file.name;
+        a.click();
+        document.getElementById('imgwm_val').textContent = "Watermark added!";
+        document.getElementById('imgwm_result').style.display='block';
+      }, 'image/jpeg', 0.95);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function applyFilter() {
+  var file = document.getElementById('imgflt_file').files[0];
+  var filter = document.getElementById('imgflt_type').value;
+  if (!file) { alert("Please select an image!"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext('2d');
+      ctx.filter = filter;
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'filtered_' + file.name;
+        a.click();
+        document.getElementById('imgflt_val').textContent = "Filter applied!";
+        document.getElementById('imgflt_result').style.display='block';
+      }, 'image/jpeg', 0.95);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function makeTransparent() {
+  var file = document.getElementById('imgtbg_file').files[0];
+  var colorHex = document.getElementById('imgtbg_color').value;
+  var tol = parseInt(document.getElementById('imgtbg_tol').value) || 30;
+  if (!file) { alert("Please select an image!"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imgData.data;
+      var r0 = parseInt(colorHex.substr(1, 2), 16);
+      var g0 = parseInt(colorHex.substr(3, 2), 16);
+      var b0 = parseInt(colorHex.substr(5, 2), 16);
+      for (var i = 0; i < data.length; i += 4) {
+        var r = data[i], g = data[i+1], b = data[i+2];
+        if (Math.abs(r-r0) < tol && Math.abs(g-g0) < tol && Math.abs(b-b0) < tol) {
+          data[i+3] = 0;
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
+      canvas.toBlob(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'transparent_' + file.name.replace(/\.[^.]+$/, '') + '.png';
+        a.click();
+        document.getElementById('imgtbg_val').textContent = "Background removed! Saved as PNG.";
+        document.getElementById('imgtbg_result').style.display='block';
+      }, 'image/png');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+          }
+</script>
+<script>
+// ---- calc15.js ----
+var tools15 = [
+  { name: "Merge PDF", id: "mergepdf", icon: "📄" },
+  { name: "Split PDF", id: "splitpdf", icon: "✂️" },
+  { name: "JPG to PDF", id: "jpgtopdf", icon: "🖼️" },
+  { name: "PDF to JPG", id: "pdftojpg", icon: "📸" }
+];
+
+var htmls15 = {
+  mergepdf: '<div class="input-group"><label>Select PDF Files (2 or more)</label><input type="file" id="pdfmerge_files" accept="application/pdf" multiple /></div><button class="btn" onclick="mergePDFs()">Merge & Download</button><div id="pdfmerge_result" class="result-box"><p id="pdfmerge_val"></p></div>',
+  splitpdf: '<div class="input-group"><label>Select PDF File</label><input type="file" id="pdfsplit_file" accept="application/pdf" /></div><div class="input-group"><label>Page Number to Extract</label><input type="number" id="pdfsplit_page" value="1" min="1" /></div><button class="btn" onclick="splitPDF()">Extract & Download</button><div id="pdfsplit_result" class="result-box"><p id="pdfsplit_val"></p></div>',
+  jpgtopdf: '<div class="input-group"><label>Select Images (JPG/PNG)</label><input type="file" id="jpgtopdf_files" accept="image/*" multiple /></div><button class="btn" onclick="jpgToPDF()">Convert & Download</button><div id="jpgtopdf_result" class="result-box"><p id="jpgtopdf_val"></p></div>',
+  pdftojpg: '<div class="input-group"><label>Select PDF File</label><input type="file" id="pdftojpg_file" accept="application/pdf" /></div><div class="input-group"><label>Page Number to Convert</label><input type="number" id="pdftojpg_page" value="1" min="1" /></div><button class="btn" onclick="pdfToJPG()">Convert & Download</button><div id="pdftojpg_result" class="result-box"><p id="pdftojpg_val"></p></div>'
+};
+
+// ========== Merge PDF ==========
+async function mergePDFs() {
+  var files = document.getElementById('pdfmerge_files').files;
+  if (files.length < 2) { alert("Please select at least 2 PDF files!"); return; }
+  var { PDFDocument } = PDFLib;
+  var mergedPdf = await PDFDocument.create();
+  for (var i = 0; i < files.length; i++) {
+    var arrayBuffer = await files[i].arrayBuffer();
+    var pdf = await PDFDocument.load(arrayBuffer);
+    var pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+    pages.forEach(page => mergedPdf.addPage(page));
+  }
+  var pdfBytes = await mergedPdf.save();
+  var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'merged.pdf';
+  a.click();
+  document.getElementById('pdfmerge_val').textContent = "Merged " + files.length + " PDFs successfully!";
+  document.getElementById('pdfmerge_result').style.display='block';
+}
+
+// ========== Split PDF ==========
+async function splitPDF() {
+  var file = document.getElementById('pdfsplit_file').files[0];
+  var pageNum = parseInt(document.getElementById('pdfsplit_page').value);
+  if (!file) { alert("Please select a PDF file!"); return; }
+  if (!pageNum || pageNum < 1) { alert("Enter a valid page number!"); return; }
+  var { PDFDocument } = PDFLib;
+  var arrayBuffer = await file.arrayBuffer();
+  var pdf = await PDFDocument.load(arrayBuffer);
+  if (pageNum > pdf.getPageCount()) { alert("Page number exceeds total pages (" + pdf.getPageCount() + ")!"); return; }
+  var newPdf = await PDFDocument.create();
+  var [copiedPage] = await newPdf.copyPages(pdf, [pageNum - 1]);
+  newPdf.addPage(copiedPage);
+  var pdfBytes = await newPdf.save();
+  var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'page_' + pageNum + '.pdf';
+  a.click();
+  document.getElementById('pdfsplit_val').textContent = "Extracted page " + pageNum + "!";
+  document.getElementById('pdfsplit_result').style.display='block';
+}
+
+// ========== JPG to PDF ==========
+async function jpgToPDF() {
+  var files = document.getElementById('jpgtopdf_files').files;
+  if (files.length < 1) { alert("Please select at least 1 image!"); return; }
+  var { PDFDocument } = PDFLib;
+  var pdfDoc = await PDFDocument.create();
+  for (var i = 0; i < files.length; i++) {
+    var arrayBuffer = await files[i].arrayBuffer();
+    var imageBytes = new Uint8Array(arrayBuffer);
+    var image;
+    if (files[i].type === 'image/png') {
+      image = await pdfDoc.embedPng(imageBytes);
+    } else {
+      image = await pdfDoc.embedJpg(imageBytes);
+    }
+    var page = pdfDoc.addPage([image.width, image.height]);
+    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+  }
+  var pdfBytes = await pdfDoc.save();
+  var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'images.pdf';
+  a.click();
+  document.getElementById('jpgtopdf_val').textContent = "Converted " + files.length + " images to PDF!";
+  document.getElementById('jpgtopdf_result').style.display='block';
+}
+
+// ========== PDF to JPG ==========
+async function pdfToJPG() {
+  var file = document.getElementById('pdftojpg_file').files[0];
+  var pageNum = parseInt(document.getElementById('pdftojpg_page').value);
+  if (!file) { alert("Please select a PDF file!"); return; }
+  if (!pageNum || pageNum < 1) { alert("Enter a valid page number!"); return; }
+  
+  var arrayBuffer = await file.arrayBuffer();
+  var loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+  var pdf = await loadingTask.promise;
+  if (pageNum > pdf.numPages) { alert("Page number exceeds total pages (" + pdf.numPages + ")!"); return; }
+  
+  var page = await pdf.getPage(pageNum);
+  var viewport = page.getViewport({ scale: 2 });
+  var canvas = document.createElement('canvas');
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  var ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+  
+  canvas.toBlob(function(blob) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'page_' + pageNum + '.jpg';
+    a.click();
+    document.getElementById('pdftojpg_val').textContent = "Page " + pageNum + " converted to JPG!";
+    document.getElementById('pdftojpg_result').style.display='block';
+  }, 'image/jpeg', 0.95);
+}
+</script>
+<script>
+// ---- calc16.js ----
+var tools16 = [
+  { name: "Word Counter", id: "wordcounter", icon: "📝" },
+  { name: "Character Counter", id: "charcounter", icon: "🔤" },
+  { name: "Case Converter", id: "caseconverter", icon: "Aa" },
+  { name: "Remove Extra Spaces", id: "removespaces", icon: "🧹" },
+  { name: "Remove Duplicate Lines", id: "removeduplicates", icon: "🚫" },
+  { name: "Sort Lines", id: "sortlines", icon: "📊" },
+  { name: "Reverse Text", id: "reversetext", icon: "🔄" },
+  { name: "Text Diff Checker", id: "textdiff", icon: "🔍" },
+  { name: "Lorem Ipsum Generator", id: "loremipsum", icon: "📄" },
+  { name: "Online Notepad", id: "notepad", icon: "🗒️" }
+];
+
+var htmls16 = {
+  wordcounter: '<div class="input-group"><label>Enter your text</label><textarea id="wc_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="countWords()">Count</button><div id="wc_result" class="result-box"><p id="wc_val"></p></div>',
+  charcounter: '<div class="input-group"><label>Enter your text</label><textarea id="cc_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="countChars()">Count</button><div id="cc_result" class="result-box"><p id="cc_val"></p></div>',
+  caseconverter: '<div class="input-group"><label>Enter your text</label><textarea id="case_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><div class="input-group"><label>Convert To</label><select id="case_type"><option value="upper">UPPERCASE</option><option value="lower">lowercase</option><option value="title">Title Case</option><option value="sentence">Sentence case</option><option value="toggle">tOGGLE cASE</option></select></div><button class="btn" onclick="convertCase()">Convert</button><div id="case_result" class="result-box"><p id="case_val" style="word-break:break-all;"></p></div>',
+  removespaces: '<div class="input-group"><label>Enter your text</label><textarea id="rs_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="removeExtraSpaces()">Remove Extra Spaces</button><div id="rs_result" class="result-box"><p id="rs_val" style="word-break:break-all;"></p></div>',
+  removeduplicates: '<div class="input-group"><label>Enter your lines</label><textarea id="rd_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="removeDuplicates()">Remove Duplicates</button><div id="rd_result" class="result-box"><p id="rd_val" style="word-break:break-all;"></p></div>',
+  sortlines: '<div class="input-group"><label>Enter your lines</label><textarea id="sl_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><div class="input-group"><label>Sort Type</label><select id="sl_type"><option value="asc">A-Z (Ascending)</option><option value="desc">Z-A (Descending)</option></select></div><button class="btn" onclick="sortLines()">Sort</button><div id="sl_result" class="result-box"><p id="sl_val" style="word-break:break-all;"></p></div>',
+  reversetext: '<div class="input-group"><label>Enter your text</label><textarea id="rev_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="reverseText()">Reverse</button><div id="rev_result" class="result-box"><p id="rev_val" style="word-break:break-all;"></p></div>',
+  textdiff: '<div class="input-group"><label>Text 1</label><textarea id="diff_text1" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><div class="input-group"><label>Text 2</label><textarea id="diff_text2" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="compareText()">Compare</button><div id="diff_result" class="result-box"><p id="diff_val"></p></div>',
+  loremipsum: '<div class="input-group"><label>Number of Paragraphs</label><input type="number" id="lorem_n" value="3" /></div><button class="btn" onclick="generateLorem()">Generate</button><div id="lorem_result" class="result-box"><p id="lorem_val" style="word-break:break-all;text-align:left;"></p></div>',
+  notepad: '<div class="input-group"><label>Your Notes (auto-saved)</label><textarea id="notepad_text" rows="10" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;" oninput="saveNotepad()"></textarea></div><button class="btn" onclick="clearNotepad()">Clear Notes</button>'
+};
+
+function countWords() { var t=document.getElementById('wc_text').value.trim(); var w=t?t.split(/\s+/).length:0; document.getElementById('wc_val').textContent="Words: "+w; document.getElementById('wc_result').style.display='block'; }
+function countChars() { var t=document.getElementById('cc_text').value; document.getElementById('cc_val').innerHTML="Characters (with spaces): "+t.length+"<br>Characters (without spaces): "+t.replace(/\s/g,'').length; document.getElementById('cc_result').style.display='block'; }
+function convertCase() { var t=document.getElementById('case_text').value, type=document.getElementById('case_type').value; var r=t; if(type==="upper")r=t.toUpperCase(); else if(type==="lower")r=t.toLowerCase(); else if(type==="title")r=t.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase()+txt.substr(1).toLowerCase();}); else if(type==="sentence")r=t.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(c){return c.toUpperCase();}); else if(type==="toggle")r=t.split('').map(function(c){return c===c.toUpperCase()?c.toLowerCase():c.toUpperCase();}).join(''); document.getElementById('case_val').textContent=r; document.getElementById('case_result').style.display='block'; }
+function removeExtraSpaces() { var t=document.getElementById('rs_text').value; document.getElementById('rs_val').textContent=t.replace(/\s+/g,' ').trim(); document.getElementById('rs_result').style.display='block'; }
+function removeDuplicates() { var t=document.getElementById('rd_text').value; var lines=t.split('\n'); var unique=[...new Set(lines)]; document.getElementById('rd_val').textContent=unique.join('\n'); document.getElementById('rd_result').style.display='block'; }
+function sortLines() { var t=document.getElementById('sl_text').value, type=document.getElementById('sl_type').value; var lines=t.split('\n').sort(); if(type==="desc")lines.reverse(); document.getElementById('sl_val').textContent=lines.join('\n'); document.getElementById('sl_result').style.display='block'; }
+function reverseText() { var t=document.getElementById('rev_text').value; document.getElementById('rev_val').textContent=t.split('').reverse().join(''); document.getElementById('rev_result').style.display='block'; }
+function compareText() { var t1=document.getElementById('diff_text1').value, t2=document.getElementById('diff_text2').value; if(t1===t2)document.getElementById('diff_val').textContent="Texts are IDENTICAL ✅"; else document.getElementById('diff_val').textContent="Texts are DIFFERENT ❌"; document.getElementById('diff_result').style.display='block'; }
+function generateLorem() { var n=parseInt(document.getElementById('lorem_n').value)||1; var para="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."; var result=[]; for(var i=0;i<n;i++)result.push(para); document.getElementById('lorem_val').textContent=result.join('\n\n'); document.getElementById('lorem_result').style.display='block'; }
+function saveNotepad() { localStorage.setItem('notepad_text', document.getElementById('notepad_text').value); }
+function clearNotepad() { if(confirm("Clear all notes?")) { document.getElementById('notepad_text').value=''; localStorage.removeItem('notepad_text'); } }
+</script>
+<script>
+// ---- calc17.js ----
+var tools17 = [
+  { name: "JSON Formatter", id: "jsonformat", icon: "📋" },
+  { name: "JSON Validator", id: "jsonvalidate", icon: "✅" },
+  { name: "Base64 Encoder", id: "b64encode", icon: "🔐" },
+  { name: "Base64 Decoder", id: "b64decode", icon: "🔓" },
+  { name: "URL Encoder", id: "urlencode", icon: "🔗" },
+  { name: "URL Decoder", id: "urldecode", icon: "🔗" },
+  { name: "UUID Generator", id: "uuid", icon: "🆔" },
+  { name: "Password Generator", id: "pwgen", icon: "🔑" },
+  { name: "Hash Generator (SHA-256)", id: "hashgen", icon: "#️⃣" },
+  { name: "Regex Tester", id: "regextest", icon: "🔍" }
+];
+
+var htmls17 = {
+  jsonformat: '<div class="input-group"><label>Paste JSON</label><textarea id="jf_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-family:monospace;"></textarea></div><button class="btn" onclick="formatJSON()">Format & Beautify</button><div id="jf_result" class="result-box"><p id="jf_val" style="word-break:break-all;text-align:left;font-family:monospace;"></p></div>',
+  jsonvalidate: '<div class="input-group"><label>Paste JSON</label><textarea id="jv_text" rows="6" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-family:monospace;"></textarea></div><button class="btn" onclick="validateJSON()">Validate</button><div id="jv_result" class="result-box"><p id="jv_val"></p></div>',
+  b64encode: '<div class="input-group"><label>Enter Text</label><textarea id="b64e_text" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="encodeBase64()">Encode</button><div id="b64e_result" class="result-box"><p id="b64e_val" style="word-break:break-all;"></p></div>',
+  b64decode: '<div class="input-group"><label>Enter Base64</label><textarea id="b64d_text" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="decodeBase64()">Decode</button><div id="b64d_result" class="result-box"><p id="b64d_val" style="word-break:break-all;"></p></div>',
+  urlencode: '<div class="input-group"><label>Enter Text/URL</label><textarea id="ue_text" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="encodeURL()">Encode</button><div id="ue_result" class="result-box"><p id="ue_val" style="word-break:break-all;"></p></div>',
+  urldecode: '<div class="input-group"><label>Enter Encoded URL</label><textarea id="ud_text" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="decodeURL()">Decode</button><div id="ud_result" class="result-box"><p id="ud_val" style="word-break:break-all;"></p></div>',
+  uuid: '<button class="btn" onclick="generateUUID()">Generate New UUID</button><div id="uuid_result" class="result-box"><p id="uuid_val" style="word-break:break-all;font-family:monospace;"></p></div>',
+  pwgen: '<div class="input-group"><label>Password Length</label><input type="number" id="pw_len" value="16" /></div><button class="btn" onclick="generatePassword()">Generate Password</button><div id="pw_result" class="result-box"><p id="pw_val" style="word-break:break-all;font-family:monospace;"></p></div>',
+  hashgen: '<div class="input-group"><label>Enter Text</label><textarea id="hash_text" rows="4" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="generateHash()">Generate SHA-256</button><div id="hash_result" class="result-box"><p id="hash_val" style="word-break:break-all;font-family:monospace;"></p></div>',
+  regextest: '<div class="input-group"><label>Regex Pattern</label><input type="text" id="re_pat" placeholder="/abc/i" /></div><div class="input-group"><label>Test String</label><textarea id="re_text" rows="3" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="testRegex()">Test</button><div id="re_result" class="result-box"><p id="re_val"></p></div>'
+};
+
+function formatJSON() { try { var o = JSON.parse(document.getElementById('jf_text').value); document.getElementById('jf_val').textContent = JSON.stringify(o, null, 4); document.getElementById('jf_result').style.display='block'; } catch(e) { document.getElementById('jf_val').textContent = "Error: " + e.message; document.getElementById('jf_result').style.display='block'; } }
+function validateJSON() { try { JSON.parse(document.getElementById('jv_text').value); document.getElementById('jv_val').textContent = "✅ Valid JSON!"; } catch(e) { document.getElementById('jv_val').textContent = "❌ Error: " + e.message; } document.getElementById('jv_result').style.display='block'; }
+function encodeBase64() { try { document.getElementById('b64e_val').textContent = btoa(document.getElementById('b64e_text').value); } catch(e) { document.getElementById('b64e_val').textContent = "Invalid input"; } document.getElementById('b64e_result').style.display='block'; }
+function decodeBase64() { try { document.getElementById('b64d_val').textContent = atob(document.getElementById('b64d_text').value); } catch(e) { document.getElementById('b64d_val').textContent = "Invalid Base64"; } document.getElementById('b64d_result').style.display='block'; }
+function encodeURL() { document.getElementById('ue_val').textContent = encodeURIComponent(document.getElementById('ue_text').value); document.getElementById('ue_result').style.display='block'; }
+function decodeURL() { try { document.getElementById('ud_val').textContent = decodeURIComponent(document.getElementById('ud_text').value); } catch(e) { document.getElementById('ud_val').textContent = "Invalid URL"; } document.getElementById('ud_result').style.display='block'; }
+function generateUUID() { var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); document.getElementById('uuid_val').textContent = uuid; document.getElementById('uuid_result').style.display='block'; }
+function generatePassword() { var l = parseInt(document.getElementById('pw_len').value) || 16; var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"; var pwd = ""; for(var i=0; i<l; i++) pwd += chars.charAt(Math.floor(Math.random() * chars.length)); document.getElementById('pw_val').textContent = pwd; document.getElementById('pw_result').style.display='block'; }
+function generateHash() { var text = document.getElementById('hash_text').value; if(!text) return; crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function(hash) { var hex = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join(''); document.getElementById('hash_val').textContent = hex; document.getElementById('hash_result').style.display='block'; }); }
+function testRegex() { try { var pat = document.getElementById('re_pat').value; var parts = pat.match(/^\/(.*)\/([gimuy]*)$/); var regex = parts ? new RegExp(parts[1], parts[2]) : new RegExp(pat); var text = document.getElementById('re_text').value; var matches = text.match(regex); document.getElementById('re_val').textContent = matches ? "✅ Matches: " + matches.join(', ') : "❌ No match"; } catch(e) { document.getElementById('re_val').textContent = "Error: " + e.message; } document.getElementById('re_result').style.display='block'; }
+</script>
+<script>
+// ---- calc18.js ----
+var tools18 = [
+  { name: "QR Code Generator", id: "qrcodegen", icon: "🔲" },
+  { name: "QR Code Scanner", id: "qrcodescan", icon: "📷" }
+];
+
+var htmls18 = {
+  qrcodegen: '<div class="input-group"><label>Enter Text/URL</label><textarea id="qr_text" rows="3" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;"></textarea></div><button class="btn" onclick="generateQR()">Generate QR Code</button><div id="qr_result" class="result-box"><div id="qr_canvas"></div><p id="qr_val"></p></div>',
+  qrcodescan: '<div class="input-group"><label>Upload QR Code Image</label><input type="file" id="qrscan_file" accept="image/*" /></div><button class="btn" onclick="scanQR()">Scan QR Code</button><div id="qrscan_result" class="result-box"><p id="qrscan_val"></p></div>'
+};
+
+function generateQR() {
+  var text = document.getElementById('qr_text').value;
+  if (!text) { alert("Please enter text or URL!"); return; }
+  var container = document.getElementById('qr_canvas');
+  container.innerHTML = '';
+  if (typeof QRCode !== 'undefined') {
+    new QRCode(container, {
+      text: text,
+      width: 200,
+      height: 200
+    });
+    document.getElementById('qr_val').textContent = "QR Code generated!";
+  } else {
+    document.getElementById('qr_val').textContent = "QR Library loading... Please wait and try again.";
+  }
+  document.getElementById('qr_result').style.display='block';
+}
+
+function scanQR() {
+  var file = document.getElementById('qrscan_file').files[0];
+  if (!file) { alert("Please select a QR code image!"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      if (typeof jsQR !== 'undefined') {
+        var code = jsQR(imageData.data, imageData.width, imageData.height);
+        if (code) {
+          document.getElementById('qrscan_val').textContent = "✅ QR Code: " + code.data;
+        } else {
+          document.getElementById('qrscan_val').textContent = "❌ No QR code detected in image.";
+        }
+      } else {
+        document.getElementById('qrscan_val').textContent = "QR Scanner library loading... Please wait.";
+      }
+      document.getElementById('qrscan_result').style.display='block';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+</script>
+
+  <script>
+  (function () {
+    'use strict';
+    function $(id) { return document.getElementById(id); }
+    function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+    // ==========================================
+    // TOOL DATA AGGREGATION (duplicate ids: later file wins)
+    // ==========================================
+    var allTools = [];
+    var allHtmls = {};
+    for (var n = 1; n <= 18; n++) {
+      var tl = window['tools' + n], hl = window['htmls' + n];
+      if (!tl) continue;
+      for (var k = 0; k < tl.length; k++) {
+        var pos = -1;
+        for (var j = 0; j < allTools.length; j++) { if (allTools[j].id === tl[k].id) { pos = j; break; } }
+        if (pos > -1) allTools[pos] = tl[k]; else allTools.push(tl[k]);
+      }
+      if (hl) { for (var key in hl) { allHtmls[key] = hl[key]; } }
+    }
+    var toolMap = {};
+    allTools.forEach(function (t) { toolMap[t.id] = t; });
+
+    // ==========================================
+    // CATEGORIES
+    // ==========================================
+    var categories = {
+      "Financial": ["emi", "interest", "gst", "discount", "tip", "compound", "sip", "tax", "salary", "retire", "mortgage", "autoloan", "payment", "amortization", "investment", "inflation", "salestax", "vat", "roi", "margin"],
+      "Health & Fitness": ["bmi", "age", "bodyfat", "bmr", "caldef", "water", "weightloss", "pregnancy", "bmikids", "bodyfat_navy", "macro", "pace", "carbs", "healthyweight", "onerepmax", "protein", "tdee", "conception", "due_date"],
+      "Math": ["percentage", "average", "gpa", "time", "random", "scientific", "fraction", "area", "volume", "quadratic", "pythagoras", "circumference", "stdev", "probability", "permcomb", "zscore", "ratio", "circle", "root", "gcf", "lcm", "rounding", "primefactor", "scinotation", "slope", "matrix"],
+      "Everyday Life": ["date-diff", "timediff", "fuel", "electricity", "mileage", "currency", "roofing", "mulch", "windchill", "dewpoint", "timeduration", "dayofweek", "love", "gasmileage", "btu", "timecard", "shoesize", "mass", "speed", "molweight", "golf", "tiresize", "gravel", "heatindex", "daycounter", "hours", "grade", "dice", "height", "sqft", "timezone", "gdp", "convcalc", "password"],
+      "Physics & Engineering": ["ohm", "speeddist", "force", "work", "density", "molar", "concrete", "paint", "tile", "horsepower", "resistor", "bandwidth", "voltagedrop", "ohmslaw", "stair"],
+      "Image Tools": ["imagecompressor", "imageresizer", "imageconverter", "imagecropper", "imagerotator", "imagewatermark", "imagefilters", "transparentbg"],
+      "PDF Tools": ["mergepdf", "splitpdf", "jpgtopdf", "pdftojpg"],
+      "Text Tools": ["wordcounter", "charcounter", "caseconverter", "removespaces", "removeduplicates", "sortlines", "reversetext", "textdiff", "loremipsum", "notepad"],
+      "Developer Tools": ["jsonformat", "jsonvalidate", "b64encode", "b64decode", "urlencode", "urldecode", "uuid", "pwgen", "hashgen", "regextest", "base64", "roman", "binary", "hex"],
+      "QR & Barcode": ["qrcodegen", "qrcodescan"],
+      "Basic Tools": ["simplecalc"]
+    };
+
+    var PAGES = {
+      "about": { title: "About Us", desc: "Learn about World Calculators, a free collection of fast and accurate online calculators and tools." },
+      "how-it-works": { title: "How It Works", desc: "See how World Calculators works: search a tool, enter your numbers and get instant results in your browser." },
+      "why-us": { title: "Why Choose Us", desc: "Why choose World Calculators: free forever, privacy first, and available in 130+ languages." },
+      "terms": { title: "Terms & Conditions", desc: "Terms and conditions for using the World Calculators website and online tools." },
+      "privacy": { title: "Privacy Policy", desc: "Privacy policy of World Calculators. All calculations and file conversions happen in your browser." },
+      "sitemap": { title: "Sitemap", desc: "Sitemap of World Calculators: every calculator and tool, organised by category." },
+      "support": { title: "Customer Support", desc: "Contact World Calculators customer support for any question or help." },
+      "report": { title: "Report an Issue", desc: "Found a bug on World Calculators? Report an issue and we will fix it." }
+    };
+
+    var HOME_TITLE = "World Calculators - Free Online Calculators & Tools";
+    var HOME_DESC = "World Calculators: free online calculators and tools for finance, health, math, everyday life, images, PDF, text and developers. Fast, private and works in your browser.";
+
+    // ==========================================
+    // BUILD HOME GRID + SITEMAP LISTS (real <a href> links)
+    // ==========================================
+    function toolHref(id) { return '?tool=' + encodeURIComponent(id); }
+
+    function buildHome() {
+      var catList = $('category-list');
+      for (var catName in categories) {
+        var items = categories[catName].filter(function (id) { return toolMap[id]; });
+        if (!items.length) continue;
+        var h2 = document.createElement('h2');
+        h2.className = 'cat-title';
+        h2.textContent = catName;
+        catList.appendChild(h2);
+        var grid = document.createElement('div');
+        grid.className = 'tool-grid';
+        items.forEach(function (id) {
+          var t = toolMap[id];
+          var a = document.createElement('a');
+          a.className = 'tool-card';
+          a.href = toolHref(id);
+          a.setAttribute('data-nav', '');
+          var ic = document.createElement('span'); ic.className = 'icon'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = t.icon;
+          var nm = document.createElement('span'); nm.className = 'name'; nm.textContent = t.name;
+          a.appendChild(ic); a.appendChild(nm);
+          grid.appendChild(a);
+        });
+        catList.appendChild(grid);
+      }
+      // sitemap page: all tools by category
+      var sm = $('sitemap-tools');
+      for (var c in categories) {
+        var ids = categories[c].filter(function (id) { return toolMap[id]; });
+        if (!ids.length) continue;
+        var h = document.createElement('h2'); h.textContent = c; sm.appendChild(h);
+        var ul = document.createElement('ul');
+        ids.forEach(function (id) {
+          var li = document.createElement('li');
+          var a = document.createElement('a'); a.href = toolHref(id); a.setAttribute('data-nav', ''); a.textContent = toolMap[id].name;
+          li.appendChild(a); ul.appendChild(li);
+        });
+        sm.appendChild(ul);
+      }
+    }
+
+    // ==========================================
+    // META (title / description / canonical) PER VIEW
+    // ==========================================
+    function setMeta(title, desc, search) {
+      document.title = title;
+      var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', desc);
+      var ot = document.querySelector('meta[property="og:title"]'); if (ot) ot.setAttribute('content', title);
+      var od = document.querySelector('meta[property="og:description"]'); if (od) od.setAttribute('content', desc);
+      if (/^https?:$/.test(location.protocol)) {
+        var cn = document.querySelector('link[rel="canonical"]');
+        if (!cn) { cn = document.createElement('link'); cn.setAttribute('rel', 'canonical'); document.head.appendChild(cn); }
+        cn.setAttribute('href', location.origin + location.pathname + (search || ''));
+      }
+    }
+
+    // ==========================================
+    // LAZY LOADING OF HEAVY LIBRARIES
+    // ==========================================
+    var LIBS = {
+      pdflib: { src: 'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js', ok: function () { return window.PDFLib; } },
+      pdfjs: { src: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', ok: function () { return window.pdfjsLib; },
+               after: function () { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } },
+      qrcode: { src: 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js', ok: function () { return window.QRCode; } },
+      jsqr: { src: 'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js', ok: function () { return window.jsQR; } }
+    };
+    var TOOL_LIBS = { mergepdf: ['pdflib'], splitpdf: ['pdflib'], jpgtopdf: ['pdflib'], pdftojpg: ['pdfjs'], qrcodegen: ['qrcode'], qrcodescan: ['jsqr'] };
+    var libPromises = {};
+    function loadLib(name) {
+      var L = LIBS[name];
+      if (L.ok()) return Promise.resolve();
+      if (libPromises[name]) return libPromises[name];
+      libPromises[name] = new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = L.src; s.async = true;
+        s.onload = function () { if (L.after) L.after(); resolve(); };
+        s.onerror = function () { delete libPromises[name]; s.remove(); reject(new Error('load failed')); };
+        document.head.appendChild(s);
+      });
+      return libPromises[name];
+    }
+
+    // ==========================================
+    // ROUTER (real URLs: /?tool=bmi  /?page=about, old #bmi links still work)
+    // ==========================================
+    var renderToken = 0;
+    var lastSearch = null;
+    var userNav = false;
+
+    function currentRoute() {
+      var q = new URLSearchParams(location.search);
+      var id = q.get('tool');
+      if (id) return { type: 'tool', id: id };
+      var pg = q.get('page');
+      if (pg) return { type: 'page', id: pg };
+      var h = '';
+      try { h = decodeURIComponent(location.hash.replace(/^#/, '')); } catch (e) {}
+      if (h && toolMap[h]) return { type: 'tool', id: h, legacy: true };
+      if (h && PAGES[h]) return { type: 'page', id: h, legacy: true };
+      return { type: 'home' };
+    }
+
+    function fixLabels(root) {
+      root.querySelectorAll('.input-group').forEach(function (g) {
+        var lab = g.querySelector('label');
+        if (!lab || lab.getAttribute('for')) return;
+        var ctl = g.querySelector('input, select, textarea');
+        if (ctl && ctl.id) lab.setAttribute('for', ctl.id);
+      });
+    }
+
+    function afterToolRender(id) {
+      var box = $('display-content');
+      fixLabels(box);
+      if (id === 'notepad') {
+        var el = $('notepad_text'), saved = lsGet('notepad_text');
+        if (el && saved) el.value = saved;
+      }
+    }
+
+    function showTool(id, token) {
+      var t = toolMap[id];
+      $('display-title').textContent = t.name;
+      $('tool-display-area').style.display = 'block';
+      setMeta(t.name + " - Free Online Calculator | World Calculators",
+              "Use the free online " + t.name + ". Fast, accurate and private - works in your browser with no sign-up.",
+              toolHref(id));
+      var box = $('display-content');
+      var libs = TOOL_LIBS[id];
+      var pending = libs ? libs.filter(function (l) { return !LIBS[l].ok(); }) : [];
+      if (!pending.length) {
+        box.innerHTML = allHtmls[id];
+        afterToolRender(id);
+        return;
+      }
+      box.textContent = 'Loading tool...';
+      Promise.all(pending.map(loadLib)).then(function () {
+        if (token !== renderToken) return;
+        box.innerHTML = allHtmls[id];
+        afterToolRender(id);
+      }).catch(function () {
+        if (token !== renderToken) return;
+        box.innerHTML = '';
+        var p = document.createElement('p');
+        p.textContent = 'This tool needs an extra library that could not be loaded. Please check your internet connection and ';
+        var b = document.createElement('a');
+        b.href = toolHref(id); b.textContent = 'try again'; b.className = 'back-link';
+        b.onclick = function (e) { e.preventDefault(); render(); };
+        p.appendChild(b); p.appendChild(document.createTextNode('.'));
+        box.appendChild(p);
+      });
+    }
+
+    function hideAllViews() {
+      $('home-hero').style.display = 'none';
+      $('grid-section').style.display = 'none';
+      $('tool-display-area').style.display = 'none';
+      document.querySelectorAll('.page-box').forEach(function (b) { b.style.display = 'none'; });
+    }
+
+    function render() {
+      var token = ++renderToken;
+      var r = currentRoute();
+      hideAllViews();
+      closeMenu();
+      hideSearch();
+      var headingEl = null;
+      if (r.type === 'tool' && toolMap[r.id]) {
+        if (r.legacy) history.replaceState(null, '', location.pathname + toolHref(r.id));
+        showTool(r.id, token);
+        headingEl = $('display-title');
+      } else if (r.type === 'page' && PAGES[r.id]) {
+        if (r.legacy) history.replaceState(null, '', location.pathname + '?page=' + r.id);
+        var box = $('page-' + r.id);
+        box.style.display = 'block';
+        setMeta(PAGES[r.id].title + " | World Calculators", PAGES[r.id].desc, '?page=' + r.id);
+        headingEl = box.querySelector('h1');
+      } else {
+        if (r.type !== 'home') history.replaceState(null, '', location.pathname);
+        $('home-hero').style.display = 'block';
+        $('grid-section').style.display = 'block';
+        setMeta(HOME_TITLE, HOME_DESC, '');
+        headingEl = $('home-title');
+      }
+      lastSearch = location.search;
+      window.scrollTo(0, 0);
+      if (userNav && headingEl) { try { headingEl.setAttribute('tabindex', '-1'); headingEl.focus({ preventScroll: true }); } catch (e) {} }
+    }
+
+    function navigate(href) {
+      userNav = true;
+      history.pushState(null, '', href);
+      render();
+    }
+
+    // compatibility wrappers (older code / tool pages may call these)
+    window.openTool = function (id) { navigate(toolHref(id)); };
+    window.showPage = function (id) { navigate('?page=' + id); };
+    window.showHome = function () { navigate(location.pathname); };
+
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest ? e.target.closest('a[data-nav]') : null;
+      if (!a) return;
+      e.preventDefault();
+      var href = a.getAttribute('href');
+      if (href === '/') href = location.pathname;
+      navigate(href);
+    });
+    window.addEventListener('popstate', function () {
+      var r = currentRoute();
+      if (!r.legacy && location.search === lastSearch) return; // only #fragment changed (e.g. skip link)
+      userNav = true; render();
+    });
+
+    // ==========================================
+    // MENU
+    // ==========================================
+    function closeMenu() {
+      $('sidebar').classList.remove('open');
+      $('sidebar-overlay').classList.remove('open');
+      $('menuBtn').setAttribute('aria-expanded', 'false');
+    }
+    window.toggleMenu = function () {
+      var open = !$('sidebar').classList.contains('open');
+      $('sidebar').classList.toggle('open', open);
+      $('sidebar-overlay').classList.toggle('open', open);
+      $('menuBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { var first = $('sidebar').querySelector('a'); if (first) setTimeout(function () { first.focus(); }, 50); }
+      else { $('menuBtn').focus(); }
+    };
+    $('menuBtn').addEventListener('click', window.toggleMenu);
+    $('menuClose').addEventListener('click', window.toggleMenu);
+    $('sidebar-overlay').addEventListener('click', window.toggleMenu);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if ($('sidebar').classList.contains('open')) window.toggleMenu();
+        hideSearch();
+      }
+    });
+
+    // ==========================================
+    // SEARCH (header + hero)
+    // ==========================================
+    function hideSearch() {
+      ['searchResults', 'heroSearchResults'].forEach(function (id) { var el = $(id); if (el) { el.style.display = 'none'; el.innerHTML = ''; } });
+    }
+    function runSearch(inputId, listId) {
+      var q = $(inputId).value.trim().toLowerCase();
+      var ul = $(listId);
+      ul.innerHTML = '';
+      if (!q) { ul.style.display = 'none'; return; }
+      var matches = allTools.filter(function (t) { return t.name.toLowerCase().indexOf(q) !== -1 || t.id.toLowerCase().indexOf(q) !== -1; });
+      if (!matches.length) {
+        var li = document.createElement('li'); var sp = document.createElement('span'); sp.textContent = 'No tools found'; li.appendChild(sp); ul.appendChild(li);
+      } else {
+        matches.slice(0, 10).forEach(function (t) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = toolHref(t.id); a.setAttribute('data-nav', ''); a.textContent = t.icon + ' ' + t.name;
+          li.appendChild(a); ul.appendChild(li);
+        });
+      }
+      ul.style.display = 'block';
+    }
+    window.searchTools = function () { runSearch('searchInput', 'searchResults'); };
+    window.searchHeroTools = function () { runSearch('toolSearchHero', 'heroSearchResults'); };
+    $('searchInput').addEventListener('input', window.searchTools);
+    $('toolSearchHero').addEventListener('input', window.searchHeroTools);
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest || !e.target.closest('.search-bar, #toolSearchHero, #heroSearchResults')) hideSearch();
+    });
+
+    // ==========================================
+    // LANGUAGE LOGIC (Google Translate, loaded only when needed)
+    // ==========================================
+    var languages = {
+      "af": "Afrikaans", "sq": "Albanian", "am": "Amharic", "ar": "Arabic", "hy": "Armenian", "az": "Azerbaijani",
+      "eu": "Basque", "be": "Belarusian", "bn": "Bengali", "bs": "Bosnian", "bg": "Bulgarian", "ca": "Catalan",
+      "ceb": "Cebuano", "ny": "Chichewa", "zh-CN": "Chinese (Simplified)", "zh-TW": "Chinese (Traditional)",
+      "co": "Corsican", "hr": "Croatian", "cs": "Czech", "da": "Danish", "nl": "Dutch", "en": "English",
+      "eo": "Esperanto", "et": "Estonian", "tl": "Filipino", "fi": "Finnish", "fr": "French", "fy": "Frisian",
+      "gl": "Galician", "ka": "Georgian", "de": "German", "el": "Greek", "gu": "Gujarati", "ht": "Haitian Creole",
+      "ha": "Hausa", "haw": "Hawaiian", "iw": "Hebrew", "hi": "Hindi", "hmn": "Hmong", "hu": "Hungarian",
+      "is": "Icelandic", "ig": "Igbo", "id": "Indonesian", "ga": "Irish", "it": "Italian", "ja": "Japanese",
+      "jw": "Javanese", "kn": "Kannada", "kk": "Kazakh", "km": "Khmer", "ko": "Korean", "ku": "Kurdish",
+      "ky": "Kyrgyz", "lo": "Lao", "la": "Latin", "lv": "Latvian", "lt": "Lithuanian", "lb": "Luxembourgish",
+      "mk": "Macedonian", "mg": "Malagasy", "ms": "Malay", "ml": "Malayalam", "mt": "Maltese", "mi": "Maori",
+      "mr": "Marathi", "mn": "Mongolian", "my": "Myanmar (Burmese)", "ne": "Nepali", "no": "Norwegian",
+      "ps": "Pashto", "fa": "Persian", "pl": "Polish", "pt": "Portuguese", "pa": "Punjabi", "ro": "Romanian",
+      "ru": "Russian", "sm": "Samoan", "gd": "Scots Gaelic", "sr": "Serbian", "st": "Sesotho", "sn": "Shona",
+      "sd": "Sindhi", "si": "Sinhala", "sk": "Slovak", "sl": "Slovenian", "so": "Somali", "es": "Spanish",
+      "su": "Sundanese", "sw": "Swahili", "sv": "Swedish", "tg": "Tajik", "ta": "Tamil", "te": "Telugu",
+      "th": "Thai", "tr": "Turkish", "uk": "Ukrainian", "ur": "Urdu", "uz": "Uzbek", "vi": "Vietnamese",
+      "cy": "Welsh", "xh": "Xhosa", "yi": "Yiddish", "yo": "Yoruba", "zu": "Zulu"
+    };
+    var fullLangList = [];
+    function fillLanguages(filter) {
+      var sel = $('languageSelect');
+      var keep = sel.value;
+      sel.innerHTML = '';
+      var first = document.createElement('option'); first.value = ''; first.textContent = 'Select Language...'; sel.appendChild(first);
+      fullLangList.forEach(function (lang) {
+        if (!filter || lang.name.toLowerCase().indexOf(filter) !== -1) {
+          var o = document.createElement('option'); o.value = lang.code; o.textContent = lang.name; sel.appendChild(o);
+        }
+      });
+      if (keep) sel.value = keep;
+    }
+    (function loadLanguages() {
+      for (var code in languages) fullLangList.push({ code: code, name: languages[code] });
+      fullLangList.sort(function (a, b) { return a.name.localeCompare(b.name); });
+      fillLanguages('');
+    })();
+    window.filterLanguages = function () { fillLanguages($('langSearchInput').value.toLowerCase().trim()); };
+    $('langSearchInput').addEventListener('input', window.filterLanguages);
+
+    var translatePromise = null;
+    function loadTranslate() {
+      if (translatePromise) return translatePromise;
+      translatePromise = new Promise(function (resolve, reject) {
+        window.googleTranslateElementInit = function () {
+          new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+          resolve();
+        };
+        var s = document.createElement('script');
+        s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        s.async = true;
+        s.onerror = function () { translatePromise = null; reject(new Error('translate load failed')); };
+        document.head.appendChild(s);
+      });
+      return translatePromise;
+    }
+    function applyLanguage(lang, silent) {
+      loadTranslate().then(function () {
+        var tries = 0;
+        (function wait() {
+          var sel = document.querySelector('.goog-te-combo');
+          if (sel) { sel.value = lang; sel.dispatchEvent(new Event('change')); }
+          else if (tries++ < 40) setTimeout(wait, 250);
+        })();
+      }).catch(function () {
+        if (!silent) alert('The translation service could not be loaded. Please check your internet connection.');
+      });
+    }
+    window.changeLanguage = function () {
+      var lang = $('languageSelect').value;
+      if (!lang) return;
+      lsSet('selectedLang', lang);
+      applyLanguage(lang, false);
+    };
+    $('languageSelect').addEventListener('change', window.changeLanguage);
+
+    // ==========================================
+    // CALCULATOR WIDGET (Basic & Scientific) - safe parser, no eval()
+    // ==========================================
+    var calc = { str: '0', fresh: false, last: 0 };
+    var FUNC_TOKENS = ['sin(', 'cos(', 'tan(', 'log(', 'ln(', '√('];
+    var errTimer = null;
+
+    function calcShow() { $('calc-display').textContent = calc.str; }
+    function showCalcError(msg) {
+      var err = $('calc-error'); err.textContent = msg; err.style.display = 'block';
+      clearTimeout(errTimer); errTimer = setTimeout(function () { err.style.display = 'none'; }, 3000);
+    }
+    function hideCalcError() { $('calc-error').style.display = 'none'; }
+    function isOpChar(c) { return c === '+' || c === '-' || c === '−' || c === '×' || c === '÷'; }
+    function isDigitChar(c) { return c >= '0' && c <= '9'; }
+
+    function calcFmt(n) {
+      if (n === 0) return '0';
+      var a = Math.abs(n);
+      var s;
+      if (a >= 1e15 || a < 1e-6) {
+        var m = /^(-?[\d.]+)e([+-]\d+)$/.exec(n.toExponential(11));
+        s = parseFloat(m[1]) + '×10^' + parseInt(m[2], 10);
+      } else if (Number.isInteger(n)) {
+        s = String(n);
+      } else {
+        s = String(parseFloat(n.toPrecision(15)));
+      }
+      return s.replace(/^-/, '−');
+    }
+
+    function calcEval(str) {
+      var src = str.replace(/−/g, '-').replace(/×/g, '*').replace(/÷/g, '/');
+      var tokens = [], i = 0, m;
+      while (i < src.length) {
+        var rest = src.slice(i);
+        if ((m = /^(\d+\.?\d*|\.\d+)/.exec(rest))) { tokens.push({ t: 'num', v: parseFloat(m[1]) }); i += m[1].length; continue; }
+        if ((m = /^(sin|cos|tan|log|ln|√)\(/.exec(rest))) { tokens.push({ t: 'fn', v: m[1] }); i += m[0].length; continue; }
+        var c = src[i];
+        if (c === 'π' || c === 'e') { tokens.push({ t: 'const', v: c }); i++; continue; }
+        if (c === '(') { tokens.push({ t: '(' }); i++; continue; }
+        if (c === ')') { tokens.push({ t: ')' }); i++; continue; }
+        if ('+-*/^'.indexOf(c) > -1) { tokens.push({ t: 'op', v: c }); i++; continue; }
+        if (c === '!' || c === '%' || c === '²') { tokens.push({ t: 'post', v: c }); i++; continue; }
+        throw new Error('bad char');
+      }
+      var p = 0, lastMulti = false;
+      function peek() { return tokens[p]; }
+      function fact(v) {
+        if (v < 0 || v !== Math.floor(v) || v > 170) throw new Error('fact');
+        var r = 1; for (var k = 2; k <= v; k++) r *= k; return r;
+      }
+      function snap(x) { return Math.round(x * 1e12) / 1e12; }
+      function applyFn(name, a) {
+        var rad = a * Math.PI / 180;
+        switch (name) {
+          case 'sin': return snap(Math.sin(rad));
+          case 'cos': return snap(Math.cos(rad));
+          case 'tan': if (Math.abs(snap(Math.cos(rad))) === 0) throw new Error('tan'); return snap(Math.tan(rad));
+          case 'log': if (a <= 0) throw new Error('log'); return Math.log10(a);
+          case 'ln': if (a <= 0) throw new Error('ln'); return Math.log(a);
+          case '√': if (a < 0) throw new Error('sqrt'); return Math.sqrt(a);
+        }
+        throw new Error('fn');
+      }
+      function primary() {
+        var t = tokens[p++];
+        if (!t) throw new Error('end');
+        if (t.t === 'num') return t.v;
+        if (t.t === 'const') return t.v === 'π' ? Math.PI : Math.E;
+        if (t.t === '(') { var v = expr(); if (peek() && peek().t === ')') p++; return v; }
+        if (t.t === 'fn') { var a = expr(); if (peek() && peek().t === ')') p++; return applyFn(t.v, a); }
+        throw new Error('unexpected');
+      }
+      function postfix() {
+        var v = primary();
+        for (;;) {
+          var t = peek();
+          if (t && t.t === 'post') {
+            p++;
+            if (t.v === '!') v = fact(v); else if (t.v === '%') v = v / 100; else v = v * v;
+          } else break;
+        }
+        return v;
+      }
+      function power() {
+        var b = postfix(), t = peek();
+        if (t && t.t === 'op' && t.v === '^') { p++; var e = unary(); return Math.pow(b, e); }
+        return b;
+      }
+      function unary() {
+        var t = peek();
+        if (t && t.t === 'op' && (t.v === '-' || t.v === '+')) { p++; var v = unary(); return t.v === '-' ? -v : v; }
+        return power();
+      }
+      function term() {
+        var v = unary(), multi = false;
+        for (;;) {
+          var t = peek();
+          if (t && t.t === 'op' && (t.v === '*' || t.v === '/')) {
+            p++; var r = unary(); multi = true;
+            if (t.v === '*') v *= r; else { if (r === 0) throw new Error('div0'); v /= r; }
+          } else if (t && (t.t === 'num' || t.t === 'fn' || t.t === 'const' || t.t === '(')) {
+            v *= unary(); multi = true;
+          } else break;
+        }
+        lastMulti = multi;
+        return v;
+      }
+      function expr() {
+        var v = term();
+        for (;;) {
+          var t = peek();
+          if (t && t.t === 'op' && (t.v === '+' || t.v === '-')) {
+            p++;
+            var r = term();
+            var prev = tokens[p - 1];
+            if (!lastMulti && prev && prev.t === 'post' && prev.v === '%') r = v * r; // 200+10% = 220
+            v = t.v === '+' ? v + r : v - r;
+          } else break;
+        }
+        return v;
+      }
+      var result = expr();
+      if (p < tokens.length) throw new Error('leftover');
+      if (!isFinite(result)) throw new Error('range');
+      return result;
+    }
+
+    function calcPut(tok, kind) {
+      hideCalcError();
+      var s = calc.str;
+      if (calc.fresh) {
+        if (kind === 'num' || kind === 'fn' || kind === 'const' || kind === 'open') s = '';
+        calc.fresh = false;
+      }
+      var last = s.slice(-1);
+      if (kind === 'num') {
+        if (tok === '.') {
+          var seg = /[\d.]*$/.exec(s)[0];
+          if (seg.indexOf('.') > -1) { calc.str = s; calcShow(); return; }
+          if (s === '') s = '0';
+        } else if (/(^|[^\d.])0$/.test(s)) {
+          s = s.slice(0, -1);
+        }
+      } else if (kind === 'fn' || kind === 'const' || kind === 'open') {
+        if (s === '0') s = '';
+      } else if (kind === 'op') {
+        if (s === '') s = '0';
+        if (isOpChar(s.slice(-1)) && s.length > 1) s = s.slice(0, -1);
+      } else if (kind === 'post' || kind === 'pow') {
+        if (!(isDigitChar(last) || last === ')' || last === 'π' || last === 'e' || last === '%' || last === '!' || last === '²' )) { calc.str = s; calcShow(); return; }
+      } else if (kind === 'close') {
+        var o = (s.match(/\(/g) || []).length, c = (s.match(/\)/g) || []).length;
+        if (o <= c || isOpChar(last) || last === '(') { calc.str = s; calcShow(); return; }
+      }
+      calc.str = s + tok;
+      calcShow();
+    }
+
+    window.calcInput = function (val) {
+      if (val === 'ans') { calcPut('(' + calcFmt(calc.last) + ')', 'const'); return; }
+      if (val === '*') return calcPut('×', 'op');
+      if (val === '/') return calcPut('÷', 'op');
+      if (val === '+') return calcPut('+', 'op');
+      if (val === '-') return calcPut('−', 'op');
+      if (val === '%') return calcPut('%', 'post');
+      return calcPut(val, 'num');
+    };
+    window.calcSciInput = function (val) {
+      switch (val) {
+        case 'π': return calcPut('π', 'const');
+        case 'e': return calcPut('e', 'const');
+        case '^': return calcPut('^', 'pow');
+        case '^2': return calcPut('²', 'post');
+        case '!': return calcPut('!', 'post');
+        case '%': return calcPut('%', 'post');
+        case '(': return calcPut('(', 'open');
+        case ')': return calcPut(')', 'close');
+        case '1/':
+          var l = (calc.fresh || calc.str === '0') ? '' : calc.str.slice(-1);
+          var needMul = l && (isDigitChar(l) || l === '.' || l === ')' || l === 'π' || l === 'e');
+          return calcPut((needMul ? '×' : '') + '1÷(', 'fn');
+        default: return calcPut(val, 'fn'); // sin( cos( tan( log( ln( √(
+      }
+    };
+    window.calcClear = function () { calc.str = '0'; calc.fresh = false; calcShow(); hideCalcError(); };
+    window.calcBack = function () {
+      var s = calc.str, cut = 1;
+      for (var i = 0; i < FUNC_TOKENS.length; i++) { if (s.length >= FUNC_TOKENS[i].length && s.slice(-FUNC_TOKENS[i].length) === FUNC_TOKENS[i]) { cut = FUNC_TOKENS[i].length; break; } }
+      s = s.slice(0, -cut);
+      calc.str = s === '' ? '0' : s; calc.fresh = false; calcShow(); hideCalcError();
+    };
+    window.calcCalculate = function () {
+      try {
+        var v = calcEval(calc.str);
+        calc.last = v; calc.str = calcFmt(v); calc.fresh = true; calcShow(); hideCalcError();
+      } catch (e) {
+        showCalcError('Invalid Input! Please check your calculation.');
+        calc.str = '0'; calc.fresh = false; calcShow();
+      }
+    };
+    window.switchCalcTab = function (type) {
+      var sci = type === 'scientific';
+      $('tab-basic').classList.toggle('active', !sci);
+      $('tab-scientific').classList.toggle('active', sci);
+      $('tab-basic').setAttribute('aria-pressed', sci ? 'false' : 'true');
+      $('tab-scientific').setAttribute('aria-pressed', sci ? 'true' : 'false');
+      $('pad-scientific').classList.toggle('active', sci);
+    };
+    $('tab-basic').addEventListener('click', function () { window.switchCalcTab('basic'); });
+    $('tab-scientific').addEventListener('click', function () { window.switchCalcTab('scientific'); });
+
+    // keyboard support (only when the home calculator is visible and nothing else is focused)
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if ($('home-hero').style.display === 'none') return;
+      var ae = document.activeElement, tag = ae ? ae.tagName : '';
+      if (/^(INPUT|SELECT|TEXTAREA)$/.test(tag)) return;
+      var inCalc = !!(ae && ae.closest && ae.closest('.calc-widget'));
+      if (/^(BUTTON|A)$/.test(tag) && !inCalc) return;
+      var k = e.key;
+      if (k === 'Enter' && inCalc) return; // a focused calculator button handles Enter itself
+      if (/^[0-9.]$/.test(k)) window.calcInput(k);
+      else if (k === '+' || k === '-' || k === '*' || k === '/' || k === '%') window.calcInput(k);
+      else if (k === '(' ) window.calcSciInput('(');
+      else if (k === ')') window.calcSciInput(')');
+      else if (k === '^') window.calcSciInput('^');
+      else if (k === 'Enter' || k === '=') { e.preventDefault(); window.calcCalculate(); }
+      else if (k === 'Backspace') window.calcBack();
+      else if (k === 'Delete') window.calcClear();
+      else return;
+    });
+
+    // ==========================================
+    // START
+    // ==========================================
+    buildHome();
+    render();
+    var savedLang = lsGet('selectedLang');
+    if (savedLang && savedLang !== 'en' && languages[savedLang]) {
+      $('languageSelect').value = savedLang;
+      window.addEventListener('load', function () { setTimeout(function () { applyLanguage(savedLang, true); }, 1500); });
+    }
+  })();
+  </script>
+</body>
+</html>
