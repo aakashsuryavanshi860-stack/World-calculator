@@ -1,3 +1,9 @@
+
 User-agent: *
 Allow: /
-Sitemap: https://world-calculator.aakashsuryavanshi860.workers.dev/sitemap.xml
+
+# Sitemap location
+Sitemap: https://world-calculator.aakashsuryavanshi860.workers.dev/sitemap_fixed.xml
+
+# Important: Do not block CSS, JavaScript, or images. 
+# Googlebot needs them to properly render the page.
